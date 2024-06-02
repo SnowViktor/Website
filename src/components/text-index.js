@@ -1,17 +1,17 @@
 // src/components/my-component.js
 import { LitElement, html, css } from 'lit';
 
-class MyComponent extends LitElement {
+class TextIndex extends LitElement {
   static styles = css`
     /* your styles here */
-    @import url('../assets/style.css');
+    @import url('../assets/index.css');
   `;
 
   render() {
     return html`
-      <div>Hello, Lit!</div>
+      <div>Code-Viktor</div>
     `;
   }
 }
 
-customElements.define('my-component', MyComponent);
+customElements.define('text-index', TextIndex);
