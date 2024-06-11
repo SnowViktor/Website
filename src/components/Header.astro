@@ -1,0 +1,17 @@
+---
+import Hamburger from "./Hamburger.astro";
+import Nav from "./Nav.astro";
+---
+
+<header>
+    <Hamburger />
+    <Nav />
+</header>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        document.getElementById('hamburger')?.addEventListener('click', () => {
+            document.querySelector('nav')?.classList.toggle('expand');
+        });
+    });
+</script>

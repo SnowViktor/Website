@@ -1,0 +1,25 @@
+---
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1;
+const date = now.getDate();
+const hour = now.getHours();
+const minute = now.getMinutes();
+---
+
+<footer>
+    <p>上次編輯時間: <time datetime={`${year}-${month}-${date}T${hour}:${minute}`}>{year}/{month}/{date} {hour}:{minute}</time></p>
+    <p><b>©</b> {year} SnowViktor</p>
+</footer>
+
+<style>
+    @font-face {
+        font-display: swap;
+        font-family: "Trebuchet-MS";
+        src: url("/fonts/Trebuchet-MS.woff2");
+    }
+
+    p {
+        font-family: "Trebuchet-MS";
+    }
+</style>

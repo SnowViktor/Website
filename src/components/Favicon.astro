@@ -1,14 +1,15 @@
 ---
-const sizes = [16, 32, 48, 64, 128, 144, 167, 180, 192, 512];
----
+const sizes = [16, 32, 48, 64, 96, 128, 144, 167, 180, 192, 256, 500, 512];
 
-<!--
+/*
 圖片模式
-href={`/favicon-light-${size}.png`}
+href={`/favicons/favicon-light-${size}.png`}
 
 系統模式
 media="(prefers-color-scheme: light)"
 media="(prefers-color-scheme: dark)"
 media="(prefers-color-scheme: no-preference)" 預設
--->
-{sizes.map((size) => <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicon/favicon-dark-${size}.png`} />)}
+*/
+---
+
+{sizes.map((size) => <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />)}

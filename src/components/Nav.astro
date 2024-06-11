@@ -1,0 +1,36 @@
+---
+const pages = [['', '首頁'], ['blog', '部落格'], ['about', '關於']];
+---
+
+<nav>
+    {pages.map((page) => <a href={`/${page[0]}`}>{page[1]}</a>)}
+</nav>
+
+<style>
+    @font-face {
+        font-display: swap;
+        font-family: "jf-openhuninn-2.0";
+        src: url("/fonts/jf-openhuninn-2.0.woff2");
+    }
+
+    a {
+        font-family: "jf-openhuninn-2.0";
+        font-size: 25px;
+    }
+
+    nav {
+        display: flex;
+    }
+
+    @media screen and (max-width: 600px) {
+        nav {
+            align-items: center;
+            display: none;
+            flex-direction: column;
+        }
+
+        .expand {
+            display: flex;
+        }
+    }
+</style>

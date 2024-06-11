@@ -1,0 +1,27 @@
+---
+---
+
+<div id="hamburger">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+</div>
+
+<style>
+    @media screen and (max-width: 600px) {
+        #hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 30px;
+            justify-content: space-between;
+            width: 36px;
+        }
+
+        #hamburger .line {
+            background-color: white;
+            height: 5px;
+            width: 36px;
+        }
+    }
+</style>
