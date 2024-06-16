@@ -1,6 +1,13 @@
+@font-face {
+	font-display: swap;
+	font-family: "jf-openhuninn-2.0";
+	src: url("/fonts/jf-openhuninn-2.0.woff2");
+}
+
 body {
-	background-color: hsl(180, 25%, 15%);
+	background-color: #202124;
 	color: white;
+	font-family: 'jf-openhuninn-2.0';
 	padding: 10px;
 }
 
@@ -8,7 +15,7 @@ body {
 	body {
 		margin: auto;
 		min-width: 768px;
-		max-width: 55%;
+		max-width: 60%;
 	}
 }
 
@@ -19,11 +26,11 @@ a {
 
 a:hover,
 a:focus {
-	color: steelblue;
+	color: #5DE892;
 }
 
 .divider {
-	background-color: hsl(16, 100%, 45%);
+	background-color: orangered;
 	display: block;
 	height: 1px;
 	margin: 25px 0 25px 0;

@@ -2,20 +2,15 @@
 const pages = [['', '首頁'], ['blog', '部落格'], ['about', '關於']];
 ---
 
-<nav>
+<nav class="default">
     {pages.map((page) => <a href={`/${page[0]}`}>{page[1]}</a>)}
 </nav>
 
 <style>
-    @font-face {
-        font-display: swap;
-        font-family: "jf-openhuninn-2.0";
-        src: url("/fonts/jf-openhuninn-2.0.woff2");
-    }
-
     a {
-        font-family: "jf-openhuninn-2.0";
+        font-family: 'Noto Sans TC', sans-serif;
         font-size: 25px;
+        margin-right: 20px;
     }
 
     nav {
@@ -23,14 +18,47 @@ const pages = [['', '首頁'], ['blog', '部落格'], ['about', '關於']];
     }
 
     @media screen and (max-width: 600px) {
+        @keyframes navExpand {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                height: 108px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes navCollapse {
+            from {
+                height: 108px;
+                opacity: 1;
+            }
+            to {
+                height: 0;
+                opacity: 0;
+            }
+        }
+
+        a {
+            height: 36px;
+            margin-right: 0;
+        }
+
         nav {
             align-items: center;
-            display: none;
+            animation: navCollapse 0.25s ease forwards;
+            display: flex;
             flex-direction: column;
+            overflow: hidden;
+        }
+
+        .default {
+            display: none;
         }
 
         .expand {
-            display: flex;
+            animation: navExpand 0.25s ease forwards;
         }
     }
 </style>

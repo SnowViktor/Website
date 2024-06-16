@@ -1,15 +1,9 @@
 ---
-const now = new Date();
-const year = now.getFullYear();
-const month = now.getMonth() + 1;
-const date = now.getDate();
-const hour = now.getHours();
-const minute = now.getMinutes();
 ---
 
 <footer>
-    <p>上次編輯時間: <time datetime={`${year}-${month}-${date}T${hour}:${minute}`}>{year}/{month}/{date} {hour}:{minute}</time></p>
-    <p><b>©</b> {year} SnowViktor</p>
+    <p><i>Website Last Edited: <time></time></i></p>
+    <p id="copyright"></p>
 </footer>
 
 <style>
@@ -23,3 +17,23 @@ const minute = now.getMinutes();
         font-family: "Trebuchet-MS";
     }
 </style>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        function dateZeroPadding(data: number) {
+            return String(data).padStart(2, '0')
+        }
+        const now = new Date(document.lastModified);
+        const year = now.getFullYear();
+        const month = dateZeroPadding(now.getMonth() + 1);
+        const date = dateZeroPadding(now.getDate());
+        const hour = dateZeroPadding(now.getHours());
+        const minute = dateZeroPadding(now.getMinutes());
+
+        const time = document.querySelector('time');
+        time!.dateTime = `${year}-${month}-${date}T${hour}:${minute}`;
+        time!.textContent = `${year}/${month}/${date} ${hour}:${minute}`;
+
+        document.getElementById('copyright')!.textContent = `© ${year} SnowViktor`;
+    });
+</script>
