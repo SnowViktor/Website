@@ -1,9 +1,10 @@
 ---
+const time = '2024/06/16/19/02'.split('/');
 ---
 
 <footer>
-    <p><i>Website Last Edited: <time></time></i></p>
-    <p id="copyright"></p>
+    <p><i>Website Last Edited: <time datetime=`${time[0]}-${time[1]}-${time[2]}T${time[3]}:${time[4]}`>{time[0]}/{time[1]}/{time[2]} {time[3]}:{time[4]}</time></i></p>
+    <p id="copyright">© {time[0]} SnowViktor</p>
 </footer>
 
 <style>
@@ -17,23 +18,3 @@
         font-family: "Trebuchet-MS";
     }
 </style>
-
-<script>
-    document.addEventListener('astro:page-load', () => {
-        function dateZeroPadding(data: number) {
-            return String(data).padStart(2, '0')
-        }
-        const now = new Date(document.lastModified);
-        const year = now.getFullYear();
-        const month = dateZeroPadding(now.getMonth() + 1);
-        const date = dateZeroPadding(now.getDate());
-        const hour = dateZeroPadding(now.getHours());
-        const minute = dateZeroPadding(now.getMinutes());
-
-        const time = document.querySelector('time');
-        time!.dateTime = `${year}-${month}-${date}T${hour}:${minute}`;
-        time!.textContent = `${year}/${month}/${date} ${hour}:${minute}`;
-
-        document.getElementById('copyright')!.textContent = `© ${year} SnowViktor`;
-    });
-</script>

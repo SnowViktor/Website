@@ -8,14 +8,15 @@ body {
 	background-color: #202124;
 	color: white;
 	font-family: 'jf-openhuninn-2.0';
+	font-optical-sizing: auto;
 	padding: 10px;
 }
 
 @media screen and (orientation: landscape) and (min-width: 768px) {
 	body {
 		margin: auto;
-		min-width: 768px;
 		max-width: 60%;
+		min-width: 768px;
 	}
 }
 

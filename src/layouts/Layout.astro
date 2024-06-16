@@ -34,7 +34,7 @@ const { title, description } = Astro.props;
 	<body>
 		<Header />
 		<span class="divider" />
-		<main transition:animate={slide({ duration: '0.2s' })} >
+		<main transition:animate="initial" >
 			<slot />
 		</main>
 		<span class="divider" />
