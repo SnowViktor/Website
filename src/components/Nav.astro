@@ -1,12 +1,14 @@
 ---
-const pages = [['', '首頁'], ['blog', '部落格'], ['about', '關於']];
+const pages = [['', '首頁'], ['articles', '文章'], ['tools', '工具'], ['about', '關於']];
+
+const nav_height = `${36 * pages.length}px`;
 ---
 
 <nav class="default">
     {pages.map((page) => <a href={`/${page[0]}`}>{page[1]}</a>)}
 </nav>
 
-<style>
+<style define:vars={{nav_height}}>
     a {
         font-family: 'Noto Sans TC', sans-serif;
         font-size: 25px;
@@ -24,14 +26,14 @@ const pages = [['', '首頁'], ['blog', '部落格'], ['about', '關於']];
                 opacity: 0;
             }
             to {
-                height: 108px;
+                height: var(--nav_height);
                 opacity: 1;
             }
         }
 
         @keyframes navCollapse {
             from {
-                height: 108px;
+                height: var(--nav_height);
                 opacity: 1;
             }
             to {

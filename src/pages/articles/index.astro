@@ -1,0 +1,9 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const articles = await Astro.glob('./*.md');
+---
+
+<Layout title="文章 • SnowViktor" description="文章">
+    {articles.map((article) => <a href={article.url}>{article.frontmatter.title}</a>)}
+</Layout>

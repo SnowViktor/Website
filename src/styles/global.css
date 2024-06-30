@@ -37,3 +37,11 @@ a:focus {
 	margin: 25px 0 25px 0;
 	width: 100%;
 }
+
+::selection {
+	background-color: rgb(75, 186, 255);
+}
+
+h1 {
+	text-align: center;
+}

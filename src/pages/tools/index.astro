@@ -1,0 +1,10 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const tools = [['word-counter', '字數計算']];
+---
+
+<Layout title="工具 • SnowViktor" description="工具">
+    <h1>工具</h1>
+    {tools.map((tool) => <a href={`/tools/${tool[0]}`}>{tool[1]}</a>)}
+</Layout>
