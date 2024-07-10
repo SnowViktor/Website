@@ -10,6 +10,7 @@ body {
 	font-family: 'jf-openhuninn-2.0';
 	font-optical-sizing: auto;
 	padding: 10px;
+	-webkit-tap-highlight-color: transparent;
 }
 
 @media screen and (orientation: landscape) and (min-width: 768px) {
@@ -25,9 +26,9 @@ a {
 	text-decoration: none;
 }
 
-a:hover,
-a:focus {
-	color: #5DE892;
+a:focus,
+a:hover {
+	color: #5de892;
 }
 
 .divider {
