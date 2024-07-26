@@ -10,9 +10,9 @@ import Nav from "./Nav.astro";
 
 <script>
     document.addEventListener('astro:page-load', () => {
-        document.getElementById('hamburger')?.addEventListener('click', () => {
-            document.getElementById('hamburger')?.classList.toggle('expand');
-            document.getElementById('nav')?.classList.toggle('expand');
+        document.getElementById('hamburger')!.addEventListener('click', () => {
+            document.getElementById('hamburger')!.classList.toggle('expand');
+            document.getElementById('nav')!.classList.toggle('expand');
         });
     });
 </script>

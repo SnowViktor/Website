@@ -1,15 +1,18 @@
 @font-face {
 	font-display: swap;
 	font-family: "jf-openhuninn-2.0";
-	src: url("/fonts/jf-openhuninn-2.0.woff2");
+	src: local("jf open 粉圓 2.0"), url("/fonts/jf-openhuninn-2.0.woff2");
 }
 
 body {
 	background-color: #202124;
 	color: white;
 	font-family: 'jf-openhuninn-2.0';
+	font-size: 18px;
 	font-optical-sizing: auto;
 	padding: 10px;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;
 }
 
@@ -19,6 +22,10 @@ body {
 		max-width: 60%;
 		min-width: 768px;
 	}
+}
+
+::selection {
+	background-color: rgb(75, 186, 255);
 }
 
 a {
@@ -39,10 +46,7 @@ a:hover {
 	width: 100%;
 }
 
-::selection {
-	background-color: rgb(75, 186, 255);
-}
-
 h1 {
+	font-weight: bold;
 	text-align: center;
 }

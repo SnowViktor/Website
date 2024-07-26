@@ -24,8 +24,8 @@ import Layout from "../../layouts/Layout.astro";
         const wordCount = document.getElementById('word-count');
         const characterCount = document.getElementById('character-count');
         
-        textInput!.addEventListener('input', () => {
-            const text = textInput!.value;
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
             const words = calculatorWords(text);
             const characters = calculatorCharacters(text);
             wordCount!.textContent = words.toString();
