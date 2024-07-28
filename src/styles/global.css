@@ -1,5 +1,7 @@
 /* font-face ~ */
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
 @font-face {
 	font-display: swap;
 	font-family: 'jf-openhuninn-2.0';
@@ -11,8 +13,6 @@
 	font-family: 'Trebuchet MS';
 	src: url('/fonts/Trebuchet-MS.woff2');
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
 
 /* ~ font-face */
 
@@ -127,13 +127,14 @@ a {
 	}
 
 	#nav.expand {
-		max-height: 150px;
+		max-height: 152px;
 		opacity: 1;
 	}
 	
 	.nav-a {
-		height: 37.5px;
+		height: 30px;
 		margin-right: 0;
+		padding: 4px 6px 4px 6px;
 	}
 }
 
