@@ -4,7 +4,6 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout title="字數計算" description="字數計算">
     <h1>字數計算</h1>
-    <textarea id="text-input" rows="12" placeholder="請輸入文字"></textarea>
     <div id="result">
         <div class="count">
             <p class="row">單詞</p>
@@ -16,7 +15,64 @@ import Layout from "../../layouts/Layout.astro";
             <p id="character-count">0</p>
         </div>
     </div>
+    <textarea id="text-input" rows="12" placeholder="請輸入文字" />
 </Layout>
+
+<style>
+    textarea {
+        background-color: #2c2c2c;
+        border: 1px solid orangered;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(255, 69, 0, 0.3);
+        color: white;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        font-style: normal;
+        padding: 12px;
+        resize: vertical;
+        width: calc(100% - 24px);
+    }
+
+    textarea:focus,
+    textarea:hover {
+        background-color: #333333;
+        border-color: orangered;
+        box-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
+        outline: none;
+    }
+
+    #result {
+        background-color: #3e3e3e;
+        border-radius: 20px;
+        display: flex;
+        margin-bottom: 25px;
+    }
+
+    .count {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px 15px 10px 15px;
+    }
+
+    .row {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 30px;
+        margin: 0;
+    }
+
+    .cut {
+        background-color: #5f5f5f;
+	    display: block;
+	    width: 2px;
+    }
+</style>
 
 <script>
     document.addEventListener('astro:page-load', () => {
@@ -52,57 +108,3 @@ import Layout from "../../layouts/Layout.astro";
         }
     });
 </script>
-
-<style>
-    textarea {
-        background-color: #2c2c2c;
-        border: 1px solid orangered;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(255, 69, 0, 0.3);
-        color: white;
-        font-family: 'Noto Sans TC', sans-serif;
-        font-size: 16px;
-        padding: 12px;
-        resize: vertical;
-        width: calc(100% - 24px);
-    }
-
-    textarea:hover,
-    textarea:focus {
-        background-color: #333333;
-        border-color: orangered;
-        box-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
-        outline: none;
-    }
-
-    #result {
-        background-color: #3e3e3e;
-        border-radius: 20px;
-        display: flex;
-        margin-top: 25px;
-    }
-
-    .count {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 10px 15px 10px 15px;
-    }
-
-    .row {
-        font-size: 20px;
-        margin-bottom: 5px;
-    }
-
-    p {
-        font-size: 30px;
-        margin: 0;
-    }
-
-    .cut {
-        background-color: #5f5f5f;
-	    display: block;
-	    width: 2px;
-    }
-</style>

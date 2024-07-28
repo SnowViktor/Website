@@ -1,28 +1,8 @@
 ---
-const time = '2024/07/26/22/59'.split('/');
+const time = '2024/07/28/22/26'.split('/');
 ---
 
 <footer>
-    <p><i>Website Last Edited: <time datetime=`${time[0]}-${time[1]}-${time[2]}T${time[3]}:${time[4]}`>{time[0]}/{time[1]}/{time[2]} {time[3]}:{time[4]}</time></i></p>
-    <p id="copyright">© {time[0]} SnowViktor</p>
+    <p class="footer-p"><i>Website Last Edited: <time datetime=`${time[0]}-${time[1]}-${time[2]}T${time[3]}:${time[4]}`>{time[0]}/{time[1]}/{time[2]} {time[3]}:{time[4]}</time></i></p>
+    <p class="footer-p">© {time[0]} SnowViktor</p>
 </footer>
-
-<style>
-    @font-face {
-        font-display: swap;
-        font-family: "Trebuchet-MS";
-        src: url("/fonts/Trebuchet-MS.woff2");
-    }
-
-    footer {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    p {
-        font-family: "Trebuchet-MS";
-        font-size: 16px;
-        margin: 8px 0 8px 0;
-    }
-</style>

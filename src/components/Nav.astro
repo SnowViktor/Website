@@ -1,51 +1,7 @@
 ---
 const pages = [['', '首頁'], ['articles', '文章'], ['tools', '工具'], ['about', '關於']];
-
-const nav_height = `${(36 + 3) * pages.length}px`;
 ---
 
 <nav id="nav">
-    {pages.map((page) => <a href={`/${page[0]}`}>{page[1]}</a>)}
+    {pages.map((page) => <a class="nav-a" href={`/${page[0]}`}>{page[1]}</a>)}
 </nav>
-
-<style define:vars={{nav_height}}>
-    a {
-        border-radius: 10px;
-        color: white;
-        font-family: 'Noto Sans TC', sans-serif;
-        font-size: 25px;
-        margin-right: 10px;
-        padding: 0 6px 3px 6px;
-    }
-
-    a:focus,
-    a:hover {
-        background-color: rgba(93, 232, 146, 0.75);
-    }
-
-    nav {
-        display: flex;
-    }
-
-    @media screen and (max-width: 600px) {
-        a {
-            height: 36px;
-            margin-right: 0;
-        }
-
-        nav {
-            align-items: center;
-            animation: navCollapse 0.25s ease forwards;
-            flex-direction: column;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.25s ease, opacity 0.25s ease;
-        }
-
-        nav.expand {
-            max-height: var(--nav_height);
-            opacity: 1;
-        }
-    }
-</style>

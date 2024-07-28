@@ -2,43 +2,7 @@
 ---
 
 <div id="hamburger">
-    <span class="line"></span>
-    <span class="line"></span>
-    <span class="line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
 </div>
-
-<style>
-    @media screen and (max-width: 600px) {
-        #hamburger {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            height: 30px;
-            justify-content: space-between;
-            transition: transform 0.3s ease;
-            width: 36px;
-        }
-
-        #hamburger .line {
-            background-color: white;
-            border-radius: 5px;
-            height: 5px;
-            transition: all 0.3s ease;
-            width: 36px;
-        }
-
-        #hamburger.expand .line:nth-child(1) {
-            transform: rotate(41.5deg) translate(5px, 12px);
-            width: 46px;
-        }
-
-        #hamburger.expand .line:nth-child(2) {
-            transform: scaleX(0);
-        }
-
-        #hamburger.expand .line:nth-child(3) {
-            transform: rotate(-41.5deg) translate(5px, -12px);
-            width: 46px;
-        }
-    }
-</style>
