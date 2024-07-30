@@ -105,7 +105,7 @@ a {
 
 .nav-a {
 	border-radius: 10px;
-	font-size: 26px;
+	font-size: 25px;
 	margin-right: 8px;
 	padding: 3px 6px 5.5px 6px;
 }
@@ -118,21 +118,20 @@ a {
 @media screen and (max-width: 600px) {
 	#nav {
 		align-items: center;
-		animation: navCollapse 0.25s ease forwards;
 		flex-direction: column;
-		max-height: 0;
+		height: 0;
 		opacity: 0;
 		overflow: hidden;
-		transition: max-height 0.25s ease, opacity 0.25s ease;
+		transition: height 0.25s ease, opacity 0.25s ease;
 	}
 
 	#nav.expand {
-		max-height: 152px;
+		height: 145px;
 		opacity: 1;
 	}
 	
 	.nav-a {
-		height: 30px;
+		height: auto;
 		margin-right: 0;
 		padding: 4px 6px 4px 6px;
 	}
