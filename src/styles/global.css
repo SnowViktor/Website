@@ -1,17 +1,9 @@
 /* font-face ~ */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
-
 @font-face {
 	font-display: swap;
 	font-family: 'jf-openhuninn-2.0';
-	src: url('/fonts/jf-openhuninn-2.0.woff2');
-}
-
-@font-face {
-	font-display: swap;
-	font-family: 'Trebuchet MS';
-	src: url('/fonts/Trebuchet-MS.woff2');
+	src: url('/fonts/jf-openhuninn-2.0.woff2') format('.woff2');
 }
 
 /* ~ font-face */
