@@ -3,7 +3,7 @@
 @font-face {
 	font-display: swap;
 	font-family: 'jf-openhuninn-2.0';
-	src: url('/fonts/jf-openhuninn-2.0.woff2') format('.woff2');
+	src: url('/fonts/jf-openhuninn-2.0.woff2');
 }
 
 /* ~ font-face */

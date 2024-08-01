@@ -1,8 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const links = [
+                ['https://github.com/SnowViktor', "SnowViktor's GitHub"],
+                ['https://github.com/SnowViktor/Website', 'Website GitHub']
+              ];
 ---
 
-<Layout title="關於 • SnowViktor" description="">
-    <h1>關於</h1>
-    <a target="_blank" href="https://github.com/SnowViktor/Website">Github</a>
+<Layout title="關於" description="【SnowViktor和網站的資訊】：SnowViktor's GitHub | Website GitHub">
+    <ul>
+        {links.map(link => <li><a href={link[0]}>{link[1]}</a></li>)}
+    </ul>
 </Layout>
