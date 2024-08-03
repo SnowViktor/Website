@@ -1,11 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/PageLayout.astro";
 
-const articles = await Astro.glob('./*.md');
+const articles = await getCollection('articles');
 ---
 
 <Layout title="文章" description="【日記、新詩、散文】：測試">
     <ol>
-        {articles.map(article => <li><a href={article.url}>{article.frontmatter.title}</a></li>)}
+        {articles.map(article => <li><a href={`/articles/${article.slug}`}>{article.data.title}</a></li>)}
     </ol>
 </Layout>
