@@ -6,6 +6,12 @@
 	src: url('/fonts/jf-openhuninn-2.0.woff2');
 }
 
+@font-face {
+	font-display: swap;
+	font-family: 'Iansui-Regular';
+	src: url('/fonts/Iansui-Regular.woff2');
+}
+
 /* ~ font-face */
 
 /* body ~ */
@@ -29,15 +35,14 @@ body {
 	}
 }
 
-::selection {
+body::selection {
 	background-color: rgb(75, 186, 255);
 }
 
-.divider {
-	background-color: orangered;
-	display: block;
-	height: 1px;
-	margin: 20px 0 20px 0;
+hr.divider {
+	border: 1px solid orangered;
+	margin-block: 20px 20px;
+	margin-inline: 0 0;
 	width: 100%;
 }
 
@@ -118,14 +123,14 @@ a {
 	}
 
 	#nav.expand {
-		height: 145px;
+		height: 141px;
 		opacity: 1;
 	}
 	
 	.nav-a {
 		height: auto;
 		margin-right: 0;
-		padding: 4px 6px 4px 6px;
+		padding: 3px 6px 4px 6px;
 	}
 }
 
@@ -136,7 +141,7 @@ a {
 /* main ~ */
 
 main {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 main a:focus,
@@ -148,6 +153,11 @@ h1 {
 	font-size: 40px;
 	font-weight: bold;
 	text-align: center;
+}
+
+h1.articles {
+	font-family: 'Noto Sans TC', sans-serif;
+	font-style: normal;
 }
 
 /* ~ main */

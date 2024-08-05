@@ -9,7 +9,9 @@ interface Props {
 	description: string;
 }
 
-const { title, description } = Astro.props;
+let { title } = Astro.props; const { description } = Astro.props;
+let Article = '';
+if (title.startsWith('Article')) {title = title.replace('Article', ''); Article = 'articles';}
 ---
 
 <!DOCTYPE html>
@@ -26,6 +28,7 @@ const { title, description } = Astro.props;
 		<meta name="description" content={description} />
 		{/* <meta property="og:image" content="" */}
 		<link rel="preload" as="font" type="font/woff2" href="/fonts/jf-openhuninn-2.0.woff2" crossorigin />
+		<link rel="preconnect" as="font" type="font/woff2" href="/fonts/Iansui-Regular.woff2" crossorigin />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" />
@@ -33,12 +36,12 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<Header />
-		<span class="divider" />
+		<hr class="divider" />
 		<main>
-			<h1>{title}</h1>
+			<h1 class={Article}>{title}</h1>
 			<slot />
 		</main>
-		<span class="divider" />
+		<hr class="divider" />
 		<Footer />
 	</body>
 </html>
