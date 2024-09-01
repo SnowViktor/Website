@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/PageLayout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 
 const links = [
                 ['https://github.com/SnowViktor', "Personal GitHub"],
@@ -7,8 +7,8 @@ const links = [
               ];
 ---
 
-<Layout title="關於" description="【SnowViktor和網站的資訊】：Personal GitHub | Website GitHub">
+<PageLayout title="關於" description="【SnowViktor和網站的資訊】：Personal GitHub | Website GitHub">
     <ul>
-        {links.map(link => <li><a href={link[0]}>{link[1]}</a></li>)}
+        {links.map(link => <li><a href={link[0]} target="_blank">{link[1]}</a></li>)}
     </ul>
-</Layout>
+</PageLayout>
