@@ -17,6 +17,7 @@ body {
 	font-optical-sizing: auto;
 	padding: 8px;
 	text-rendering: optimizeLegibility;
+	touch-action: manipulation;
 	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;
 
