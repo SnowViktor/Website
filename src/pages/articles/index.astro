@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const articles = await getCollection('articles');
+---
+
+<PageLayout title="文章" description="【日記、新詩、散文】：我所知道的五股國中">
+    <ol>
+        {articles.map(article => <li><a href={`/articles/${article.slug}`}>{article.data.title}</a></li>)}
+    </ol>
+</PageLayout>
+
+<style>
+    a {
+        font-family: sans-serif;
+    }
+</style>

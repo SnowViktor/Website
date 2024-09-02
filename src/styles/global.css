@@ -1,0 +1,157 @@
+@font-face {
+	font-display: swap;
+	font-family: 'jf-openhuninn-2.0';
+	src: url('/fonts/jf-openhuninn-2.0.woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Iansui-Regular';
+	src: url('/fonts/Iansui-Regular.woff2');
+}
+
+body {
+	background-color: #3c4749;
+	color: white;
+	font-family: 'jf-openhuninn-2.0';
+	font-optical-sizing: auto;
+	padding: 8px;
+	text-rendering: optimizeLegibility;
+	touch-action: manipulation;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: transparent;
+
+	&::selection {
+		background-color: #4dbbff;
+	}
+
+	hr {
+		border: 1px solid #c1d8c3;
+		margin: 20px 0 20px 0;
+		width: 100%;
+	}
+	
+	a {
+		color: #fff;
+		text-decoration: none;
+	
+		&:focus,
+		&:hover {
+			color: #ff8a8a;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) and (orientation: landscape) {
+	body {
+		margin: auto;
+		max-width: 60%;
+		min-width: 768px;
+	}
+}
+
+header {
+	@media screen and (max-width: 600px) {
+		#hamburger {
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			height: 30px;
+			justify-content: space-between;
+			margin-left: auto;
+			transition: transform 0.3s ease;
+			width: 36px;
+
+			&.expand span {
+				&:nth-of-type(1) {
+					transform: rotate(-40deg) translate(-12px, 7px);
+					width: 46px;
+				}
+
+				&:nth-of-type(2) {
+					transform: scaleX(0);
+				}
+
+				&:nth-of-type(3) {
+					transform: rotate(40deg) translate(-12px, -6px);
+					width: 46px;
+				}
+			}
+
+			span {
+				background-color: #fff;
+				border-radius: 5px;
+				height: 5px;
+				transition: all 0.3s ease;
+				width: 36px;
+			}
+		}
+	}
+
+	nav {
+		display: flex;
+
+		a {
+			border-radius: 10px;
+			font-size: 25px;
+			margin-right: 8px;
+			padding: 3px 6px 5.5px 6px;
+		
+			&:focus,
+			&:hover {
+				background-color: #6a9c89;
+				color: #fff;
+			}
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		nav {
+			align-items: center;
+			flex-direction: column;
+			height: 0;
+			opacity: 0;
+			overflow: hidden;
+			transition: height 0.25s ease, opacity 0.25s ease;
+
+			&.expand {
+				height: 141px;
+				opacity: 1;
+			}
+
+			a {
+				height: auto;
+				margin-right: 0;
+				padding: 3px 6px 4px 6px;
+			}
+		}
+	}
+}
+
+main {
+	font-size: 20px;
+
+	h1 {
+		font-size: 40px;
+		font-weight: bold;
+		text-align: center;
+
+		&.articles {
+			font-family: sans-serif;
+			font-style: normal;
+		}
+	}
+}
+
+footer {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', serif;
+	font-size: 14px;
+	font-style: italic;
+
+	p {
+		margin: 4px 0 4px 0;
+	}
+}

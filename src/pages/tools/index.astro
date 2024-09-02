@@ -1,0 +1,15 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const tools = [
+                ['password-generator', '密碼產生'],
+                ['touch-counter', '觸控點計算'],
+                ['word-counter', '字數計算']
+              ];
+---
+
+<PageLayout title="工具" description="【效率提升的捷徑】：密碼產生 | 觸控點計算 | 字數計算">
+    <ul>
+        {tools.map(tool => <li><a href={`/tools/${tool[0]}`}>{tool[1]}</a></li>)}
+    </ul>
+</PageLayout>

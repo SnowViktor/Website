@@ -1,0 +1,44 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import Favicon from '../components/Favicon.astro';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+let { title } = Astro.props; const { description } = Astro.props;
+let Article = '';
+if (title.startsWith('Article')) {title = title.replace('Article', ''); Article = 'articles';}
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="google-site-verification" content="ot3YkGUlClAiQEO-1Wrnt9G3Xw35dhwyK-UbajJmq_o" />
+		<meta name="generator" content={Astro.generator} />
+		<meta property="og:site_name" content="SnowViktor" />
+		<meta property="og:title" content={title} />
+		<title>{title}</title>
+		<meta property="og:description" content={description} />
+		<meta name="description" content={description} />
+		{/* <meta property="og:image" content="" */}
+		<link rel="preload" as="font" type="font/woff2" href="/fonts/jf-openhuninn-2.0.woff2" crossorigin />
+		<link rel="preconnect" as="font" type="font/woff2" href="/fonts/Iansui-Regular.woff2" crossorigin />
+		<Favicon />
+	</head>
+	<body>
+		<Header />
+		<hr />
+		<main>
+			<h1 class={Article}>{title}</h1>
+			<slot />
+		</main>
+		<hr />
+		<Footer />
+	</body>
+</html>

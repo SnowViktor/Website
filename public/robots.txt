@@ -1,0 +1,12 @@
+# .___________.
+# |Serendipity|
+# |?!~</ \>~!?|
+# |   (@=@)   |
+# |  {[*-*]}  |
+# |%:;:;:;:;:%|
+# !___________!
+
+User-agent: *
+Allow: /
+
+Sitemap: https://snow-viktor.vercel.app/sitemap-index.xml

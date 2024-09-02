@@ -1,0 +1,18 @@
+---
+import Layout from "./PageLayout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title=`Article${frontmatter.title}` description={frontmatter.description}>
+    <article>
+        <slot />
+    </article>
+</Layout>
+
+<style>
+    article {
+        font-family: 'Iansui-Regular';
+        line-height: 1.5;
+    }
+</style>

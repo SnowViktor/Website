@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "jacobcassidy.css-nesting-syntax-highlighting"
+  ],
+  "unwantedRecommendations": []
+}
