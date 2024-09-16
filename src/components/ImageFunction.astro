@@ -14,4 +14,4 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpg,
 if (!images[src]) throw new Error(`"${src}" does not exist in glob: "src/assets/*.{jpg,png,svg}"`);
 ---
 
-<Image src={images[src]()} alt={alt} id={id} tabindex={tabindex} />
+<Image src={images[src]()} alt={alt} id={id} tabindex={tabindex} draggable="false" />
