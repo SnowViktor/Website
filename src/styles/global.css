@@ -35,7 +35,7 @@ body {
 		color: #fff;
 		text-decoration: none;
 	
-		&:focus,
+		&:focus-visible,
 		&:hover {
 			color: #ff8a8a;
 		}
@@ -97,7 +97,7 @@ header {
 			margin-right: 8px;
 			padding: 3px 6px 5.5px 6px;
 		
-			&:focus,
+			&:focus-visible,
 			&:hover {
 				background-color: #6a9c89;
 				color: #fff;
