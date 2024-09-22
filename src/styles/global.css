@@ -1,5 +1,5 @@
 @font-face {
-	font-display: swap;
+	font-display: block;
 	font-family: 'jf-openhuninn-2.0';
 	src: url('/fonts/jf-openhuninn-2.0.woff2');
 }
@@ -138,7 +138,6 @@ main {
 
 		&.articles {
 			font-family: sans-serif;
-			font-style: normal;
 		}
 	}
 }
