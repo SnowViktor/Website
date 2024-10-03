@@ -1,19 +1,23 @@
 @font-face {
-	font-display: block;
-	font-family: 'jf-openhuninn-2.0';
-	src: url('/fonts/jf-openhuninn-2.0.woff2');
+	font-display: swap;
+	font-family: 'GenSenRounded2TW-B';
+	src: url('/fonts/GenSenRounded2TW-B-subset.woff2') format('woff2');
+	ascent-override: 90%;
+	descent-override: 6%;
+	line-gap-override: 50%;
 }
 
 @font-face {
 	font-display: swap;
 	font-family: 'Iansui-Regular';
-	src: url('/fonts/Iansui-Regular.woff2');
+	src: url('/fonts/Iansui-Regular-subset.woff2') format('woff2');
+	ascent-override: 72.5%;
 }
 
 body {
 	background-color: #3c4749;
 	color: white;
-	font-family: 'jf-openhuninn-2.0';
+	font-family: 'GenSenRounded2TW-B', sans-serif;
 	font-optical-sizing: auto;
 	padding: 8px;
 	text-rendering: optimizeLegibility;
@@ -94,8 +98,9 @@ header {
 		a {
 			border-radius: 10px;
 			font-size: 25px;
-			margin-right: 8px;
-			padding: 3px 6px 5.5px 6px;
+			height: 36px;
+			margin-right: 4px;
+			padding: 2px 7px 4px 7px;
 		
 			&:focus-visible,
 			&:hover {
@@ -115,14 +120,13 @@ header {
 			transition: height 0.25s ease, opacity 0.25s ease;
 
 			&.expand {
-				height: 141px;
+				height: 158px;
 				opacity: 1;
 			}
 
 			a {
-				height: auto;
 				margin-right: 0;
-				padding: 3px 6px 4px 6px;
+				padding: 1px 6px 2.5px 6px;
 			}
 		}
 	}
@@ -137,7 +141,18 @@ main {
 		text-align: center;
 
 		&.articles {
-			font-family: sans-serif;
+			font-family: 'Noto Sans TC', sans-serif;
+		}
+	}
+
+	ol,
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+
+		li {
+			height: 30px;
+			margin-block: 5px;
 		}
 	}
 }

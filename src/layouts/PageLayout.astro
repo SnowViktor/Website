@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import ViewTransitions from 'astro/components/ViewTransitions.astro';
+import { ViewTransitions } from 'astro:transitions';
 import Favicon from '../components/Favicon.astro';
 
 interface Props {
@@ -28,6 +28,9 @@ if (title.startsWith('Article')) {title = title.replace('Article', ''); Article 
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		{/* <meta property="og:image" content="" */}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200..900&display=swap" rel="stylesheet">
 		<ViewTransitions />
 		<Favicon />
 	</head>
