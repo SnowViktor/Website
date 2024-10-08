@@ -16,7 +16,7 @@ if (title.startsWith('Article')) {title = title.replace('Article', ''); Article 
 ---
 
 <!DOCTYPE html>
-<html lang="zh-TW" transition:animate="none">
+<html lang="zh-TW" transition:animate="initial">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,9 +28,9 @@ if (title.startsWith('Article')) {title = title.replace('Article', ''); Article 
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		{/* <meta property="og:image" content="" */}
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200..900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200..900&display=swap" rel="stylesheet" />
 		<ViewTransitions />
 		<Favicon />
 	</head>
