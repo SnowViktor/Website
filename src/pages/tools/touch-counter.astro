@@ -8,16 +8,16 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 <style>
     #touch-count {
-        font-size: 130px;
+        font-size: 6.5em;
         padding-block: 0;
         margin: 0;
         text-align: center;
         touch-action: pan-y;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 500px) {
         #touch-count {
-            font-size: 250px;
+            font-size: 12.5em;
             padding-block: 40%;
         }
     }
@@ -28,7 +28,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
         const touchCount = document.getElementById('touch-count');
 
         if (navigator.maxTouchPoints < 1) {
-            touchCount!.style.cssText = 'font-size: 20px; padding-block: 20px';
+            touchCount!.style.cssText = 'font-size: 1em; padding-block: 2.63%';
             touchCount!.textContent = '此裝置不支援觸控';
         } else {
             document.addEventListener('touchstart', (e) => {touchCount!.textContent = String(e.touches.length);});
