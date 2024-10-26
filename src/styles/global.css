@@ -160,13 +160,14 @@ main {
 
 	article {
 		font-family: 'Iansui-Regular', serif;
-		letter-spacing: 0.1em;
-		line-height: 1.8;
+		letter-spacing: 0.03em;
+		line-height: 1.9;
+		margin: auto;
+		max-width: 85vw;
 	}
 
 	@media screen and (min-width: 775px) and (orientation: landscape) {
 		article {
-			margin: auto;
 			max-width: 55vw;
 		}
 	}
