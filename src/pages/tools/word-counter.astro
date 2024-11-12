@@ -55,8 +55,8 @@ import PageLayout from "../../layouts/PageLayout.astro";
         border: 1px solid rgb(193, 216, 195);
         border-radius: 15px;
         box-shadow: 0 0 2px 1px rgba(193, 216, 195, 0.5);
-        font-family: 'Noto Sans TC', sans-serif;
-        font-size: 0.8em;
+        font-family: "Noto Sans TC", sans-serif;
+        font-size: 0.9em;
         outline: none;
         padding: 12px;
         resize: vertical;
@@ -70,12 +70,12 @@ import PageLayout from "../../layouts/PageLayout.astro";
 </style>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const textInput = document.getElementById('text-input') as HTMLTextAreaElement;
-        const wordCount = document.getElementById('word-count');
-        const characterCount = document.getElementById('character-count');
+    document.addEventListener("astro:page-load", () => {
+        const textInput = document.getElementById("text-input") as HTMLTextAreaElement;
+        const wordCount = document.getElementById("word-count");
+        const characterCount = document.getElementById("character-count");
 
-        textInput.addEventListener('input', () => {
+        textInput.addEventListener("input", () => {
             const text = textInput.value;
             wordCount!.textContent = calculatorWords(text).toString();
             characterCount!.textContent = calculatorCharacters(text).toString();
@@ -84,12 +84,12 @@ import PageLayout from "../../layouts/PageLayout.astro";
         function calculatorWords(text: String) {
             const cjkChars = text.match(/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g) || [];
             const non_cjkChars = text
-              .replace(/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g, ' ')
-              .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu, ' ')
-              .replace(/[^\w\s]|_/g, '')
-              .replace(/\s+/g, ' ')
+              .replace(/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g, " ")
+              .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu, " ")
+              .replace(/[^\w\s]|_/g, "")
+              .replace(/\s+/g, " ")
               .trim()
-              .split(' ')
+              .split(" ")
               .filter(Boolean);
             const emoji = text.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu) || [];
             return cjkChars.length + non_cjkChars.length + emoji.length;

@@ -24,15 +24,15 @@ import PageLayout from "../../layouts/PageLayout.astro";
 </style>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const touchCount = document.getElementById('touch-count');
+    document.addEventListener("astro:page-load", () => {
+        const touchCount = document.getElementById("touch-count");
 
         if (navigator.maxTouchPoints < 1) {
-            touchCount!.style.cssText = 'font-size: 1em; padding-block: 2.63%';
-            touchCount!.textContent = '此裝置不支援觸控';
+            touchCount!.style.cssText = "font-size: 1em; padding-block: 2.63%";
+            touchCount!.textContent = "此裝置不支援觸控";
         } else {
-            document.addEventListener('touchstart', (e) => {touchCount!.textContent = String(e.touches.length);});
-            document.addEventListener('touchend', () => {touchCount!.textContent = '0';});
+            document.addEventListener("touchstart", (e) => {touchCount!.textContent = String(e.touches.length);});
+            document.addEventListener("touchend", () => {touchCount!.textContent = "0";});
         }
     });
 </script>

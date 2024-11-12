@@ -9,16 +9,16 @@ import Nav from "./Nav.astro";
 </header>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
+    document.addEventListener("astro:page-load", () => {
+        const hamburger = document.getElementById("hamburger");
+        const nav = document.getElementById("nav");
 
         function toggleExpand() {
-            hamburger!.classList.toggle('expand');
-            nav!.classList.toggle('expand');
+            hamburger!.classList.toggle("expand");
+            nav!.classList.toggle("expand");
         }
 
-        hamburger!.addEventListener('click', toggleExpand);
-        hamburger!.addEventListener('focus', () => {hamburger!.addEventListener('keyup', toggleExpand);});
+        hamburger!.addEventListener("click", toggleExpand);
+        hamburger!.addEventListener("focus", () => {hamburger!.addEventListener("keyup", toggleExpand);});
     });
 </script>

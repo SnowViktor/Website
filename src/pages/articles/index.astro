@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/PageLayout.astro";
 
-const articles = await getCollection('articles');
+const articles = await getCollection("articles");
 ---
 
 <PageLayout title="文章" description="【日記、新詩、散文】：遛狗 | 我的母語 | 從《進擊的巨人》油然而生對社會的省思 | 彩 | 我所知道的五股國中">
@@ -13,7 +13,6 @@ const articles = await getCollection('articles');
 
 <style>
     a {
-        font-family: 'Noto Sans TC', sans-serif;
-        font-weight: 500;
+        font-family: "Noto Sans TC", sans-serif;
     }
 </style>

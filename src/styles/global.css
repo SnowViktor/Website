@@ -1,23 +1,7 @@
-@font-face {
-	font-display: swap;
-	font-family: 'GenSenRounded2TW-B';
-	src: url('/fonts/GenSenRounded2TW-B-subset.woff2') format('woff2');
-	ascent-override: 90%;
-	descent-override: 6%;
-	line-gap-override: 50%;
-}
-
-@font-face {
-	font-display: swap;
-	font-family: 'Iansui-Regular';
-	src: url('/fonts/Iansui-Regular-subset.woff2') format('woff2');
-	ascent-override: 72.5%;
-}
-
 body {
 	background-color: rgb(60, 71, 73);
 	color: rgb(255, 255, 255);
-	font-family: 'GenSenRounded2TW-B', sans-serif;
+	font-family: "Noto Sans TC", sans-serif;
 	font-optical-sizing: auto;
 	margin: 0;
 	padding: 1vh;
@@ -35,11 +19,11 @@ body {
 		margin: 1vh 0;
 		width: 100%;
 	}
-	
+
 	a {
 		color: rgb(255, 255, 255);
 		text-decoration: none;
-	
+
 		&:focus-visible,
 		&:hover {
 			color: rgb(255, 138, 138);
@@ -100,10 +84,11 @@ header {
 		a {
 			border-radius: 10px;
 			font-size: 1.5em;
+			font-weight: 700;
 			height: 36px;
 			margin-right: 2%;
 			padding: 1px 5px;
-		
+
 			&:focus-visible,
 			&:hover {
 				background-color: rgb(106, 156, 137);
@@ -135,15 +120,16 @@ header {
 }
 
 main {
-	font-size: 1.25em;
+	font-size: 1.125em;
+	font-weight: 500;
 
 	h1 {
 		font-size: 2em;
-		font-weight: bold;
+		font-weight: 700;
 		text-align: center;
 
 		&.articles {
-			font-family: 'Noto Sans TC', sans-serif;
+			font-family: "Noto Serif TC", serif;
 		}
 	}
 
@@ -159,23 +145,24 @@ main {
 	}
 
 	article {
-		font-family: 'Iansui-Regular', serif;
-		letter-spacing: 0.03em;
-		line-height: 1.9;
+		font-family: "Noto Sans TC", sans-serif;
+		letter-spacing: 0.035em;
+		line-height: 2;
 		margin: auto;
-		max-width: 85vw;
+		max-width: 86vw;
 	}
 
 	@media screen and (min-width: 775px) and (orientation: landscape) {
 		article {
-			max-width: 55vw;
+			max-width: 50vw;
+			min-width: 496px;
 		}
 	}
 }
 
 footer {
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
-	font-size: 0.8125em;
+	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;
+	font-size: 0.7em;
 
 	i {
 		align-items: center;
