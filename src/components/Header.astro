@@ -19,6 +19,8 @@ import Nav from "./Nav.astro";
         }
 
         hamburger!.addEventListener("click", toggleExpand);
-        hamburger!.addEventListener("focus", () => {hamburger!.addEventListener("keyup", toggleExpand);});
+        hamburger!.addEventListener("focus", () => {
+            hamburger!.addEventListener("keyup", toggleExpand);
+        });
     });
 </script>

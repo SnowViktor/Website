@@ -21,7 +21,7 @@ body {
 	}
 
 	a {
-		color: rgb(255, 255, 255);
+		color: inherit;
 		text-decoration: none;
 
 		&:focus-visible,
@@ -31,7 +31,7 @@ body {
 	}
 }
 
-@media screen and (min-width: 775px) and (orientation: landscape) {
+@media (min-width: 775px) and (orientation: landscape) {
 	body {
 		margin: auto;
 		max-width: 65vw;
@@ -40,7 +40,7 @@ body {
 }
 
 header {
-	@media screen and (max-width: 500px) {
+	@media (max-width: 500px) {
 		#hamburger {
 			cursor: pointer;
 			display: flex;
@@ -69,7 +69,7 @@ header {
 			}
 
 			span {
-				background-color: rgb(255, 255, 255);
+				background-color: currentColor;
 				border-radius: 5px;
 				height: 5px;
 				transition: all 0.25s ease;
@@ -92,12 +92,12 @@ header {
 			&:focus-visible,
 			&:hover {
 				background-color: rgb(106, 156, 137);
-				color: rgb(255, 255, 255);
+				color: inherit;
 			}
 		}
 	}
 
-	@media screen and (max-width: 500px) {
+	@media (max-width: 500px) {
 		nav {
 			align-items: center;
 			flex-direction: column;
@@ -113,7 +113,6 @@ header {
 
 			a {
 				margin-right: 0;
-				padding: 1px 5px;
 			}
 		}
 	}
@@ -121,7 +120,7 @@ header {
 
 main {
 	font-size: 1.125em;
-	font-weight: 500;
+	font-weight: 400;
 
 	h1 {
 		font-size: 2em;
@@ -135,8 +134,8 @@ main {
 
 	ol,
 	ul {
-		list-style-type: none;
-		padding-left: 0;
+		list-style: none;
+		padding: 0;
 
 		li {
 			height: 30px;
@@ -144,16 +143,18 @@ main {
 		}
 	}
 
-	article {
+	textarea {
 		font-family: "Noto Sans TC", sans-serif;
+	}
+
+	article {
+		font-family: inherit;
 		letter-spacing: 0.035em;
 		line-height: 2;
 		margin: auto;
 		max-width: 86vw;
-	}
 
-	@media screen and (min-width: 775px) and (orientation: landscape) {
-		article {
+		@media (min-width: 775px) and (orientation: landscape) {
 			max-width: 50vw;
 			min-width: 496px;
 		}
@@ -170,7 +171,7 @@ footer {
 		flex-direction: column;
 
 		p {
-			margin-block: 1% 0;
+			margin: 1% 0 0;
 		}
 	}
 }

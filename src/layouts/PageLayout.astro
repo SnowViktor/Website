@@ -10,9 +10,13 @@ interface Props {
 	description: string;
 }
 
-let { title } = Astro.props; const { description } = Astro.props;
+let { title } = Astro.props;
+const { description } = Astro.props;
 let Article = "";
-if (title.startsWith("Article")) {title = title.replace("Article", ""); Article = "articles";}
+if (title.startsWith("Article")) {
+	title = title.replace("Article", "");
+	Article = "articles";
+}
 ---
 
 <!DOCTYPE html>

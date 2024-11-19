@@ -12,6 +12,8 @@ media="(prefers-color-scheme: no-preference)" 預設
 */
 ---
 
-{sizes.map(size => <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />)}
+{sizes.map((size) => (
+    <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
+))}
 <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="/favicons/favicon-dark-167.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/favicons/favicon-dark-180.png" />

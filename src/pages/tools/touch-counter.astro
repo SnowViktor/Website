@@ -15,7 +15,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
         touch-action: pan-y;
     }
 
-    @media screen and (max-width: 500px) {
+    @media (max-width: 500px) {
         #touch-count {
             font-size: 12.5em;
             padding-block: 40%;
@@ -31,8 +31,12 @@ import PageLayout from "../../layouts/PageLayout.astro";
             touchCount!.style.cssText = "font-size: 1em; padding-block: 2.63%";
             touchCount!.textContent = "此裝置不支援觸控";
         } else {
-            document.addEventListener("touchstart", (e) => {touchCount!.textContent = String(e.touches.length);});
-            document.addEventListener("touchend", () => {touchCount!.textContent = "0";});
+            document.addEventListener("touchstart", (e) => {
+                touchCount!.textContent = String(e.touches.length);
+            });
+            document.addEventListener("touchend", () => {
+                touchCount!.textContent = "0";
+            });
         }
     });
 </script>

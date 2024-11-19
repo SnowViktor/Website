@@ -55,7 +55,6 @@ import PageLayout from "../../layouts/PageLayout.astro";
         border: 1px solid rgb(193, 216, 195);
         border-radius: 15px;
         box-shadow: 0 0 2px 1px rgba(193, 216, 195, 0.5);
-        font-family: "Noto Sans TC", sans-serif;
         font-size: 0.9em;
         outline: none;
         padding: 12px;
@@ -95,6 +94,8 @@ import PageLayout from "../../layouts/PageLayout.astro";
             return cjkChars.length + non_cjkChars.length + emoji.length;
         }
 
-        function calculatorCharacters(text: String) {return [...text].length;}
+        function calculatorCharacters(text: String) {
+            return [...text].length;
+        }
     });
 </script>
