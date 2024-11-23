@@ -1,7 +1,7 @@
 ---
+import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import Favicon from "../components/Favicon.astro";
 
@@ -10,13 +10,7 @@ interface Props {
 	description: string;
 }
 
-let { title } = Astro.props;
-const { description } = Astro.props;
-let Article = "";
-if (title.startsWith("Article")) {
-	title = title.replace("Article", "");
-	Article = "articles";
-}
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -44,7 +38,7 @@ if (title.startsWith("Article")) {
 		<Header />
 		<hr />
 		<main>
-			<h1 class={Article}>{title}</h1>
+			<h1>{title}</h1>
 			<slot />
 		</main>
 		<hr />

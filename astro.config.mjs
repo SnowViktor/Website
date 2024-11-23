@@ -9,5 +9,5 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   site: "https://snow-viktor.vercel.app",
-  integrations: [sitemap(), playformCompress()]
+  integrations: [sitemap(), playformCompress({ Exclude: ["./dist/articles"] })]
 });

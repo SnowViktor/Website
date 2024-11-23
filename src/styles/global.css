@@ -1,6 +1,6 @@
 body {
-	background-color: rgb(60, 71, 73);
-	color: rgb(255, 255, 255);
+	background-color: #3c4749;
+	color: #ffffff;
 	font-family: "Noto Sans TC", sans-serif;
 	font-optical-sizing: auto;
 	margin: 0;
@@ -26,7 +26,7 @@ body {
 
 		&:focus-visible,
 		&:hover {
-			color: rgb(255, 138, 138);
+			color: #ff8a8a;
 		}
 	}
 }
@@ -83,7 +83,7 @@ header {
 
 		a {
 			border-radius: 10px;
-			font-size: 1.5em;
+			font-size: 1.6em;
 			font-weight: 700;
 			height: 36px;
 			margin-right: 2%;
@@ -91,7 +91,7 @@ header {
 
 			&:focus-visible,
 			&:hover {
-				background-color: rgb(106, 156, 137);
+				background-color: #6a9c89;
 				color: inherit;
 			}
 		}
@@ -107,7 +107,7 @@ header {
 			transition: height 0.25s ease, opacity 0.25s ease;
 
 			&.expand {
-				height: 149px;
+				height: 152px;
 				opacity: 1;
 			}
 
@@ -127,7 +127,7 @@ main {
 		font-weight: 700;
 		text-align: center;
 
-		&.articles {
+		&:has(~ article) {
 			font-family: "Noto Serif TC", serif;
 		}
 	}
@@ -144,7 +144,7 @@ main {
 	}
 
 	textarea {
-		font-family: "Noto Sans TC", sans-serif;
+		font-family: inherit;
 	}
 
 	article {
