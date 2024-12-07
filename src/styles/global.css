@@ -69,7 +69,7 @@ header {
 			}
 
 			span {
-				background-color: currentColor;
+				background-color: #ffffff;
 				border-radius: 5px;
 				height: 5px;
 				transition: all 0.25s ease;
