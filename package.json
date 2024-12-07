@@ -3,18 +3,16 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "update": "npm update",
+    "upgrade": "npx @astrojs/upgrade",
     "dev": "astro dev",
-    "update": "npm update && npx @astrojs/upgrade",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/vercel": "^7.8.2",
-    "@playform/compress": "^0.1.6",
-    "astro": "^4.16.14",
-    "typescript": "^5.4.5"
+    "@astrojs/vercel": "^8.0.0",
+    "astro": "^5.0.3"
   }
 }

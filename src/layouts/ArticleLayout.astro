@@ -1,11 +1,37 @@
 ---
-import PageLayout from "./PageLayout.astro";
-
+import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 ---
 
-<PageLayout title={frontmatter.title} description={frontmatter.description}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+    <h1>{frontmatter.title}</h1>
     <article>
         <slot />
     </article>
-</PageLayout>
+</BaseLayout>
+
+<style>
+    h1 {
+        font-family: "Noto Serif TC", serif;
+    }
+
+    article {
+		font-family: inherit;
+		letter-spacing: 0.035em;
+		line-height: 2;
+		margin: auto;
+		max-width: 86vw;
+
+		ol {
+			margin: 0;
+			padding-left: 21px;
+		}
+	}
+
+	@media (min-width: 775px) and (orientation: landscape) {
+		article {
+			max-width: 50vw;
+			min-width: 496px;
+		}
+	}
+</style>

@@ -1,10 +1,11 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<PageLayout title="觸控點計算" description="【了解你的螢幕支援幾點觸控】">
+<BaseLayout title="觸控點計算" description="【了解你的螢幕支援幾點觸控】">
+    <h1>觸控點計算</h1>
     <p id="touch-count">0</p>
-</PageLayout>
+</BaseLayout>
 
 <style>
     #touch-count {
@@ -25,17 +26,17 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 <script>
     document.addEventListener("astro:page-load", () => {
-        const touchCount = document.getElementById("touch-count");
+        const touchCount = document.getElementById("touch-count") as HTMLParagraphElement;
 
         if (navigator.maxTouchPoints < 1) {
-            touchCount!.style.cssText = "font-size: 1em; padding-block: 2.63%";
-            touchCount!.textContent = "此裝置不支援觸控";
+            touchCount.style.cssText = "font-size: 1em; padding-block: 2.63%";
+            touchCount.textContent = "此裝置不支援觸控";
         } else {
             document.addEventListener("touchstart", (e) => {
-                touchCount!.textContent = String(e.touches.length);
+                touchCount.textContent = String(e.touches.length);
             });
             document.addEventListener("touchend", () => {
-                touchCount!.textContent = "0";
+                touchCount.textContent = "0";
             });
         }
     });

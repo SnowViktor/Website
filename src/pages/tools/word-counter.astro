@@ -1,8 +1,9 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<PageLayout title="字數計算" description="【即時計算文字數量】：單詞 | 字符 | 輸入">
+<BaseLayout title="字數計算" description="【即時計算文字數量】：單詞｜字符｜輸入">
+    <h1>字數計算</h1>
     <div id="result">
         <div class="item">
             <p class="name">單詞</p>
@@ -15,7 +16,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
         </div>
     </div>
     <textarea id="text-input" rows="12" placeholder="請輸入文字" />
-</PageLayout>
+</BaseLayout>
 
 <style>
     #result {
@@ -70,14 +71,14 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 <script>
     document.addEventListener("astro:page-load", () => {
+        const wordCount = document.getElementById("word-count") as HTMLParagraphElement;
+        const characterCount = document.getElementById("character-count") as HTMLParagraphElement;
         const textInput = document.getElementById("text-input") as HTMLTextAreaElement;
-        const wordCount = document.getElementById("word-count");
-        const characterCount = document.getElementById("character-count");
 
         textInput.addEventListener("input", () => {
             const text = textInput.value;
-            wordCount!.textContent = calculatorWords(text).toString();
-            characterCount!.textContent = calculatorCharacters(text).toString();
+            wordCount.textContent = calculatorWords(text).toString();
+            characterCount.textContent = calculatorCharacters(text).toString();
         });
 
         function calculatorWords(text: String) {

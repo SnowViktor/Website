@@ -8,7 +8,9 @@ const pages = [
 ---
 
 <nav id="nav">
-    {pages.map((page) => (
-        <a href={`/${page[0]}`}>{page[1]}</a>
-    ))}
+    {
+        pages.map((page) => (
+            <a href={`/${page[0]}`}>{page[1]}</a>
+        ))
+    }
 </nav>

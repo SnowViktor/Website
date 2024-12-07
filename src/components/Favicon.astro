@@ -2,9 +2,6 @@
 const sizes = [32, 48, 64, 96, 128, 192];
 
 /*
-淺色
-href={`/favicons/favicon-light-${size}.png`}
-
 系統
 media="(prefers-color-scheme: light)" 淺色
 media="(prefers-color-scheme: dark)" 深色
@@ -12,8 +9,14 @@ media="(prefers-color-scheme: no-preference)" 預設
 */
 ---
 
-{sizes.map((size) => (
-    <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
-))}
-<link rel="apple-touch-icon" type="image/png" sizes="167x167" href="/favicons/favicon-dark-167.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/favicons/favicon-dark-180.png" />
+{
+    sizes.map((size) => (
+        <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
+    ))
+}
+
+{
+    [167, 180].map((size) => (
+        <link rel="apple-touch-icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
+    ))
+}

@@ -126,10 +126,6 @@ main {
 		font-size: 2.2em;
 		font-weight: 700;
 		text-align: center;
-
-		&:has(~ article) {
-			font-family: "Noto Serif TC", serif;
-		}
 	}
 
 	ul {
@@ -144,26 +140,6 @@ main {
 
 	textarea {
 		font-family: inherit;
-	}
-
-	article {
-		font-family: inherit;
-		letter-spacing: 0.035em;
-		line-height: 2;
-		margin: auto;
-		max-width: 86vw;
-
-		ol {
-			margin: 0;
-			padding-left: 21px;
-		}
-	}
-
-	@media (min-width: 775px) and (orientation: landscape) {
-		article {
-			max-width: 50vw;
-			min-width: 496px;
-		}
 	}
 }
 

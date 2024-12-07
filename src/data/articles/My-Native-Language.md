@@ -1,7 +1,7 @@
 ---
 title: "我的母語"
 description: "一個人自幼習得的語言，通常是其思考與交流的自然工具。"
-pubDate: "國中八年級下學期"
+pubDate: 2024
 author: "SnowViktor"
 ---
 
