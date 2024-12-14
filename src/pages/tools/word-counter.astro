@@ -76,7 +76,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         const textInput = document.getElementById("text-input");
     
         const cjkRegex = /[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g;
-        const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu;
+        const emojiRegex = /\p{Extended_Pictographic}/gu;
         const nonWordRegex = /[^\w\s]|_/g;
         const multiSpaceRegex = /\s+/g;
     
@@ -89,16 +89,22 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     
         function calculateCounts(text) {
             const cjkChars = text.match(cjkRegex) || [];
-            const emoji = text.match(emojiRegex) || [];
-
+            const emojis = text.match(emojiRegex) || [];
+      
             const nonCJKText = text.replace(cjkRegex, " ");
             const noEmojiText = nonCJKText.replace(emojiRegex, " ");
             const cleanedText = noEmojiText.replace(nonWordRegex, "").replace(multiSpaceRegex, " ").trim();
             const nonCJKWords = cleanedText ? cleanedText.split(" ") : [];
       
+            let charCount = 0;
+            const graphemes = new Intl.Segmenter().segment(text);
+            for (const _ of graphemes) {
+                charCount++;
+            }
+      
             return {
-                words: cjkChars.length + nonCJKWords.length + emoji.length,
-                characters: [...text].length,
+                words: cjkChars.length + nonCJKWords.length + emojis.length,
+                characters: charCount,
             };
         }
     });

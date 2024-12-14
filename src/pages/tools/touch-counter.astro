@@ -14,6 +14,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         margin: 0;
         text-align: center;
         touch-action: pan-y;
+
+        &.no-touch {
+            font-size: 1em;
+            padding-block: 2.63%;
+        }
     }
 
     @media (max-width: 500px) {
@@ -27,10 +32,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <script is:inline data-astro-rerun>
     document.addEventListener("astro:page-load", () => {
         const touchCount = document.getElementById("touch-count");
-
+    
         if (navigator.maxTouchPoints < 1) {
-            touchCount.style.cssText = "font-size: 1em; padding-block: 2.63%";
             touchCount.textContent = "此裝置不支援觸控";
+            touchCount.classList.add("no-touch");
         } else {
             document.addEventListener("touchstart", (e) => {
                 touchCount.textContent = String(e.touches.length);

@@ -10,7 +10,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;
 
-	&::selection {
+	::selection {
 		background-color: #4dbbff;
 	}
 	
@@ -48,14 +48,14 @@ header {
 			height: 30px;
 			justify-content: space-between;
 			margin-left: auto;
-			padding: 4px 0;
-			transition: transform 0.25s ease;
-			width: 36px;
+			padding: 0;
+			transition: transform 250ms ease;
+			width: 30px;
 
 			&.expand span {
 				&:nth-of-type(1) {
-					transform: rotate(-40deg) translate(-12px, 7px);
-					width: 46px;
+					transform: rotate(-46deg) translate(-12px, 5px);
+					width: 40px;
 				}
 
 				&:nth-of-type(2) {
@@ -63,8 +63,8 @@ header {
 				}
 
 				&:nth-of-type(3) {
-					transform: rotate(40deg) translate(-12px, -6px);
-					width: 46px;
+					transform: rotate(46deg) translate(-12px, -5px);
+					width: 40px;
 				}
 			}
 
@@ -72,8 +72,8 @@ header {
 				background-color: #ffffff;
 				border-radius: 5px;
 				height: 5px;
-				transition: all 0.25s ease;
-				width: 36px;
+				transition: all 250ms ease;
+				width: 30px;
 			}
 		}
 	}
@@ -83,11 +83,11 @@ header {
 
 		a {
 			border-radius: 10px;
-			font-size: 1.5em;
+			font-size: 24px;
 			font-weight: 700;
-			height: 36px;
-			margin-right: 2%;
-			padding: 0 6px 2px;
+			height: 34px;
+			margin-right: 0.25em;
+			padding: 0 6px 3px;
 
 			&:focus-visible,
 			&:hover {
@@ -107,7 +107,7 @@ header {
 			transition: height 250ms ease, opacity 250ms ease;
 
 			&.expand {
-				height: 148px;
+				height: calc(4 * 37px);
 				opacity: 1;
 			}
 
@@ -119,11 +119,10 @@ header {
 }
 
 main {
-	font-size: 1.125em;
+	font-size: 18px;
 	font-weight: 400;
 
 	h1 {
-		font-size: 2.2em;
 		font-weight: 700;
 		text-align: center;
 	}
@@ -133,8 +132,8 @@ main {
 		padding: 0;
 
 		li {
-			height: 30px;
-			margin: 1% 0;
+			height: 1em;
+			margin: 1em 0;
 		}
 	}
 
@@ -145,7 +144,8 @@ main {
 
 footer {
 	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;
-	font-size: 0.7em;
+	font-size: 12px;
+	font-weight: 400;
 
 	i {
 		align-items: center;
@@ -153,7 +153,7 @@ footer {
 		flex-direction: column;
 
 		p {
-			margin: 1% 0 0;
+			margin: 0.5em 0 0;
 		}
 	}
 }
