@@ -4,14 +4,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 <BaseLayout title="字數計算" description="【即時計算文字數量】：單詞｜字符｜輸入">
     <h1>字數計算</h1>
-    <div id="result">
-        <div class="item">
-            <p class="name">單詞</p>
+    <div id="count-result">
+        <div class="group">
+            <p class="item">單詞</p>
             <p id="word-count">0</p>
         </div>
         <hr class="divider" />
-        <div class="item">
-            <p class="name">字符</p>
+        <div class="group">
+            <p class="item">字符</p>
             <p id="character-count">0</p>
         </div>
     </div>
@@ -19,13 +19,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-    #result {
+    #count-result {
         background-color: #6a9c89;
         border-radius: 15px;
         display: flex;
         margin-bottom: 2.63%;
 
-        .item {
+        .group {
             align-items: center;
             display: flex;
             flex-direction: column;
@@ -38,7 +38,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                 margin: 0;
             }
 
-            .name {
+            .item {
                 font-size: 1em;
                 margin-bottom: 12.5%;
             }
@@ -69,34 +69,37 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     }
 </style>
 
-<script>
+<script is:inline data-astro-rerun>
     document.addEventListener("astro:page-load", () => {
-        const wordCount = document.getElementById("word-count") as HTMLParagraphElement;
-        const characterCount = document.getElementById("character-count") as HTMLParagraphElement;
-        const textInput = document.getElementById("text-input") as HTMLTextAreaElement;
-
+        const wordCount = document.getElementById("word-count");
+        const characterCount = document.getElementById("character-count");
+        const textInput = document.getElementById("text-input");
+    
+        const cjkRegex = /[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g;
+        const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu;
+        const nonWordRegex = /[^\w\s]|_/g;
+        const multiSpaceRegex = /\s+/g;
+    
         textInput.addEventListener("input", () => {
             const text = textInput.value;
-            wordCount.textContent = calculatorWords(text).toString();
-            characterCount.textContent = calculatorCharacters(text).toString();
+            const counts = calculateCounts(text);
+            wordCount.textContent = counts.words.toString();
+            characterCount.textContent = counts.characters.toString();
         });
+    
+        function calculateCounts(text) {
+            const cjkChars = text.match(cjkRegex) || [];
+            const emoji = text.match(emojiRegex) || [];
 
-        function calculatorWords(text: String) {
-            const cjkChars = text.match(/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g) || [];
-            const non_cjkChars = text
-              .replace(/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/g, " ")
-              .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu, " ")
-              .replace(/[^\w\s]|_/g, "")
-              .replace(/\s+/g, " ")
-              .trim()
-              .split(" ")
-              .filter(Boolean);
-            const emoji = text.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu) || [];
-            return cjkChars.length + non_cjkChars.length + emoji.length;
-        }
-
-        function calculatorCharacters(text: String) {
-            return [...text].length;
+            const nonCJKText = text.replace(cjkRegex, " ");
+            const noEmojiText = nonCJKText.replace(emojiRegex, " ");
+            const cleanedText = noEmojiText.replace(nonWordRegex, "").replace(multiSpaceRegex, " ").trim();
+            const nonCJKWords = cleanedText ? cleanedText.split(" ") : [];
+      
+            return {
+                words: cjkChars.length + nonCJKWords.length + emoji.length,
+                characters: [...text].length,
+            };
         }
     });
 </script>

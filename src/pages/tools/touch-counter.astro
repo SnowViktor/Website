@@ -24,9 +24,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     }
 </style>
 
-<script>
+<script is:inline data-astro-rerun>
     document.addEventListener("astro:page-load", () => {
-        const touchCount = document.getElementById("touch-count") as HTMLParagraphElement;
+        const touchCount = document.getElementById("touch-count");
 
         if (navigator.maxTouchPoints < 1) {
             touchCount.style.cssText = "font-size: 1em; padding-block: 2.63%";
