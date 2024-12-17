@@ -39,85 +39,6 @@ body {
 	}
 }
 
-header {
-	@media (max-width: 500px) {
-		#hamburger {
-			cursor: pointer;
-			display: flex;
-			flex-direction: column;
-			height: 30px;
-			justify-content: space-between;
-			margin-left: auto;
-			padding: 0;
-			transition: transform 250ms ease;
-			width: 30px;
-
-			&.expand span {
-				&:nth-of-type(1) {
-					transform: rotate(-46deg) translate(-12px, 5px);
-					width: 40px;
-				}
-
-				&:nth-of-type(2) {
-					transform: scaleX(0);
-				}
-
-				&:nth-of-type(3) {
-					transform: rotate(46deg) translate(-12px, -5px);
-					width: 40px;
-				}
-			}
-
-			span {
-				background-color: #ffffff;
-				border-radius: 5px;
-				height: 5px;
-				transition: all 250ms ease;
-				width: 30px;
-			}
-		}
-	}
-
-	nav {
-		display: flex;
-
-		a {
-			border-radius: 10px;
-			font-size: 24px;
-			font-weight: 700;
-			height: 34px;
-			margin-right: 0.25em;
-			padding: 0 6px 3px;
-
-			&:focus-visible,
-			&:hover {
-				background-color: #6a9c89;
-				color: inherit;
-			}
-		}
-	}
-
-	@media (max-width: 500px) {
-		nav {
-			align-items: center;
-			flex-direction: column;
-			height: 0;
-			opacity: 0;
-			overflow: hidden;
-			transition: height 250ms ease, opacity 250ms ease;
-
-			&.expand {
-				height: calc(4 * 37px);
-				opacity: 1;
-			}
-
-			a {
-				margin-right: 0;
-			}
-		}
-	}
-}
-
 main {
 	font-size: 18px;
 	font-weight: 400;
@@ -139,21 +60,5 @@ main {
 
 	textarea {
 		font-family: inherit;
-	}
-}
-
-footer {
-	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;
-	font-size: 12px;
-	font-weight: 400;
-
-	i {
-		align-items: center;
-		display: flex;
-		flex-direction: column;
-
-		p {
-			margin: 0.5em 0 0;
-		}
 	}
 }

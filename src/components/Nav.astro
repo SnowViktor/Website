@@ -14,3 +14,44 @@ const pages = [
         ))
     }
 </nav>
+
+<style>
+    #nav {
+		display: flex;
+
+		a {
+			border-radius: 10px;
+			font-size: 24px;
+			font-weight: 700;
+			height: 34px;
+			margin-right: 0.25em;
+			padding: 0 6px 3px;
+
+			&:focus-visible,
+			&:hover {
+				background-color: #6a9c89;
+				color: inherit;
+			}
+		}
+	}
+
+	@media (max-width: 500px) {
+		nav {
+			align-items: center;
+			flex-direction: column;
+			height: 0;
+			opacity: 0;
+			overflow: hidden;
+			transition: height 250ms ease, opacity 250ms ease;
+
+			&.expand {
+				height: calc(4 * 37px);
+				opacity: 1;
+			}
+
+			a {
+				margin-right: 0;
+			}
+		}
+	}
+</style>

@@ -6,3 +6,43 @@
     <span></span>
     <span></span>
 </div>
+
+<style>
+    @media (max-width: 500px) {
+		#hamburger {
+			cursor: pointer;
+			display: flex;
+			flex-direction: column;
+			height: 30px;
+			justify-content: space-between;
+			margin-left: auto;
+			padding: 0;
+			transition: transform 250ms ease;
+			width: 30px;
+
+			&.expand span {
+				&:nth-of-type(1) {
+					transform: rotate(-46deg) translate(-12px, 6px);
+					width: 40px;
+				}
+
+				&:nth-of-type(2) {
+					transform: scaleX(0);
+				}
+
+				&:nth-of-type(3) {
+					transform: rotate(46deg) translate(-12px, -5px);
+					width: 40px;
+				}
+			}
+
+			span {
+				background-color: #ffffff;
+				border-radius: 5px;
+				height: 5px;
+				transition: all 250ms ease;
+				width: 30px;
+			}
+		}
+	}
+</style>
