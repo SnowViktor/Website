@@ -1,34 +1,33 @@
 ---
-const time = "2024/12/17/19/56".split("/");
+const time = "2024/12/28/21/53".split("/");
 ---
 
 <footer>
-    <i>
-        <p>
-            Website Last Edited: 
-            <time datetime=`${time[0]}-${time[1]}-${time[2]}T${time[3]}:${time[4]}`>{time[0]}-{time[1]}-{time[2]} {time[3]}:{time[4]}</time>
-        </p>
-        <p>
-            © {time[0]} by SnowViktor is licensed under 
-            <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
-        </p>
-    </i>
+    <p>
+        Website Last Edited: <time datetime=`${time[0]}-${time[1]}-${time[2]}T${time[3]}:${time[4]}`>{time[0]}-{time[1]}-{time[2]} {time[3]}:{time[4]}</time><br />
+        © {time[0]} by SnowViktor is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+    </p>
 </footer>
 
 <style>
     footer {
-	    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;
+	    font-family: var(--font-serif);
 	    font-size: 12px;
-	    font-weight: 400;
+        font-style: oblique;
+		padding: 2vh 0;
+        text-align: right;
         
-	    i {
-	    	align-items: center;
-	    	display: flex;
-	    	flex-direction: column;
-        
-	    	p {
-	    		margin: 0.5em 0 0;
-	    	}
-	    }
+        a {
+	        color: inherit;
+	        text-decoration: none;
+
+	        &:focus-visible,
+	        &:hover {
+	        	color: var(--color-primary);
+	        	text-decoration: underline;
+	        	text-decoration-color: var(--color-primary-text-decoration);
+	        	text-decoration-thickness: 1px;
+	        }
+        }
     }
 </style>

@@ -4,34 +4,24 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
-    <h1>{frontmatter.title}</h1>
     <article>
+    	<h1>{frontmatter.title}</h1>
         <slot />
     </article>
 </BaseLayout>
 
 <style>
-    h1 {
-        font-family: "Noto Serif TC", serif;
-    }
-
-    article {
+	article {
 		font-family: inherit;
-		letter-spacing: 0.035em;
 		line-height: 2;
 		margin: auto;
-		max-width: 86vw;
-
-		ol {
-			margin: 0;
-			padding-left: 21px;
-		}
+		max-width: 750px;
 	}
 
-	@media (min-width: 775px) and (orientation: landscape) {
-		article {
-			max-width: 50vw;
-			min-width: 496px;
-		}
-	}
+    h1 {
+        font-family: "Noto Serif TC", serif;
+		font-size: 2em;
+		max-width:none;
+		text-align: center;
+    }
 </style>

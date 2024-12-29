@@ -1,8 +1,52 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { Image } from "astro:assets";
+import SnowViktor from "../assets/images/SnowViktor.jpg";
+import mail from "../assets/icons/mail.svg";
 ---
 
-<BaseLayout title="SnowViktor" description="【個人網站】：首頁｜文章｜工具｜關於">
-    <h1>SnowViktor</h1>
-    <p style="text-align: center;">網站尚在維護及更新。</p>
+<BaseLayout title="SnowViktor" description="【個人網站】">
+    <section>
+        <h1>關於我</h1>
+        <div>
+            <Image id="snow-viktor" src={SnowViktor} alt="SnowViktor的照片" width="280" loading="eager" />
+            <address>
+                <a href="mailto:Snow-Forest@outlook.com">
+                    <Image src={mail} alt="電子郵件" loading="eager" />
+                </a>
+            </address>
+        </div>
+        <p>
+            嗨！我是 <b>SnowViktor</b>，也可以稱呼我為 <b>彬彬</b>。
+        </p>
+    </section>
 </BaseLayout>
+
+<style>
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin: 0;
+        width: 100%;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #snow-viktor {
+        border-radius: 5%;
+        box-shadow: 0px 0px 5px 0px var(--color-base-box-shadow);
+    }
+</style>
+
+<script>
+    alert("網站尚在重新建置中，歡迎提出意見！");
+</script>

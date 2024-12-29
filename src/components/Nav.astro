@@ -3,54 +3,76 @@ const pages = [
     ["", "首頁"],
     ["articles", "文章"],
     ["tools", "工具"],
-    ["about", "關於"],
 ];
 ---
 
 <nav id="nav">
-    {
-        pages.map((page) => (
-            <a href={`/${page[0]}`}>{page[1]}</a>
-        ))
-    }
+	{
+		pages.map((page) => (
+			<a href={`/${page[0]}`}>{page[1]}</a>
+		))
+	}
 </nav>
 
 <style>
-    #nav {
+	#nav {
 		display: flex;
+		gap: 2vh;
 
 		a {
-			border-radius: 10px;
-			font-size: 24px;
+			color: var(--color-primary);
+			display: inline-block;
 			font-weight: 700;
-			height: 34px;
-			margin-right: 0.25em;
-			padding: 0 6px 3px;
+			position: relative;
+			text-decoration: none;
 
-			&:focus-visible,
-			&:hover {
-				background-color: #6a9c89;
-				color: inherit;
+			&::after {
+				background: var(--color-primary-text-decoration);
+				bottom: 0;
+				content: "";
+				display: block;
+				height: 2px;
+				left: 50%;
+				position: absolute;
+				transition: 300ms all cubic-bezier(0.18, 0.89, 0.32, 1.28);
+				width: 0;
+			}
+
+			&:hover::after {
+				left: 0;
+				width: 100%;
 			}
 		}
 	}
 
-	@media (max-width: 500px) {
-		nav {
-			align-items: center;
-			flex-direction: column;
+	@media (width <= 600px) {
+		#nav {
+			background-color: var(--color-base);
+			display: none;
 			height: 0;
-			opacity: 0;
-			overflow: hidden;
-			transition: height 250ms ease, opacity 250ms ease;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: calc(32.8px + 2 * 2vh);
+			transition: 300ms height ease;
+			width: calc(100vw - 2 * 4vw);
 
 			&.expand {
-				height: calc(4 * 37px);
-				opacity: 1;
+				align-items: center;
+				display: flex;
+				flex-direction: column;
+				height: calc(100vh - ( 32.8px + 2 * 2vh ));
 			}
 
 			a {
-				margin-right: 0;
+				margin-left: 0;
+				padding: 0.5em 0;
+				text-align: center;
+				width: 100%;
+
+				&:hover::after {
+					width: 0;
+				}
 			}
 		}
 	}
