@@ -11,7 +11,7 @@ import "../styles/global.css";
 const { title, description } = Astro.props;
 ---
 
-<html lang="zh-TW">
+<html lang="zh-TW" transition:animate="initial">
 	<head>
 		<title>{title}</title>
 		<meta charset="utf-8" />
@@ -27,7 +27,7 @@ const { title, description } = Astro.props;
 		<Favicon />
 		<ClientRouter />
 	</head>
-	<body transition:animate="initial">
+	<body>
 		<Header />
 		<main>
 			<slot />

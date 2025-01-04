@@ -1,25 +1,26 @@
 :root {
-	--color-base: hsl(190, 10%, 15%);
-	--color-neutral: hsl(0, 0%, 100%);
-	--color-primary: hsl(30, 100%, 70%); /* hsl(157, 20%, 50%) */
-	--color-primary-text-decoration: hsl(30, 100%, 80%);
-	--color-primary-title: hsl(30, 100%, 60%);
+	--color-base: hsl(170, 10%, 15%);
+	--color-neutral-0: hsl(170, 0%, 100%);
+	--color-neutral-1: hsl(170, 10%, 75%);
+	--color-neutral-2: hsl(170, 10%, 60%);
+	--color-primary-0: hsl(170, 75%, 90%);
+	--color-primary-1: hsl(170, 75%, 75%);
 
 	--font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
 	--font-serif: "Noto Serif", "Noto Serif TC", serif;
 }
 
 ::selection {
-	background-color: var(--color-primary);
+	background-color: var(--color-neutral-2);
 }
 
 body {
+	align-items: center;
 	background-color: var(--color-base);
-	color: var(--color-neutral);
+	display: flex;
+	flex-direction: column;
 	font-optical-sizing: auto;
-	margin: 0 auto;
-	max-width: 900px;
-	padding: 0 4vw;
+	margin: 0 3vw;
 	text-rendering: optimizeLegibility;
 	touch-action: manipulation;
 	-webkit-font-smoothing: antialiased;
@@ -27,10 +28,12 @@ body {
 }
 
 main {
+	color: var(--color-neutral-0);
 	font-family: var(--font-sans);
 	font-size: 18px;
-	margin: calc(32.8px + 2 * 2vh) 0 0;
-	padding: 2vh 0;
+	margin: 59.2px 0 0;
+	max-width: 900px;
+	width: 100%;
 
 	a {
 		color: inherit;
