@@ -16,26 +16,24 @@ const pages = [
 
 <style>
 	#nav {
-		color: var(--color-primary-0);
 		display: flex;
 		font-family: var(--font-serif);
-		gap: 2vh;
+		font-weight: 700;
+		gap: 0.5em;
+		text-align: center;
 
 		a {
-			color: var(--color-primary-0);
-			display: inline-block;
-			font-weight: 700;
+			color: var(--color-primary-1);
 			position: relative;
-			text-decoration: none;
 
 			&::after {
-				background: var(--color-primary-1);
-				bottom: 0;
+				background: var(--color-primary-0);
 				content: "";
 				display: block;
 				height: 2px;
 				left: 50%;
 				position: absolute;
+				top: 90%;
 				transition: 300ms all cubic-bezier(0.18, 0.89, 0.32, 1.28);
 				width: 0;
 			}
@@ -50,31 +48,23 @@ const pages = [
 	@media (width <= 600px) {
 		#nav {
 			background-color: var(--color-base);
-			display: none;
+			flex-direction: column;
 			height: 0;
-			left: 0;
+			opacity: 0;
+			overflow-y: hidden;
 			position: absolute;
-			right: 0;
-			top: calc(32.8px + 2 * 2vh);
-			transition: 300ms height ease;
-			width: calc(100vw - 2 * 4vw);
+			top: 59.2px;
+			transition: 350ms all cubic-bezier(0.22, 0.61, 0.36, 1);
+			width: 100%;
 
 			&.expand {
-				align-items: center;
-				display: flex;
-				flex-direction: column;
-				height: calc(100vh - ( 32.8px + 2 * 2vh ));
+				gap: 1em;
+				height: calc(100vh - 59.2px);
+				opacity: 1;
 			}
 
-			a {
-				margin-left: 0;
-				padding: 0.5em 0;
-				text-align: center;
-				width: 100%;
-
-				&:hover::after {
-					width: 0;
-				}
+			a:hover::after {
+				width: 0;
 			}
 		}
 	}
