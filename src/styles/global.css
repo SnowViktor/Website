@@ -1,6 +1,5 @@
 :root {
-	--color-base: hsl(190, 10%, 25%);
-	--color-base-box-shadow: hsl(190, 10%, 20%);
+	--color-base: hsl(190, 10%, 15%);
 	--color-neutral: hsl(0, 0%, 100%);
 	--color-primary: hsl(30, 100%, 70%); /* hsl(157, 20%, 50%) */
 	--color-primary-text-decoration: hsl(30, 100%, 80%);
