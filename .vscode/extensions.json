@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "visualstudioexptteam.vscodeintellicode",
     "visualstudioexptteam.intellicode-api-usage-examples",
+    "ms-vscode.live-server",
     "darian-benam.vscode-robots-dot-txt-support"
   ],
   "unwantedRecommendations": []

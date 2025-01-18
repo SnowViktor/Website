@@ -2,7 +2,6 @@
 title: "彩"
 description: "僅存的願望，抹上眾人的色彩"
 pubDate: 2024
-author: "SnowViktor"
 ---
 
 泯沒的溫情，了無意義的頭彩  
