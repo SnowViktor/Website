@@ -10,8 +10,7 @@ const articles = defineCollection({
             z.date(),
             z.number(),
             z.string().optional().nullable()
-        ]),
-        author: z.string()
+        ])
     })
 });
 
