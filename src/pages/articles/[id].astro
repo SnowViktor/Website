@@ -2,8 +2,6 @@
 import { getEntry, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
-export const prerender = false;
-
 const { id } = Astro.params;
 if (id === undefined) {
   return Astro.redirect("/404");
