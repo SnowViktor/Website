@@ -1,19 +1,14 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const articles = await getCollection("articles");
+const collections = [["contact-and-communication-book-diaries", "聯絡簿日記"]];
 ---
 
-<BaseLayout title="文章" description="【日記、新詩、散文】：遛狗｜我的母語｜從《進擊的巨人》油然而生對社會的省思｜彩｜我所知道的五股國中｜日本．東北．南三縣">
+<BaseLayout title="文章" description="【日記、散文】">
     <h1>文章</h1>
-    <ul>
-        {
-            articles.map((article) => (
-                <li>
-                    <a href={`/articles/${article.id}`}>{article.data.title}</a>
-                </li>
-            ))
-        }
-    </ul>
+    {
+        collections.map((collection) => (
+            <a href={`./articles/${collection[0]}`}>{collection[1]}</a>
+        ))
+    }
 </BaseLayout>

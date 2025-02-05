@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const ContactAndCommunicationBookDiaries = await getCollection("ContactAndCommunicationBookDiaries");
+---
+
+<BaseLayout title="聯絡簿日記" description="【日記】">
+    <h1>聯絡簿日記</h1>
+        {
+            ContactAndCommunicationBookDiaries.map((diary: any) => (
+                <a href={`./contact-and-communication-book-diaries/${diary.id}`}>{diary.data.title}</a>
+            ))
+        }
+</BaseLayout>
