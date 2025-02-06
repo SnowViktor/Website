@@ -12,18 +12,27 @@ import Nav from "./header/Nav.astro";
 
 <style>
     header {
-        align-items: center;
-        background-color: var(--color-base);
+        backdrop-filter: blur(2px);
+        background-color: var(--color-header);
         display: flex;
-        font-size: 24px;
+        font-size: 22px;
         justify-content: space-between;
-        max-width: 900px;
+        left: 50%;
+        max-width: 1000px;
         padding: 0.5em 0;
         position: fixed;
-        width: calc(100% - 2* 3vw);
+        top: 0;
+        transform: translateX(-50%);
+        width: 100%;
+
+        /* &.expand {
+            background-color: --color-base, nav_transition, js
+        } */
 
         a {
+            color: var(--color-primary-1);
             text-decoration: none;
+            user-select: none;
         }
     }
 </style>

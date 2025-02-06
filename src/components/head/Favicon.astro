@@ -2,10 +2,9 @@
 const sizes = [32, 48, 64, 96, 128, 192];
 
 /*
-系統
-media="(prefers-color-scheme: light)" 淺色
-media="(prefers-color-scheme: dark)" 深色
-media="(prefers-color-scheme: no-preference)" 預設
+media="(prefers-color-scheme: light)"
+media="(prefers-color-scheme: dark)"
+media="(prefers-color-scheme: no-preference)"
 */
 ---
 
@@ -14,9 +13,8 @@ media="(prefers-color-scheme: no-preference)" 預設
         <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
     ))
 }
-
 {
-    [167, 180].map((size) => (
+    [180, 192].map((size) => (
         <link rel="apple-touch-icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
     ))
 }

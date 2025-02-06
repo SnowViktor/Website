@@ -1,26 +1,26 @@
 :root {
-	--color-base: hsl(170, 10%, 15%);
-	--color-neutral-0: hsl(170, 0%, 100%);
-	--color-neutral-1: hsl(170, 10%, 75%);
-	--color-neutral-2: hsl(170, 10%, 60%);
+	--color-base: hsl(170, 10%, 10%);
+	--color-header: hsla(168, 10%, 10%, 0.9);
+	--color-neutral-0: hsl(170, 10%, 100%);
+	--color-neutral-1: hsl(170, 10%, 80%);
+	--color-selection: hsl(170, 10%, 60%);
 	--color-primary-0: hsl(170, 75%, 90%);
 	--color-primary-1: hsl(170, 75%, 75%);
 
 	--font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
 	--font-serif: "Noto Serif", "Noto Serif TC", serif;
+	--font-title: "Mate SC", var(--font-serif);
+
+	--header-padding-box-height: 54px;
 }
 
 ::selection {
-	background-color: var(--color-neutral-2);
+	background-color: var(--color-selection);
 }
 
 body {
-	align-items: center;
 	background-color: var(--color-base);
-	display: flex;
-	flex-direction: column;
-	font-optical-sizing: auto;
-	margin: 0 3vw;
+	margin: 0 auto;
 	text-rendering: optimizeLegibility;
 	touch-action: manipulation;
 	-webkit-font-smoothing: antialiased;
@@ -31,20 +31,8 @@ main {
 	color: var(--color-neutral-0);
 	font-family: var(--font-sans);
 	font-size: 18px;
-	margin: 59.2px 0 0;
-	max-width: 900px;
-	width: 100%;
-
-	a {
-		color: inherit;
-		text-decoration: none;
-		
-		&:focus-visible,
-		&:hover {
-			color: var(--color-primary);
-			text-decoration: underline;
-			text-decoration-color: var(--color-primary-text-decoration);
-			text-decoration-thickness: 1px;
-		}
-	}
+	letter-spacing: 0.8px;
+	line-height: 2;
+	margin: var(--header-padding-box-height) auto;
+	max-width: 1000px;
 }
