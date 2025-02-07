@@ -25,6 +25,10 @@ body {
 	touch-action: manipulation;
 	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;
+
+	&:has(#header.expand) {
+		overflow: hidden;
+	}
 }
 
 main {
@@ -35,4 +39,14 @@ main {
 	line-height: 2;
 	margin: var(--header-padding-box-height) auto;
 	max-width: 1000px;
+
+	p a {
+		color: var(--color-primary-0);
+		text-decoration: none;
+
+		&:focus-visible,
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }

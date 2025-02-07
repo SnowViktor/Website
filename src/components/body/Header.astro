@@ -4,7 +4,7 @@ import Hamburger from "./header/Hamburger.astro";
 import Nav from "./header/Nav.astro";
 ---
 
-<header>
+<header id="header">
     <Title />
     <Hamburger />
     <Nav />
@@ -23,11 +23,12 @@ import Nav from "./header/Nav.astro";
         position: fixed;
         top: 0;
         transform: translateX(-50%);
+        transition: background-color 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
         width: 100%;
 
-        /* &.expand {
-            background-color: --color-base, nav_transition, js
-        } */
+        &.expand {
+            background-color: var(--color-base);
+        }
 
         a {
             color: var(--color-primary-1);
@@ -39,10 +40,12 @@ import Nav from "./header/Nav.astro";
 
 <script>
     document.addEventListener("astro:page-load", () => {
+        const header = document.getElementById("header") as HTMLElement;
         const hamburger = document.getElementById("hamburger") as HTMLDivElement;
         const nav = document.getElementById("nav") as HTMLElement;
 
         function toggleExpand() {
+            header.classList.toggle("expand");
             hamburger.classList.toggle("expand");
             nav.classList.toggle("expand");
         }
