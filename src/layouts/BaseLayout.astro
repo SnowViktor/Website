@@ -13,10 +13,11 @@ const { title, description } = Astro.props;
 
 <html lang="zh-TW" transition:animate="initial">
 	<head>
-		<title>{title}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="SnowViktor" />
+		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta property="og:site_name" content="SnowViktor" />
 		<meta property="og:title" content={title} />

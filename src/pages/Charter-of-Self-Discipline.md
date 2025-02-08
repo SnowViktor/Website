@@ -2,7 +2,7 @@
 layout: "../layouts/ArticleLayout.astro"
 title: "自律憲章"
 description: "本自律憲章為個人最高規範，除不可抗力或人道援助因素外，任何違反皆應依其條文內容處置。"
-pubDate: "自公布日起"
+pubDate: "2025-01-18"
 ---
 
 ## 總綱：

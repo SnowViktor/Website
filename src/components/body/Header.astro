@@ -24,7 +24,7 @@ import Nav from "./header/Nav.astro";
         top: 0;
         transform: translateX(-50%);
         transition: background-color 350ms cubic-bezier(0.22, 0.61, 0.36, 1);
-        width: 100%;
+        width: calc(100% - 2 * var(--body-padding-inline));
 
         &.expand {
             background-color: var(--color-base);

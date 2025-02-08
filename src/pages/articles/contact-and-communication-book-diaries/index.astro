@@ -5,7 +5,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 const ContactAndCommunicationBookDiaries = await getCollection("ContactAndCommunicationBookDiaries");
 ---
 
-<BaseLayout title="聯絡簿日記" description="【日記】">
+<BaseLayout title="聯絡簿日記" description="【就學經歷之聯絡簿日記】">
     <h1>聯絡簿日記</h1>
         {
             ContactAndCommunicationBookDiaries.map((diary: any) => (
