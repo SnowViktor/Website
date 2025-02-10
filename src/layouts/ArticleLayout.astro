@@ -8,7 +8,7 @@ const readablePubDate = frontmatter.pubDate.replace(/-/g, " - ");
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
     <article>
         <p id="information">
-            {collection}．<time datetime={frontmatter.pubDate}>{readablePubDate}</time>
+            {collection !== undefined && collection + "．"}<time datetime={frontmatter.pubDate}>{readablePubDate}</time>
         </p>
         <h1>{frontmatter.title}</h1>
         <slot />
