@@ -1,14 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { frontmatter, collection } = Astro.props;
-
-const readablePubDate = frontmatter.pubDate.replace(/-/g, " - ");
+const { id, frontmatter, collection } = Astro.props;
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+<BaseLayout title={`${id.replace(/-/g, "/")}${frontmatter.title ? "．" + frontmatter.title : ""}`} description={frontmatter.description}>
     <article>
         <p id="information">
-            {collection !== undefined && collection + "．"}<time datetime={frontmatter.pubDate}>{readablePubDate}</time>
+            {collection}．<time datetime={id}>{id.replace(/-/g, "/")}</time>
         </p>
         <h1>{frontmatter.title}</h1>
         <slot />

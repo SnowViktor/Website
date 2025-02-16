@@ -9,7 +9,9 @@ const ContactAndCommunicationBookDiaries = await getCollection("ContactAndCommun
     <h1>聯絡簿日記</h1>
         {
             ContactAndCommunicationBookDiaries.map((diary: any) => (
-                <a href={`./contact-and-communication-book-diaries/${diary.id}`}>{diary.data.title}</a>
+                <a href={`./contact-and-communication-book-diaries/${diary.id}`}>
+                    {diary.id.replace(/-/g, "/")}{diary.data.title ? "．" + diary.data.title : ""}
+                </a>
             ))
         }
 </BaseLayout>
