@@ -9,12 +9,12 @@ media="(prefers-color-scheme: no-preference)"
 ---
 
 {
-    sizes.map((size) => (
+    sizes.map((size: number) => (
         <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
     ))
 }
 {
-    [180, 192].map((size) => (
+    [180, 192].map((size: number) => (
         <link rel="apple-touch-icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
     ))
 }

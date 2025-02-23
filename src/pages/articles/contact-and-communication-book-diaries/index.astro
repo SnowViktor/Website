@@ -1,17 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Display from "../../../components/Display.astro";
 
-const ContactAndCommunicationBookDiaries = await getCollection("ContactAndCommunicationBookDiaries");
+const collection = await getCollection("ContactAndCommunicationBookDiaries");
 ---
 
 <BaseLayout title="聯絡簿日記" description="【就學經歷之聯絡簿日記】">
     <h1>聯絡簿日記</h1>
-        {
-            ContactAndCommunicationBookDiaries.map((diary: any) => (
-                <a href={`./contact-and-communication-book-diaries/${diary.id}`}>
-                    {diary.id.replace(/-/g, "/")}{diary.data.title ? "．" + diary.data.title : ""}
-                </a>
-            ))
-        }
+    {
+        collection.map((article) => (
+            <Display article={article} path="contact-and-communication-book-diaries" />
+        ))
+    }
 </BaseLayout>

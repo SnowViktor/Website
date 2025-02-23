@@ -1,11 +1,8 @@
 ---
-import Fonts from "../components/head/Fonts.astro";
-import Favicon from "../components/head/Favicon.astro";
+import Favicon from "../components/layout/Favicon.astro";
+import Fonts from "../components/layout/Fonts.astro";
+import Footer from "../components/layout/Footer.astro";
 import { ClientRouter } from "astro:transitions";
-
-import Header from "../components/body/Header.astro";
-import Footer from "../components/body/Footer.astro";
-
 import "../styles/global.css";
 
 const { title, description } = Astro.props;
@@ -29,7 +26,6 @@ const { title, description } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body>
-		<Header />
 		<main>
 			<slot />
 		</main>

@@ -1,12 +1,16 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { id, frontmatter, collection } = Astro.props;
+
+const { collectionName, titleDate = false, frontmatter } = Astro.props;
+
+const formatDate = frontmatter.date.toISOString().substring(0, 10).replace(/-/g, "/");
+const title = titleDate ? (frontmatter.title ? formatDate + "．" + frontmatter.title : formatDate) : frontmatter.title;
 ---
 
-<BaseLayout title={`${id.replace(/-/g, "/")}${frontmatter.title ? "．" + frontmatter.title : ""}`} description={frontmatter.description}>
+<BaseLayout title={title} description={frontmatter.description}>
     <article>
         <p id="information">
-            {collection}．<time datetime={id}>{id.replace(/-/g, "/")}</time>
+            {collectionName}．<time datetime={frontmatter.date.toISOString()}>{formatDate}</time>
         </p>
         <h1>{frontmatter.title}</h1>
         <slot />
@@ -14,11 +18,6 @@ const { id, frontmatter, collection } = Astro.props;
 </BaseLayout>
 
 <style>
-	article {
-        margin: 0 auto;
-		max-width: 700px;
-	}
-
     h1, #information {
         font-family: var(--font-serif);
 		text-align: center;

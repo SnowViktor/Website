@@ -1,43 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import { Image } from "astro:assets";
-import SnowViktor from "../assets/images/SnowViktor.jpg";
-import mail from "../assets/icons/mail.svg";
 ---
 
 <BaseLayout title="SnowViktor" description="【個人網站】">
-    <section>
-        <h1>關於我</h1>
-        <div>
-            <Image id="snow-viktor" src={SnowViktor} alt="SnowViktor的照片" width="280" loading="eager" />
-            <address>
-                <a href="mailto:Snow-Forest@outlook.com">
-                    <Image src={mail} alt="電子郵件" loading="eager" />
-                </a>
-            </address>
-        </div>
-        <p>
-            嗨！我是 <b>SnowViktor</b>，也可以稱呼我為 <b>彬彬</b>。
-        </p>
-    </section>
+    <h1>這裡沒有任何東西，不妨先去<a href="/articles">文章</a>看看。</h1>
 </BaseLayout>
-
-<style>
-    section {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1em;
-    }
-
-    h1 {
-        font-size: 2em;
-        margin: 0;
-        width: 100%;
-    }
-
-    div {
-        display: flex;
-        flex-direction: column;
-    }
-</style>

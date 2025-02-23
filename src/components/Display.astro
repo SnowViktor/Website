@@ -1,0 +1,14 @@
+---
+const { article, path } = Astro.props;
+---
+
+<a href={`./${path}/${article.id}`}>
+    article
+</a>
+
+<style>
+    a {
+        background-color: aliceblue;
+        display: block;
+    }
+</style>
