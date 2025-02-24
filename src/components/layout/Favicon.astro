@@ -1,5 +1,6 @@
 ---
-const sizes = [32, 48, 64, 96, 128, 192];
+const iconSizes = [32, 48, 64, 96, 128, 192];
+const appleIconSizes = [180, 192];
 
 /*
 media="(prefers-color-scheme: light)"
@@ -9,12 +10,12 @@ media="(prefers-color-scheme: no-preference)"
 ---
 
 {
-    sizes.map((size: number) => (
+    iconSizes.map((size: number) => (
         <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
     ))
 }
 {
-    [180, 192].map((size: number) => (
+    appleIconSizes.map((size: number) => (
         <link rel="apple-touch-icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
     ))
 }

@@ -8,9 +8,26 @@ const collection = await getCollection("ContactAndCommunicationBookDiaries");
 
 <BaseLayout title="聯絡簿日記" description="【就學經歷之聯絡簿日記】">
     <h1>聯絡簿日記</h1>
-    {
-        collection.map((article) => (
-            <Display article={article} path="contact-and-communication-book-diaries" />
-        ))
-    }
+    <ul>
+        {
+            collection.map((article) => (
+                <li>
+                    <Display article={article} path="contact-and-communication-book-diaries" />
+                </li>
+            ))
+        }
+    </ul>
 </BaseLayout>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    /* 使用 ::before 表示「～」為「（無題）」。 */
+    
+    ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+    }
+</style>

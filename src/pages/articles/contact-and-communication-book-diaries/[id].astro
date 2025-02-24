@@ -1,6 +1,6 @@
 ---
 import { getEntry, render } from "astro:content";
-import DiaryLayout from "../../../layouts/DiaryLayout.astro";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 
 const { id } = Astro.params;
 if (id === undefined) {
@@ -15,6 +15,6 @@ if (ContactAndCommunicationBookDiaries === undefined) {
 const { Content } = await render(ContactAndCommunicationBookDiaries);
 ---
 
-<DiaryLayout collectionName="聯絡簿日記" titleDate={true} frontmatter={ContactAndCommunicationBookDiaries.data}>
+<ArticleLayout collectionName="聯絡簿日記" titleDate={true} frontmatter={ContactAndCommunicationBookDiaries.data}>
     <Content />
-</DiaryLayout>
+</ArticleLayout>

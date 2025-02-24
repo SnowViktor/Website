@@ -9,11 +9,9 @@
 <style>
     footer {
 		color: var(--color-neutral-1);
-	    font-family: var(--font-serif);
-	    font-size: 14px;
-        font-style: oblique;
+	    font: oblique 14px var(--font-serif);
 		margin: 1em auto;
-		max-width: 700px;
+		max-width: var(--max-width);
         text-align: center;
 	}
 
@@ -21,13 +19,8 @@
 		margin: 0;
 	}
         
-    a {
-	    color: inherit;
-	    text-decoration: none;
-
-		&:focus-visible,
-		&:hover {
-			text-decoration: underline;
-		}
+    a:focus-visible,
+	a:hover {
+		text-decoration: underline wavy 1px;
     }
 </style>

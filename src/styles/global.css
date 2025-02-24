@@ -1,9 +1,13 @@
 :root {
 	--color-base: hsl(170, 10%, 10%);
-	--color-header: hsla(168, 10%, 10%, 0.9);
+	--color-header: hsla(170, 10%, 10%, 0.9);
+	--color-button: hsla(170, 10%, 20%, 0.5);
 	--color-neutral-0: hsl(170, 10%, 100%);
 	--color-neutral-1: hsl(170, 10%, 80%);
+	--color-time: hsla(170, 10%, 80%, 0.75);
 	--color-selection: hsl(170, 10%, 60%);
+	--color-hr: hsla(170, 10%, 60%, 0.25);
+	--color-display: hsla(170, 10%, 40%, 0.25);
 	--color-primary-0: hsl(170, 75%, 90%);
 	--color-primary-1: hsl(170, 75%, 75%);
 
@@ -11,7 +15,8 @@
 	--font-serif: "Noto Serif", "Noto Serif TC", serif;
 
 	--body-padding-inline: 1rem;
-	--header-padding-box-height: 54px;
+	--header-height: 36px;
+	--max-width: 700px;
 }
 
 :-webkit-any(article, aside, nav, section) h1 {
@@ -36,11 +41,27 @@ body {
 
 main {
 	color: var(--color-neutral-0);
-	font-family: var(--font-sans);
-	font-size: 18px;
+	font: 18px/2 var(--font-sans);
 	letter-spacing: 0.8px;
-	line-height: 2;
-	padding: var(--header-padding-box-height) 0 0;
+	padding: var(--header-height) 0 0;
 	margin: 0 auto;
-	max-width: 700px;
+	max-width: var(--max-width);
+	min-height: calc(100vh - var(--header-height));
+
+}
+
+h1 {
+	font-family: var(--font-serif);
+}
+
+hr {
+	border: 1px dashed var(--color-hr);
+	margin-block-start: 0;
+	margin-block-end: 0;
+	max-width: var(--max-width);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
 }

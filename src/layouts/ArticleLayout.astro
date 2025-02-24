@@ -7,24 +7,25 @@ const formatDate = frontmatter.date.toISOString().substring(0, 10).replace(/-/g,
 const title = titleDate ? (frontmatter.title ? formatDate + "．" + frontmatter.title : formatDate) : frontmatter.title;
 ---
 
-<BaseLayout title={title} description={frontmatter.description}>
+<BaseLayout title={title} description={frontmatter.description} headerTitle={frontmatter.title && frontmatter.title}>
     <article>
         <p id="information">
             {collectionName}．<time datetime={frontmatter.date.toISOString()}>{formatDate}</time>
         </p>
-        <h1>{frontmatter.title}</h1>
+        {
+            frontmatter.title && <h1>{frontmatter.title}</h1>
+        }
+        <hr />
         <slot />
     </article>
 </BaseLayout>
 
 <style>
-    h1, #information {
-        font-family: var(--font-serif);
+    #information, h1 {
 		text-align: center;
     }
 
     #information {
-        font-size: 0.8em;
-        font-weight: 500;
+        font: 500 0.8em var(--font-serif);
     }
 </style>

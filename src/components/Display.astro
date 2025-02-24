@@ -1,14 +1,63 @@
 ---
 const { article, path } = Astro.props;
+
+const frontmatter = article.data;
+const formatDate = frontmatter.date.toISOString().substring(0, 10).replace(/-/g, "/");
 ---
 
 <a href={`./${path}/${article.id}`}>
-    article
+    <span id="title">{frontmatter.title ? frontmatter.title : "～"}</span>
+    <span id="line" />
+    <time datetime={frontmatter.date.toISOString()}>{formatDate}</time>
 </a>
 
 <style>
     a {
-        background-color: aliceblue;
-        display: block;
+        align-items: center;
+        border-radius: 0.75em;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.25em 0.75em;
+        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        
+        &:focus-visible,
+        &:hover { 
+            background-color: var(--color-display);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    #title {
+        white-space: nowrap;
+    }
+
+    #line {
+        border: 1px dashed var(--color-hr);
+        margin: 0 0.5em;
+	    width: 100%;
+    }
+
+    time {
+        color: var(--color-time);
+    }
+
+    
+    @media (max-width: 700px) {
+        a {
+            align-items: start;
+            flex-direction: column;
+            line-height: 1.5;
+        }
+
+        #line {
+            display: none;
+        }
+
+        time {
+            align-self: end;
+        }
     }
 </style>
