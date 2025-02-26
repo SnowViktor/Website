@@ -9,7 +9,7 @@ const { headerTitle } = Astro.props;
 <header id="header" class="hidden">
     <a id="a">
         <button>
-            <Image src={arrow} height="20" loading="eager" alt="back" />
+            <Image src={arrow} height="22" loading="eager" alt="back" />
         </button>
     </a>
     {headerTitle && <span id="headerTitle">{headerTitle}</span>}
@@ -20,7 +20,7 @@ const { headerTitle } = Astro.props;
         align-items: center;
         color: var(--color-neutral-1);
         display: flex;
-        font: 14px var(--font-serif);
+        font: 600 16px var(--font-serif);
         left: 50%;
         max-width: var(--max-width);
         position: fixed;
@@ -46,7 +46,8 @@ const { headerTitle } = Astro.props;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        padding: 8px 10px 4px;
+        font-size: 0;
+        padding: 10px;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
         &:focus-visible,
@@ -55,7 +56,7 @@ const { headerTitle } = Astro.props;
         }
 
         &:active {
-            border-radius: 20px;
+            border-radius: 75%;
             transform: scale(0.95);
         }
     }
@@ -64,7 +65,7 @@ const { headerTitle } = Astro.props;
         opacity: 0;
         text-align: center;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        width: calc(100% - 2 * 40px); /* 40px is the width of the a */
+        width: calc(100% - 2 * 42px); /* 42px is the width of the a */
 
         &.show {
             opacity: 1;
