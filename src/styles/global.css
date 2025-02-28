@@ -52,6 +52,7 @@ main {
 
 h1 {
 	font-family: var(--font-serif);
+	text-align: center;
 }
 
 hr {

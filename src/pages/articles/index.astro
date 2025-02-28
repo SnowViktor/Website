@@ -1,14 +1,54 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Display from "../../components/Display.astro";
 
-const collections = [["contact-and-communication-book-diaries", "聯絡簿日記"]];
+const collections = [
+    ["ContactAndCommunicationBookDiaries", "contact-and-communication-book-diaries", "聯絡簿日記"],
+    ["Prose", "prose", "散文"]
+    // ["集合名稱", "路徑", "顯示名稱"]
+];
+
+const articlesWithPaths = await Promise.all(
+    collections.map(async ([collectionName, path]) => {
+        const collection = await getCollection(collectionName);
+        return collection.map(article => [article, path]);
+    })
+);
+const articles = articlesWithPaths.flat().sort((a, b) => {
+    return new Date(b[0].data.pubDate).getTime() - new Date(a[0].data.pubDate).getTime();
+});
 ---
 
 <BaseLayout title="文章" description="【日記、散文】">
     <h1>文章</h1>
+    <p id="annotation">註：「〇」表示無題。</p>
     {
         collections.map((collection) => (
-            <a href={`./articles/${collection[0]}`}>{collection[1]}</a>
+            <a href={`/articles/${collection[1]}`}>{collection[2]}</a>
         ))
     }
+    <ul>
+        {
+            articles.map((article) => (
+                <li>
+                    <Display article={article[0]} path={article[1]} />
+                </li>
+            ))
+        }
+    </ul>
 </BaseLayout>
+
+<style>
+    #annotation {
+        color: var(--color-neutral-1);
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+    }
+</style>

@@ -6,13 +6,13 @@ import arrow from "../../assets/icons/arrow_left_alt.svg";
 const { headerTitle } = Astro.props;
 ---
 
-<header id="header" class="hidden">
-    <a id="a">
+<header id="header">
+    <a id="a" href="/">
         <button>
             <Image src={arrow} height="22" loading="eager" alt="back" />
         </button>
     </a>
-    {headerTitle && <span id="headerTitle">{headerTitle}</span>}
+    {headerTitle && <p id="headerTitle">{headerTitle}</p>}
 </header>
 
 <style>
@@ -49,6 +49,7 @@ const { headerTitle } = Astro.props;
         font-size: 0;
         padding: 10px;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        user-select: none;
 
         &:focus-visible,
         &:hover {
@@ -62,7 +63,8 @@ const { headerTitle } = Astro.props;
         }
     }
 
-    span {
+    p {
+        margin: 0;
         opacity: 0;
         text-align: center;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,19 +80,20 @@ const { headerTitle } = Astro.props;
     document.addEventListener('astro:page-load', () => {
         const header = document.getElementById('header') as HTMLElement;
         const a = document.getElementById('a') as HTMLAnchorElement;
-        const headerTitle = document.getElementById('headerTitle') as HTMLSpanElement;
+        const headerTitle = document.getElementById('headerTitle') as HTMLParagraphElement;
         const h1 = document.querySelector('h1') as HTMLHeadingElement;
         const currentPath = window.location.pathname;
         const parentPath = currentPath.split('/').slice(0, -1).join('/') || '/';
 
-        if (currentPath !== '/') {
-            header.classList.remove('hidden');
+        if (currentPath === '/') {
+            header.classList.add('hidden');
+            header.ariaHidden = 'true';
+        } else {
             a.href = parentPath;
-
+            
             if (h1) {
                 function handleScroll() {
                     const h1Bottom = h1.getBoundingClientRect().bottom;
-
                     if (h1Bottom < 0) {
                         headerTitle.classList.add('show');
                     } else {

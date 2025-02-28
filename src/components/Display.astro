@@ -5,9 +5,9 @@ const frontmatter = article.data;
 const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-/g, "/");
 ---
 
-<a href={`./${path}/${article.id}`}>
-    <span id="title">{frontmatter.title ? frontmatter.title : "～"}</span>
-    <span id="line" />
+<a href={`/articles/${path}/${article.id}`}>
+    <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
+    <span aria-hidden="true" />
     <time datetime={frontmatter.pubDate.toISOString()}>{formatDate}</time>
 </a>
 
@@ -30,11 +30,12 @@ const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-
         }
     }
 
-    #title {
+    p {
+        margin: 0;
         white-space: nowrap;
     }
 
-    #line {
+    span {
         border: 1px dashed var(--color-hr);
         margin: 0 0.5em;
 	    width: 100%;
@@ -49,11 +50,11 @@ const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-
         a {
             align-items: start;
             flex-direction: column;
-            line-height: 1.5;
-            padding: 0.75em;
+            line-height: 1.3;
+            padding: 0.5em 0.75em;
         }
 
-        #line {
+        span {
             display: none;
         }
     }

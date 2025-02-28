@@ -1,0 +1,20 @@
+---
+import { getEntry, render } from "astro:content";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+
+const { id } = Astro.params;
+if (id === undefined) {
+    return Astro.redirect("/404");
+}
+
+const Prose = await getEntry("Prose", id);
+if (Prose === undefined) {
+    return Astro.redirect("/404");
+}
+
+const { Content } = await render(Prose);
+---
+
+<ArticleLayout collectionName="散文" frontmatter={Prose.data}>
+    <Content />
+</ArticleLayout>
