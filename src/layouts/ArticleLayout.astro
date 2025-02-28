@@ -1,16 +1,16 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { collectionName, titleDate = false, frontmatter } = Astro.props;
+const { collectionName, titlePubDate = false, frontmatter } = Astro.props;
 
-const formatDate = frontmatter.date.toISOString().substring(0, 10).replace(/-/g, "/");
-const title = titleDate ? (frontmatter.title ? formatDate + "．" + frontmatter.title : formatDate) : frontmatter.title;
+const formatPubDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-/g, "/");
+const title = titlePubDate ? (frontmatter.title ? formatPubDate + "．" + frontmatter.title : formatPubDate) : frontmatter.title;
 ---
 
 <BaseLayout title={title} description={frontmatter.description} headerTitle={frontmatter.title && frontmatter.title}>
     <article>
-        <p id="information">
-            {collectionName}．<time datetime={frontmatter.date.toISOString()}>{formatDate}</time>
+        <p id="information" class={frontmatter.title ? "" : "no-h1"}>
+            {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}>{formatPubDate}</time>
         </p>
         {
             frontmatter.title && <h1>{frontmatter.title}</h1>
@@ -27,5 +27,9 @@ const title = titleDate ? (frontmatter.title ? formatDate + "．" + frontmatter.
 
     #information {
         font: 500 0.8em var(--font-serif);
+
+        &.no-h1 {
+            margin: calc(36px * 0.67) 0; /* 36px、0.67em 分別是 h1 的 font-size、margin-block。 */
+        }
     }
 </style>

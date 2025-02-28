@@ -1,7 +1,7 @@
 :root {
 	--color-base: hsl(170, 10%, 10%);
 	--color-header: hsla(170, 10%, 10%, 0.9);
-	--color-button: hsla(170, 10%, 20%, 0.5);
+	--color-button: hsla(170, 10%, 30%, 0.5);
 	--color-neutral-0: hsl(170, 10%, 100%);
 	--color-neutral-1: hsl(170, 10%, 80%);
 	--color-time: hsla(170, 10%, 80%, 0.75);

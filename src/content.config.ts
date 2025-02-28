@@ -6,7 +6,7 @@ const ContactAndCommunicationBookDiaries = defineCollection({
     schema: z.object({
         title: z.string().nullable(),
         description: z.string(),
-        date: z.date()
+        pubDate: z.date()
     })
 });
 

@@ -2,13 +2,13 @@
 const { article, path } = Astro.props;
 
 const frontmatter = article.data;
-const formatDate = frontmatter.date.toISOString().substring(0, 10).replace(/-/g, "/");
+const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-/g, "/");
 ---
 
 <a href={`./${path}/${article.id}`}>
     <span id="title">{frontmatter.title ? frontmatter.title : "～"}</span>
     <span id="line" />
-    <time datetime={frontmatter.date.toISOString()}>{formatDate}</time>
+    <time datetime={frontmatter.pubDate.toISOString()}>{formatDate}</time>
 </a>
 
 <style>
