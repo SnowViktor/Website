@@ -11,11 +11,21 @@ media="(prefers-color-scheme: no-preference)"
 
 {
     iconSizes.map((size: number) => (
-        <link rel="icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes={`${size}x${size}`}
+            href={`/favicons/favicon-dark-${size}.png`}
+        />
     ))
 }
 {
     appleIconSizes.map((size: number) => (
-        <link rel="apple-touch-icon" type="image/png" sizes={`${size}x${size}`} href={`/favicons/favicon-dark-${size}.png`} />
+        <link
+            rel="apple-touch-icon"
+            type="image/png"
+            sizes={`${size}x${size}`}
+            href={`/favicons/favicon-dark-${size}.png`}
+        />
     ))
 }

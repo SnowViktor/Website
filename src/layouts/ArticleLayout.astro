@@ -1,20 +1,40 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { collectionName, titlePubDate = false, frontmatter } = Astro.props;
+interface Props {
+    collectionName: string;
+    frontmatter: {
+        title: string | null;
+        description: string;
+        pubDate: Date;
+    };
+    titlePubDate: boolean;
+}
+const { collectionName, frontmatter, titlePubDate } = Astro.props;
 
-const formatPubDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-/g, "/");
-const title = titlePubDate ? (frontmatter.title ? formatPubDate + "．" + frontmatter.title : formatPubDate) : frontmatter.title;
+const formatPubDate = frontmatter.pubDate
+    .toISOString()
+    .substring(0, 10)
+    .replace(/-/g, "/");
+const formatTitle = titlePubDate
+    ? frontmatter.title
+        ? `${formatPubDate}．${frontmatter.title}`
+        : formatPubDate
+    : frontmatter.title;
 ---
 
-<BaseLayout title={title} description={frontmatter.description} headerTitle={frontmatter.title && frontmatter.title}>
+<BaseLayout
+    title={formatTitle}
+    description={frontmatter.description}
+    headerTitle={frontmatter.title && frontmatter.title}
+>
     <article>
         <p id="information" class={frontmatter.title ? "" : "no-h1"}>
-            {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}>{formatPubDate}</time>
+            {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
+                >{formatPubDate}</time
+            >
         </p>
-        {
-            frontmatter.title && <h1>{frontmatter.title}</h1>
-        }
+        {frontmatter.title && <h1>{frontmatter.title}</h1>}
         <hr />
         <slot />
     </article>

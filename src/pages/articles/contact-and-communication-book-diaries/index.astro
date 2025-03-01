@@ -1,37 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import Display from "../../../components/Display.astro";
-
-const collection = (await getCollection("ContactAndCommunicationBookDiaries")).sort(
-    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
+import CollectionLayout from "../../../layouts/CollectionLayout.astro";
 ---
 
-<BaseLayout title="聯絡簿日記" description="【就學經歷之聯絡簿日記】">
-    <h1>聯絡簿日記</h1>
-    <p id="annotation">註：「〇」表示無題。</p>
-    <ul>
-        {
-            collection.map((article) => (
-                <li>
-                    <Display article={article} path="contact-and-communication-book-diaries" />
-                </li>
-            ))
-        }
-    </ul>
-</BaseLayout>
-
-<style>
-    #annotation {
-        color: var(--color-neutral-1);
-        font-size: 0.8em;
-        font-weight: 500;
-        text-align: center;
-    }
-    
-    ul {
-        list-style-type: none;
-        padding-inline-start: 0;
-    }
-</style>
+<CollectionLayout
+    collection="ContactAndCommunicationBookDiaries"
+    title="聯絡簿日記"
+    description="【就學時期之聯絡簿日記】"
+    annotation={true}
+/>

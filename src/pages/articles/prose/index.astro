@@ -1,29 +1,5 @@
 ---
-import { getCollection } from "astro:content";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import Display from "../../../components/Display.astro";
-
-const collection = (await getCollection("Prose")).sort(
-    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
+import CollectionLayout from "../../../layouts/CollectionLayout.astro";
 ---
 
-<BaseLayout title="散文" description="【散文】">
-    <h1>散文</h1>
-    <ul>
-        {
-            collection.map((article) => (
-                <li>
-                    <Display article={article} path="prose" />
-                </li>
-            ))
-        }
-    </ul>
-</BaseLayout>
-
-<style>
-    ul {
-        list-style-type: none;
-        padding-inline-start: 0;
-    }
-</style>
+<CollectionLayout collection="Prose" title="散文" description="【散文彙集】" />

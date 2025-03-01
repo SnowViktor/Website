@@ -1,0 +1,46 @@
+---
+import { type CollectionKey, getCollection } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import Display from "../components/Display.astro";
+
+interface Props {
+    collection: CollectionKey;
+    title: string;
+    description: string;
+    annotation?: boolean;
+}
+const { collection, title, description, annotation = false } = Astro.props;
+
+const sortedCollection = (await getCollection(collection)).sort(
+    (a, b) =>
+        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+);
+---
+{/* 添加文章總數 */}
+<BaseLayout title={title} description={description}>
+    <h1>{title}</h1>
+    {annotation && <p id="annotation">註：「〇」表示無題。</p>}
+    <ul>
+        {
+            sortedCollection.map((article) => (
+                <li>
+                    <Display article={article} />
+                </li>
+            ))
+        }
+    </ul>
+</BaseLayout>
+
+<style>
+    #annotation {
+        color: var(--color-neutral-1);
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+    }
+</style>

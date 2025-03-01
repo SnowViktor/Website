@@ -2,19 +2,27 @@
 import { getEntry, render } from "astro:content";
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 
+const collection = "Prose";
+const collectionName = "散文";
+const titlePubDate = false;
+
 const { id } = Astro.params;
 if (id === undefined) {
     return Astro.redirect("/404");
 }
 
-const Prose = await getEntry("Prose", id);
-if (Prose === undefined) {
+const entry = await getEntry(collection, id);
+if (entry === undefined) {
     return Astro.redirect("/404");
 }
 
-const { Content } = await render(Prose);
+const { Content } = await render(entry);
 ---
 
-<ArticleLayout collectionName="散文" frontmatter={Prose.data}>
+<ArticleLayout
+    collectionName={collectionName}
+    frontmatter={entry.data}
+    titlePubDate={titlePubDate}
+>
     <Content />
 </ArticleLayout>

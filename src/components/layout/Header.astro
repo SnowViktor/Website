@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
-
 import arrow from "../../assets/icons/arrow_left_alt.svg";
 
+interface Props {
+    headerTitle: string | null;
+}
 const { headerTitle } = Astro.props;
 ---
 
-<header id="header">
+<header id="header" class="hidden" aria-hidden="true">
     <a id="a" href="/">
         <button>
             <Image src={arrow} height="22" loading="eager" alt="back" />
@@ -77,31 +79,32 @@ const { headerTitle } = Astro.props;
 </style>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const header = document.getElementById('header') as HTMLElement;
-        const a = document.getElementById('a') as HTMLAnchorElement;
-        const headerTitle = document.getElementById('headerTitle') as HTMLParagraphElement;
-        const h1 = document.querySelector('h1') as HTMLHeadingElement;
+    document.addEventListener("astro:page-load", () => {
+        const header = document.getElementById("header") as HTMLElement;
+        const a = document.getElementById("a") as HTMLAnchorElement;
+        const headerTitle = document.getElementById(
+            "headerTitle",
+        ) as HTMLParagraphElement;
+        const h1 = document.querySelector("h1") as HTMLHeadingElement;
         const currentPath = window.location.pathname;
-        const parentPath = currentPath.split('/').slice(0, -1).join('/') || '/';
+        const parentPath = currentPath.split("/").slice(0, -1).join("/") || "/";
+        a.href = parentPath;
 
-        if (currentPath === '/') {
-            header.classList.add('hidden');
-            header.ariaHidden = 'true';
-        } else {
-            a.href = parentPath;
-            
+        if (currentPath !== "/") {
+            header.classList.remove("hidden");
+            header.ariaHidden = "false";
+
             if (h1) {
                 function handleScroll() {
                     const h1Bottom = h1.getBoundingClientRect().bottom;
                     if (h1Bottom < 0) {
-                        headerTitle.classList.add('show');
+                        headerTitle.classList.add("show");
                     } else {
-                        headerTitle.classList.remove('show');
+                        headerTitle.classList.remove("show");
                     }
                 }
 
-                window.addEventListener('scroll', handleScroll);
+                window.addEventListener("scroll", handleScroll);
                 handleScroll();
             }
         }

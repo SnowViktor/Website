@@ -2,19 +2,27 @@
 import { getEntry, render } from "astro:content";
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 
+const collection = "ContactAndCommunicationBookDiaries";
+const collectionName = "聯絡簿日記";
+const titlePubDate = true;
+
 const { id } = Astro.params;
 if (id === undefined) {
     return Astro.redirect("/404");
 }
 
-const ContactAndCommunicationBookDiaries = await getEntry("ContactAndCommunicationBookDiaries", id);
-if (ContactAndCommunicationBookDiaries === undefined) {
+const entry = await getEntry(collection, id);
+if (entry === undefined) {
     return Astro.redirect("/404");
 }
 
-const { Content } = await render(ContactAndCommunicationBookDiaries);
+const { Content } = await render(entry);
 ---
 
-<ArticleLayout collectionName="聯絡簿日記" titlePubDate={true} frontmatter={ContactAndCommunicationBookDiaries.data}>
+<ArticleLayout
+    collectionName={collectionName}
+    frontmatter={entry.data}
+    titlePubDate={titlePubDate}
+>
     <Content />
 </ArticleLayout>

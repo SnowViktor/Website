@@ -1,14 +1,25 @@
 ---
-const { article, path } = Astro.props;
+import type { CollectionEntry, CollectionKey } from "astro:content";
 
+interface Props {
+    article: CollectionEntry<CollectionKey>;
+}
+const { article } = Astro.props;
+
+const collectionPath = article.collection
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase();
 const frontmatter = article.data;
-const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-/g, "/");
+const formatPubDate = frontmatter.pubDate
+    .toISOString()
+    .substring(0, 10)
+    .replace(/-/g, "/");
 ---
 
-<a href={`/articles/${path}/${article.id}`}>
+<a href={`/articles/${collectionPath}/${article.id}`}>
     <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
-    <span aria-hidden="true" />
-    <time datetime={frontmatter.pubDate.toISOString()}>{formatDate}</time>
+    <span aria-hidden="true"></span>
+    <time datetime={frontmatter.pubDate.toISOString()}>{formatPubDate}</time>
 </a>
 
 <style>
@@ -19,9 +30,9 @@ const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-
         justify-content: space-between;
         padding: 0.25em 0.75em;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        
+
         &:focus-visible,
-        &:hover { 
+        &:hover {
             background-color: var(--color-display);
         }
 
@@ -38,14 +49,13 @@ const formatDate = frontmatter.pubDate.toISOString().substring(0, 10).replace(/-
     span {
         border: 1px dashed var(--color-hr);
         margin: 0 0.5em;
-	    width: 100%;
+        width: 100%;
     }
 
     time {
         color: var(--color-time);
     }
 
-    
     @media (max-width: 700px) {
         a {
             align-items: start;
