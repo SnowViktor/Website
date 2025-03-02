@@ -12,11 +12,11 @@ interface Props {
 }
 const { collectionName, frontmatter, titlePubDate } = Astro.props;
 
-const formatPubDate = frontmatter.pubDate
+const formatPubDate: string = frontmatter.pubDate
     .toISOString()
     .substring(0, 10)
     .replace(/-/g, "/");
-const formatTitle = titlePubDate
+const formatTitle: string | null = titlePubDate
     ? frontmatter.title
         ? `${formatPubDate}．${frontmatter.title}`
         : formatPubDate

@@ -1,0 +1,50 @@
+---
+interface Props {
+    collectionList: string[][];
+}
+const { collectionList } = Astro.props;
+---
+
+<div>
+    {
+        collectionList.map((collection) => (
+            <a href={`/articles/${collection[0]}`}>
+                <p>{collection[1]}</p>
+            </a>
+        ))
+    }
+</div>
+
+<style>
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
+        justify-content: center;
+        margin: 1em 0;
+    }
+
+    a {
+        align-items: center;
+        border: 2px solid var(--color-collection);
+        border-radius: 0.75em;
+        display: flex;
+        padding: 0.4em 0.75em;
+        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:focus-visible,
+        &:hover {
+            background-color: var(--color-collection);
+            transform: scale(1.1);
+        }
+
+        &:active {
+            transform: scale(1);
+        }
+    }
+
+    p {
+        font: 700 1.2em var(--font-serif);
+        margin: 0;
+    }
+</style>

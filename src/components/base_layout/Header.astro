@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import arrow from "../../assets/icons/arrow_left_alt.svg";
+import arrow from "../../assets/icons/arrow_left.svg";
 
 interface Props {
     headerTitle: string | null;
@@ -9,11 +9,9 @@ const { headerTitle } = Astro.props;
 ---
 
 <header id="header" class="hidden" aria-hidden="true">
-    <a id="a" href="/">
-        <button>
-            <Image src={arrow} height="22" loading="eager" alt="back" />
-        </button>
-    </a>
+    <button id="button" aria-label="Go to the previous page.">
+        <Image src={arrow} height="22" loading="eager" alt="(Arrow Left)" />
+    </button>
     {headerTitle && <p id="headerTitle">{headerTitle}</p>}
 </header>
 
@@ -61,7 +59,7 @@ const { headerTitle } = Astro.props;
 
         &:active {
             border-radius: 75%;
-            transform: scale(0.95);
+            transform: scale(0.9);
         }
     }
 
@@ -70,7 +68,7 @@ const { headerTitle } = Astro.props;
         opacity: 0;
         text-align: center;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        width: calc(100% - 2 * 42px); /* 42px is the width of the a */
+        width: calc(100% - 2 * 42px); /* 42px is the width of the button */
 
         &.show {
             opacity: 1;
@@ -79,20 +77,28 @@ const { headerTitle } = Astro.props;
 </style>
 
 <script>
+    import { navigate } from "astro:transitions/client";
+
     document.addEventListener("astro:page-load", () => {
         const header = document.getElementById("header") as HTMLElement;
-        const a = document.getElementById("a") as HTMLAnchorElement;
+        const button = document.getElementById("button") as HTMLAnchorElement;
         const headerTitle = document.getElementById(
             "headerTitle",
         ) as HTMLParagraphElement;
         const h1 = document.querySelector("h1") as HTMLHeadingElement;
-        const currentPath = window.location.pathname;
-        const parentPath = currentPath.split("/").slice(0, -1).join("/") || "/";
-        a.href = parentPath;
 
-        if (currentPath !== "/") {
+        if (window.location.pathname !== "/") {
             header.classList.remove("hidden");
             header.ariaHidden = "false";
+
+            button.addEventListener("click", () => {
+                history.scrollRestoration = "auto";
+                if (document.referrer) {
+                    history.back();
+                } else {
+                    navigate("../");
+                }
+            });
 
             if (h1) {
                 function handleScroll() {

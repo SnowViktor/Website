@@ -1,30 +1,47 @@
 ---
-import { type CollectionKey, getCollection } from "astro:content";
+import {
+    type CollectionEntry,
+    type CollectionKey,
+    getCollection,
+} from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
-import Display from "../components/Display.astro";
+import Article from "../components/collection_layout/Article.astro";
 
 interface Props {
-    collection: CollectionKey;
+    collection: CollectionKey | CollectionKey[];
     title: string;
     description: string;
-    annotation?: boolean;
+    annotation: boolean;
 }
-const { collection, title, description, annotation = false } = Astro.props;
+const { collection, title, description, annotation } = Astro.props;
 
-const sortedCollection = (await getCollection(collection)).sort(
+const collections: CollectionKey[] = Array.isArray(collection)
+    ? collection
+    : [collection];
+let sortedCollection: CollectionEntry<CollectionKey>[] = [];
+for (const collection of collections) {
+    const currentCollection: CollectionEntry<CollectionKey>[] =
+        await getCollection(collection);
+    sortedCollection = sortedCollection.concat(currentCollection);
+}
+sortedCollection = sortedCollection.sort(
     (a, b) =>
         new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
 );
 ---
-{/* 添加文章總數 */}
+
 <BaseLayout title={title} description={description}>
     <h1>{title}</h1>
-    {annotation && <p id="annotation">註：「〇」表示無題。</p>}
+    <slot />
+    <p id="information">
+        {annotation && <span class="existing">註：「〇」表示無題</span>}
+        <span>共 {sortedCollection.length} 篇</span>
+    </p>
     <ul>
         {
             sortedCollection.map((article) => (
                 <li>
-                    <Display article={article} />
+                    <Article article={article} />
                 </li>
             ))
         }
@@ -32,11 +49,17 @@ const sortedCollection = (await getCollection(collection)).sort(
 </BaseLayout>
 
 <style>
-    #annotation {
+    #information {
         color: var(--color-neutral-1);
+        display: flex;
         font-size: 0.8em;
         font-weight: 500;
-        text-align: center;
+        justify-content: flex-end;
+        padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 Display 的 font-size、margin-inline。 */
+
+        &:has(.existing) {
+            justify-content: space-between;
+        }
     }
 
     ul {
