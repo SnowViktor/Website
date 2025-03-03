@@ -29,7 +29,7 @@ const formatTitle: string | null = titlePubDate
     headerTitle={frontmatter.title && frontmatter.title}
 >
     <article>
-        <p id="information" class={frontmatter.title ? "" : "no-h1"}>
+        <p class={frontmatter.title ? "" : "no-h1"}>
             {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
                 >{formatPubDate}</time
             >
@@ -41,12 +41,16 @@ const formatTitle: string | null = titlePubDate
 </BaseLayout>
 
 <style>
-    #information {
+    p {
         font: 500 0.8em var(--font-serif);
         text-align: center;
 
         &.no-h1 {
             margin: calc(36px * 0.67) 0; /* 36px、0.67em 分別是 h1 的 font-size、margin-block。 */
         }
+    }
+
+    p, h1 {
+        letter-spacing: 0.04em;
     }
 </style>

@@ -43,12 +43,16 @@ body {
 main {
 	color: var(--color-neutral-0);
 	font: 18px/2 var(--font-sans);
-	letter-spacing: 0.8px;
+	letter-spacing: 0.04em;
 	padding: var(--header-height) 0 0;
 	margin: 0 auto;
 	max-width: var(--max-width);
 	min-height: calc(100vh - var(--header-height));
+	text-align: justify;
+}
 
+article {
+	letter-spacing: 0;
 }
 
 h1 {

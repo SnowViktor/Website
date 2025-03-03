@@ -13,7 +13,7 @@ const frontmatter = article.data;
 const formatPubDate: string = frontmatter.pubDate
     .toISOString()
     .substring(0, 10)
-    .replace(/-/g, "/");
+    .replace(/-/g, " / ");
 ---
 
 <a href={`/articles/${collectionPath}/${article.id}`}>
@@ -30,6 +30,7 @@ const formatPubDate: string = frontmatter.pubDate
         justify-content: space-between;
         padding: 0.25em 0.75em;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
 
         &:focus-visible,
         &:hover {
@@ -43,7 +44,6 @@ const formatPubDate: string = frontmatter.pubDate
 
     p {
         margin: 0;
-        white-space: nowrap;
     }
 
     span {
@@ -54,6 +54,7 @@ const formatPubDate: string = frontmatter.pubDate
 
     time {
         color: var(--color-time);
+        word-spacing: -0.15em;
     }
 
     @media (max-width: 700px) {
@@ -66,6 +67,10 @@ const formatPubDate: string = frontmatter.pubDate
 
         span {
             display: none;
+        }
+
+        time {
+            font-size: 0.9em;
         }
     }
 </style>
