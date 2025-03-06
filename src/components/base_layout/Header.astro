@@ -20,7 +20,7 @@ const { headerTitle } = Astro.props;
 <style>
     header {
         align-items: center;
-        color: var(--color-neutral-1);
+        color: var(--color-text-secondary);
         display: flex;
         font: 600 16px var(--font-serif);
         left: 50%;
@@ -31,7 +31,7 @@ const { headerTitle } = Astro.props;
 
         &::before {
             backdrop-filter: blur(2px);
-            background-color: var(--color-header);
+            background-color: var(--color-base-translucent);
             content: "";
             height: 100%;
             position: absolute;
@@ -55,7 +55,7 @@ const { headerTitle } = Astro.props;
 
         &:focus-visible,
         &:hover {
-            background-color: var(--color-button);
+            background-color: var(--color-base-lightness-25);
             border-radius: 10%;
         }
 
