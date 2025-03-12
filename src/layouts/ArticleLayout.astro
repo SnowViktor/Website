@@ -36,7 +36,9 @@ const formatTitle: string | null = titlePubDate
         </p>
         {frontmatter.title && <h1>{frontmatter.title}</h1>}
         <hr />
-        <slot />
+        <div>
+            <slot />
+        </div>
     </article>
 </BaseLayout>
 
@@ -52,10 +54,8 @@ const formatTitle: string | null = titlePubDate
         }
     }
 
-    article {
-        p:not(:first-child) {
-            font-family: var(--font-cursive);
-            letter-spacing: 0;
-        }
+    div {
+        font-family: var(--font-cursive);
+        letter-spacing: 0;
     }
 </style>
