@@ -12,6 +12,7 @@
 
 	--font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
 	--font-serif: "Noto Serif", "Noto Serif TC", serif;
+	--font-cursive: "Iansui", cursive;
 
 	--body-padding-inline: 1rem;
 	--header-height: 42px;
@@ -47,10 +48,6 @@ main {
 	max-width: var(--max-width);
 	min-height: calc(100vh - var(--header-height));
 	text-align: justify;
-}
-
-article {
-	letter-spacing: 0;
 }
 
 h1 {
