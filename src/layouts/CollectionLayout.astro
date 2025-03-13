@@ -5,7 +5,7 @@ import {
     getCollection,
 } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
-import Article from "../components/collection_layout/Article.astro";
+import ArticleItem from "../components/collection_layout/ArticleItem.astro";
 
 interface Props {
     collection: CollectionKey | CollectionKey[];
@@ -41,7 +41,7 @@ sortedCollection = sortedCollection.sort(
         {
             sortedCollection.map((article) => (
                 <li>
-                    <Article article={article} />
+                    <ArticleItem article={article} />
                 </li>
             ))
         }
@@ -55,7 +55,7 @@ sortedCollection = sortedCollection.sort(
         font-size: 0.8em;
         font-weight: 500;
         justify-content: flex-end;
-        padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 Display 的 font-size、margin-inline。 */
+        padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 ArticleItem 的 font-size、margin-inline。 */
 
         &:has(.existing) {
             justify-content: space-between;

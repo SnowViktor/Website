@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry, CollectionKey } from "astro:content";
+
+interface Props {
+    prevArticle: CollectionEntry<CollectionKey> | null;
+    nextArticle: CollectionEntry<CollectionKey> | null;
+}
+const { prevArticle, nextArticle } = Astro.props;
+
+function collectionPath(article: CollectionEntry<CollectionKey>) {
+    return article.collection
+        .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+        .toLowerCase();
+}
+---
+
+{/* need completing */}
+<nav>
+    {
+        prevArticle && (
+            <div class="prev">
+                <a
+                    href={`/articles/${collectionPath(prevArticle)}/${prevArticle.id}`}
+                >
+                    ←
+                </a>
+            </div>
+        )
+    }
+
+    {
+        nextArticle && (
+            <div class="next">
+                <a
+                    href={`/articles/${collectionPath(nextArticle)}/${nextArticle.id}`}
+                >
+                    →
+                </a>
+            </div>
+        )
+    }
+</nav>
+
+<style>
+    nav {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        font-family: var(--font-serif);
+        font-size: 0.9em;
+    }
+
+    .prev {
+        text-align: left;
+    }
+
+    .next {
+        text-align: right;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>

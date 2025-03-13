@@ -1,5 +1,7 @@
 ---
+import type { CollectionEntry, CollectionKey } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
+import ArticleNavigation from "../components/article_layout/ArticleNavigation.astro";
 
 interface Props {
     collectionName: string;
@@ -9,8 +11,11 @@ interface Props {
         pubDate: Date;
     };
     titlePubDate: boolean;
+    prevArticle: CollectionEntry<CollectionKey> | null;
+    nextArticle: CollectionEntry<CollectionKey> | null;
 }
-const { collectionName, frontmatter, titlePubDate } = Astro.props;
+const { collectionName, frontmatter, titlePubDate, prevArticle, nextArticle } =
+    Astro.props;
 
 const formatPubDate: string = frontmatter.pubDate
     .toISOString()
@@ -39,6 +44,10 @@ const formatTitle: string | null = titlePubDate
         <div>
             <slot />
         </div>
+        <ArticleNavigation
+            prevArticle={prevArticle}
+            nextArticle={nextArticle}
+        />
     </article>
 </BaseLayout>
 

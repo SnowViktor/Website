@@ -1,5 +1,11 @@
 ---
-import { type CollectionKey, getEntry, render } from "astro:content";
+import {
+    type CollectionEntry,
+    type CollectionKey,
+    getCollection,
+    getEntry,
+    render,
+} from "astro:content";
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 
 const collection: CollectionKey = "ContactAndCommunicationBookDiaries";
@@ -16,6 +22,19 @@ if (entry === undefined) {
     return Astro.redirect("/404");
 }
 
+const allArticles: CollectionEntry<CollectionKey>[] =
+    await getCollection(collection);
+const sortedArticles: CollectionEntry<CollectionKey>[] = allArticles.sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+const currentIndex = sortedArticles.findIndex((article) => article.id === id);
+const prevArticle: CollectionEntry<CollectionKey> | null =
+    currentIndex < sortedArticles.length - 1
+        ? sortedArticles[currentIndex + 1]
+        : null;
+const nextArticle: CollectionEntry<CollectionKey> | null =
+    currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
+
 const { Content } = await render(entry);
 ---
 
@@ -23,6 +42,8 @@ const { Content } = await render(entry);
     collectionName={collectionName}
     frontmatter={entry.data}
     titlePubDate={titlePubDate}
+    prevArticle={prevArticle}
+    nextArticle={nextArticle}
 >
     <Content />
 </ArticleLayout>
