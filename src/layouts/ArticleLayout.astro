@@ -5,17 +5,12 @@ import ArticleNavigation from "../components/article_layout/ArticleNavigation.as
 
 interface Props {
     collectionName: string;
-    frontmatter: {
-        title: string | null;
-        description: string;
-        pubDate: Date;
-    };
+    entry: CollectionEntry<CollectionKey>;
     titlePubDate: boolean;
-    prevArticle: CollectionEntry<CollectionKey> | null;
-    nextArticle: CollectionEntry<CollectionKey> | null;
 }
-const { collectionName, frontmatter, titlePubDate, prevArticle, nextArticle } =
-    Astro.props;
+const { collectionName, entry, titlePubDate } = Astro.props;
+
+const frontmatter = entry.data;
 
 const formatPubDate: string = frontmatter.pubDate
     .toISOString()
@@ -36,7 +31,7 @@ const formatTitle: string | null = titlePubDate
     <article>
         <p class={frontmatter.title ? "" : "no-h1"}>
             {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
-                >{formatPubDate}</time
+                >{formatPubDate.replace(/\//g, " / ")}</time
             >
         </p>
         {frontmatter.title && <h1>{frontmatter.title}</h1>}
@@ -44,11 +39,8 @@ const formatTitle: string | null = titlePubDate
         <div>
             <slot />
         </div>
-        <ArticleNavigation
-            prevArticle={prevArticle}
-            nextArticle={nextArticle}
-        />
     </article>
+    <ArticleNavigation entry={entry} />
 </BaseLayout>
 
 <style>
@@ -61,6 +53,10 @@ const formatTitle: string | null = titlePubDate
         &.no-h1 {
             margin: calc(36px * 0.67) 0; /* 36px、0.67em 分別是 h1 的 font-size、margin-block。 */
         }
+    }
+
+    time {
+        word-spacing: -0.15em;
     }
 
     div {

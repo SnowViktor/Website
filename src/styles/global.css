@@ -41,6 +41,8 @@ body {
 
 main {
 	color: var(--color-text);
+	display: flex;
+	flex-direction: column;
 	font: 18px/2 var(--font-sans);
 	letter-spacing: 0.04em;
 	padding: var(--header-height) 0 0;
@@ -48,6 +50,21 @@ main {
 	max-width: var(--max-width);
 	min-height: calc(100vh - var(--header-height));
 	text-align: justify;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+blockquote {
+	margin-inline-start: 2em;
+	margin-inline-end: 2em;
+}
+
+button {
+	cursor: pointer;
+	font-family: inherit;
 }
 
 h1 {
@@ -62,7 +79,6 @@ hr {
 	max-width: var(--max-width);
 }
 
-a {
-	color: inherit;
-	text-decoration: none;
+pre {
+	padding-inline-start: 1ch;
 }
