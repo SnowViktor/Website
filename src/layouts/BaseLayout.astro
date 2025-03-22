@@ -1,25 +1,26 @@
 ---
 import { ClientRouter } from "astro:transitions";
+
 import Favicon from "../components/base_layout/Favicon.astro";
 import Fonts from "../components/base_layout/Fonts.astro";
 import Footer from "../components/base_layout/Footer.astro";
 import Header from "../components/base_layout/Header.astro";
+
 import "../styles/global.css";
 
 interface Props {
-	title: string | null;
+	title: string;
 	description: string;
-	headerTitle?: string | null;
 }
-const { title, description, headerTitle = title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <html lang="zh-TW" transition:animate="initial">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
 		<meta name="author" content="SnowViktor" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta property="og:site_name" content="SnowViktor" />
@@ -32,7 +33,7 @@ const { title, description, headerTitle = title } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body>
-		<Header headerTitle={headerTitle} />
+		<Header />
 		<main>
 			<slot />
 		</main>

@@ -1,45 +1,33 @@
 ---
-import {
-    type CollectionEntry,
-    type CollectionKey,
-    getCollection,
-} from "astro:content";
+import type { CollectionKey } from "astro:content";
+
 import BaseLayout from "./BaseLayout.astro";
+
 import ArticleItem from "../components/collection_layout/ArticleItem.astro";
 
+import { sortedCollection } from "../utils/sorted_collection";
+
 interface Props {
-    collection: CollectionKey | CollectionKey[];
     title: string;
     description: string;
-    annotation: boolean;
+    collectionKey: CollectionKey | CollectionKey[];
+    annotation?: boolean;
 }
-const { collection, title, description, annotation } = Astro.props;
+const { title, description, collectionKey, annotation = false } = Astro.props;
 
-const collections: CollectionKey[] = Array.isArray(collection)
-    ? collection
-    : [collection];
-let sortedCollection: CollectionEntry<CollectionKey>[] = [];
-for (const collection of collections) {
-    const currentCollection: CollectionEntry<CollectionKey>[] =
-        await getCollection(collection);
-    sortedCollection = sortedCollection.concat(currentCollection);
-}
-sortedCollection = sortedCollection.sort(
-    (a, b) =>
-        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
-);
+const articles = await sortedCollection(collectionKey);
 ---
 
 <BaseLayout title={title} description={description}>
     <h1>{title}</h1>
     <slot />
-    <p id="information">
-        {annotation && <span class="existing">註：「〇」表示無題</span>}
-        <span>共 {sortedCollection.length} 篇</span>
+    <p>
+        {annotation && <span class="annotation">註：「〇」表示無題</span>}
+        <span>共 {articles.length} 篇</span>
     </p>
     <ul>
         {
-            sortedCollection.map((article) => (
+            articles.map((article) => (
                 <li>
                     <ArticleItem article={article} />
                 </li>
@@ -49,7 +37,7 @@ sortedCollection = sortedCollection.sort(
 </BaseLayout>
 
 <style>
-    #information {
+    p {
         color: var(--color-text-secondary);
         display: flex;
         font-size: 0.8em;
@@ -57,7 +45,7 @@ sortedCollection = sortedCollection.sort(
         justify-content: flex-end;
         padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 ArticleItem 的 font-size、margin-inline。 */
 
-        &:has(.existing) {
+        &:has(.annotation) {
             justify-content: space-between;
         }
     }

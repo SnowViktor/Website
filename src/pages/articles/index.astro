@@ -1,27 +1,35 @@
 ---
 import type { CollectionKey } from "astro:content";
-import CollectionLayout from "../../layouts/CollectionLayout.astro";
-import CollectionsList from "../../components/CollectionsList.astro";
 
-const collections: [CollectionKey, ...string[]][] = [
-    ["ContactAndCommunicationBookDiaries", "聯絡簿日記"],
-    ["Prose", "散文"],
+import CollectionLayout from "../../layouts/CollectionLayout.astro";
+
+import CollectionsList from "../../components/page/CollectionsList.astro";
+
+const collections = [
+    {
+        CollectionKey: "ContactAndCommunicationBookDiaries" as CollectionKey,
+        CollectionPath: "contact-and-communication-book-diaries",
+        CollectionDisplayName: "聯絡簿日記",
+    },
+    {
+        CollectionKey: "Prose" as CollectionKey,
+        CollectionPath: "prose",
+        CollectionDisplayName: "散文",
+    },
 ];
-const collectionKey: CollectionKey[] = collections.map(
-    (collection) => collection[0],
-);
-const collectionList: string[][] = collections.map((collection) => [
-    collection[0].replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(),
-    collection[1],
-]);
+const collectionKey = collections.map((collection) => collection.CollectionKey);
+const collectionsList = collections.map((collection) => ({
+    CollectionPath: collection.CollectionPath,
+    CollectionDisplayName: collection.CollectionDisplayName,
+}));
 ---
 
 <CollectionLayout
-    collection={collectionKey}
     title="文章"
     description="【文章列表】"
+    collectionKey={collectionKey}
     annotation={true}
 >
-    <CollectionsList collectionList={collectionList} />
+    <CollectionsList collectionsList={collectionsList} />
     <hr />
 </CollectionLayout>

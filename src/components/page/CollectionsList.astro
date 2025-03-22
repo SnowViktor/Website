@@ -1,15 +1,18 @@
 ---
 interface Props {
-    collectionList: string[][];
+    collectionsList: {
+        CollectionPath: string;
+        CollectionDisplayName: string;
+    }[];
 }
-const { collectionList } = Astro.props;
+const { collectionsList } = Astro.props;
 ---
 
 <div>
     {
-        collectionList.map((collection) => (
-            <a href={`/articles/${collection[0]}`}>
-                <p>{collection[1]}</p>
+        collectionsList.map((collection) => (
+            <a href={`/articles/${collection.CollectionPath}`}>
+                <p>{collection.CollectionDisplayName}</p>
             </a>
         ))
     }
