@@ -3,6 +3,7 @@ import type { CollectionKey } from "astro:content";
 
 import BaseLayout from "./BaseLayout.astro";
 
+import ArticlesInformation from "../components/collection_layout/ArticlesInformation.astro";
 import ArticleItem from "../components/collection_layout/ArticleItem.astro";
 
 import { sortedCollection } from "../utils/sorted_collection";
@@ -21,10 +22,10 @@ const articles = await sortedCollection(collectionKey);
 <BaseLayout title={title} description={description}>
     <h1>{title}</h1>
     <slot />
-    <p>
-        {annotation && <span class="annotation">註：「〇」表示無題</span>}
-        <span>共 {articles.length} 篇</span>
-    </p>
+    <ArticlesInformation
+        annotation={annotation}
+        articlesLength={articles.length}
+    />
     <ul>
         {
             articles.map((article) => (
@@ -37,19 +38,6 @@ const articles = await sortedCollection(collectionKey);
 </BaseLayout>
 
 <style>
-    p {
-        color: var(--color-text-secondary);
-        display: flex;
-        font-size: 0.8em;
-        font-weight: 500;
-        justify-content: flex-end;
-        padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 ArticleItem 的 font-size、margin-inline。 */
-
-        &:has(.annotation) {
-            justify-content: space-between;
-        }
-    }
-
     ul {
         list-style-type: none;
         padding-inline-start: 0;

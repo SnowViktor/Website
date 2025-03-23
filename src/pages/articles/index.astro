@@ -5,21 +5,21 @@ import CollectionLayout from "../../layouts/CollectionLayout.astro";
 
 import CollectionsList from "../../components/page/CollectionsList.astro";
 
+import { collectionKeyToPath } from "../../utils/collection_key_to_path";
+
 const collections = [
     {
         CollectionKey: "ContactAndCommunicationBookDiaries" as CollectionKey,
-        CollectionPath: "contact-and-communication-book-diaries",
         CollectionDisplayName: "聯絡簿日記",
     },
     {
         CollectionKey: "Prose" as CollectionKey,
-        CollectionPath: "prose",
         CollectionDisplayName: "散文",
     },
 ];
 const collectionKey = collections.map((collection) => collection.CollectionKey);
 const collectionsList = collections.map((collection) => ({
-    CollectionPath: collection.CollectionPath,
+    CollectionPath: collectionKeyToPath(collection.CollectionKey),
     CollectionDisplayName: collection.CollectionDisplayName,
 }));
 ---

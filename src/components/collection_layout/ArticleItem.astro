@@ -1,25 +1,23 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
+import PubDate from "../component/PubDate.astro";
+
+import { collectionKeyToPath } from "../../utils/collection_key_to_path";
+
 interface Props {
     article: CollectionEntry<CollectionKey>;
 }
 const { article } = Astro.props;
 
-const collectionPath: string = article.collection
-    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-    .toLowerCase();
+const collectionPath = collectionKeyToPath(article.collection);
 const frontmatter = article.data;
-const formatPubDate: string = frontmatter.pubDate
-    .toISOString()
-    .substring(0, 10)
-    .replace(/-/g, " / ");
 ---
 
 <a href={`/articles/${collectionPath}/${article.id}`}>
     <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
     <span aria-hidden="true"></span>
-    <time datetime={frontmatter.pubDate.toISOString()}>{formatPubDate}</time>
+    <PubDate pubDate={frontmatter.pubDate} />
 </a>
 
 <style>

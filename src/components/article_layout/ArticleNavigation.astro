@@ -1,7 +1,12 @@
 ---
 import { Image } from "astro:assets";
+
 import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 import arrowRight from "../../assets/icons/arrow_right_alt.svg";
+
+import PubDate from "../component/PubDate.astro";
+
+import { collectionKeyToPath } from "../../utils/collection_key_to_path";
 
 import {
     type CollectionEntry,
@@ -30,12 +35,6 @@ const prevArticle: CollectionEntry<CollectionKey> | null =
 const nextArticle: CollectionEntry<CollectionKey> | null =
     currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
 
-function collectionPath(article: CollectionEntry<CollectionKey>) {
-    return article.collection
-        .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-        .toLowerCase();
-}
-
 type NavigationItem = {
     article: CollectionEntry<CollectionKey>;
     direction: "prev" | "next";
@@ -57,10 +56,6 @@ const navigationItems: NavigationItem[] = [
         label: "Go to the next page",
     },
 ].filter(Boolean) as NavigationItem[];
-
-function formatPubDate(pubDate: Date) {
-    return pubDate.toISOString().substring(0, 10).replace(/-/g, " / ");
-}
 ---
 
 <nav>
@@ -68,7 +63,7 @@ function formatPubDate(pubDate: Date) {
         navigationItems.map(({ article, direction, icon, label }) => (
             <a
                 class={direction}
-                href={`/articles/${collectionPath(article)}/${article.id}`}
+                href={`/articles/${collectionKeyToPath(article.collection)}/${article.id}`}
                 aria-label={label}
             >
                 <button>
@@ -79,9 +74,7 @@ function formatPubDate(pubDate: Date) {
                     />
                     <p>
                         {article.data.title}
-                        <time datetime={article.data.pubDate.toISOString()}>
-                            {formatPubDate(article.data.pubDate)}
-                        </time>
+                        <PubDate pubDate={article.data.pubDate} />
                     </p>
                 </button>
             </a>
