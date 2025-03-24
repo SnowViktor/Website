@@ -1,9 +1,8 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
-import PubDate from "../component/PubDate.astro";
-
 import { collectionKeyToPath } from "../../utils/collection_key_to_path";
+import { formatPubDate } from "../../utils/format_pub-date";
 
 interface Props {
     article: CollectionEntry<CollectionKey>;
@@ -17,7 +16,9 @@ const frontmatter = article.data;
 <a href={`/articles/${collectionPath}/${article.id}`}>
     <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
     <span aria-hidden="true"></span>
-    <PubDate pubDate={frontmatter.pubDate} />
+    <time datetime={frontmatter.pubDate.toISOString()}
+        >{formatPubDate(frontmatter.pubDate, true)}</time
+    >
 </a>
 
 <style>
@@ -68,7 +69,7 @@ const frontmatter = article.data;
         }
 
         time {
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
     }
 </style>

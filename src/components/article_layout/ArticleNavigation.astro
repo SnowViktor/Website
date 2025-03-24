@@ -4,9 +4,8 @@ import { Image } from "astro:assets";
 import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 import arrowRight from "../../assets/icons/arrow_right_alt.svg";
 
-import PubDate from "../component/PubDate.astro";
-
 import { collectionKeyToPath } from "../../utils/collection_key_to_path";
+import { formatPubDate } from "../../utils/format_pub-date";
 
 import {
     type CollectionEntry,
@@ -74,7 +73,9 @@ const navigationItems: NavigationItem[] = [
                     />
                     <p>
                         {article.data.title}
-                        <PubDate pubDate={article.data.pubDate} />
+                        <time datetime={article.data.pubDate.toISOString()}>
+                            {formatPubDate(article.data.pubDate, true)}
+                        </time>
                     </p>
                 </button>
             </a>

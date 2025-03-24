@@ -1,8 +1,11 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
+
 import BaseLayout from "./BaseLayout.astro";
+
 import ArticleNavigation from "../components/article_layout/ArticleNavigation.astro";
 
+import { formatPubDate } from "../utils/format_pub-date";
 interface Props {
     collectionName: string;
     entry: CollectionEntry<CollectionKey>;
@@ -12,26 +15,20 @@ const { collectionName, entry, titlePubDate } = Astro.props;
 
 const frontmatter = entry.data;
 
-const formatPubDate: string = frontmatter.pubDate
-    .toISOString()
-    .substring(0, 10)
-    .replace(/-/g, "/");
-const formatTitle: string | null = titlePubDate
-    ? frontmatter.title
-        ? `${formatPubDate}．${frontmatter.title}`
-        : formatPubDate
-    : frontmatter.title;
+const formattedPubDate = formatPubDate(frontmatter.pubDate, false);
+const formatTitle =
+    titlePubDate && frontmatter.title
+        ? `${formattedPubDate}．${frontmatter.title}`
+        : frontmatter.title
+          ? frontmatter.title
+          : formattedPubDate;
 ---
 
-<BaseLayout
-    title={formatTitle}
-    description={frontmatter.description}
-    headerTitle={frontmatter.title && frontmatter.title}
->
+<BaseLayout title={formatTitle} description={frontmatter.description}>
     <article>
         <p class={frontmatter.title ? "" : "no-h1"}>
             {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
-                >{formatPubDate.replace(/\//g, " / ")}</time
+                >{formatPubDate(frontmatter.pubDate, true)}</time
             >
         </p>
         {frontmatter.title && <h1>{frontmatter.title}</h1>}
