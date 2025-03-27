@@ -1,65 +1,55 @@
 ---
 import { Image } from "astro:assets";
+import type { CollectionEntry, CollectionKey } from "astro:content";
 
 import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 import arrowRight from "../../assets/icons/arrow_right_alt.svg";
 
 import { collectionKeyToPath } from "../../utils/collection_key_to_path";
 import { formatPubDate } from "../../utils/format_pub-date";
-
-import {
-    type CollectionEntry,
-    type CollectionKey,
-    getCollection,
-} from "astro:content";
+import { sortedCollection } from "../../utils/sorted_collection";
 
 interface Props {
-    entry: CollectionEntry<CollectionKey>;
+    id: string;
 }
-const { entry } = Astro.props;
+const { id } = Astro.props;
 
-const allArticles: CollectionEntry<CollectionKey>[] = await getCollection(
-    entry.collection,
-);
-const sortedArticles: CollectionEntry<CollectionKey>[] = allArticles.sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
-);
-const currentIndex = sortedArticles.findIndex(
-    (article) => article.id === entry.id,
-);
-const prevArticle: CollectionEntry<CollectionKey> | null =
-    currentIndex < sortedArticles.length - 1
-        ? sortedArticles[currentIndex + 1]
-        : null;
-const nextArticle: CollectionEntry<CollectionKey> | null =
-    currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
+const collectionKey: CollectionKey[] = [
+    "ContactAndCommunicationBookDiaries",
+    "Prose",
+];
+const articles = await sortedCollection(collectionKey);
+
+const currentIndex = articles.findIndex((article) => article.id === id);
+const prevArticle = articles[currentIndex + 1];
+const nextArticle = articles[currentIndex - 1];
 
 type NavigationItem = {
     article: CollectionEntry<CollectionKey>;
     direction: "prev" | "next";
-    icon: ImageMetadata;
     label: string;
+    icon: ImageMetadata;
 };
 
-const navigationItems: NavigationItem[] = [
+const navigationItems = [
     prevArticle && {
         article: prevArticle,
         direction: "prev",
-        icon: arrowLeft,
         label: "Go to the previous page",
+        icon: arrowLeft,
     },
     nextArticle && {
         article: nextArticle,
         direction: "next",
-        icon: arrowRight,
         label: "Go to the next page",
+        icon: arrowRight,
     },
 ].filter(Boolean) as NavigationItem[];
 ---
 
 <nav>
     {
-        navigationItems.map(({ article, direction, icon, label }) => (
+        navigationItems.map(({ article, direction, label, icon }) => (
             <a
                 class={direction}
                 href={`/articles/${collectionKeyToPath(article.collection)}/${article.id}`}
@@ -88,7 +78,7 @@ const navigationItems: NavigationItem[] = [
         align-items: flex-end;
         display: flex;
         justify-content: space-between;
-        margin-top: auto;
+        margin: auto 0 var(--body-padding-inline);
 
         &:has(.prev:only-child) {
             justify-content: flex-start;
@@ -121,7 +111,7 @@ const navigationItems: NavigationItem[] = [
         align-items: center;
         background-color: transparent;
         border: 1px solid var(--color-utils-background);
-        border-radius: 0.75em;
+        border-radius: 0.9em;
         display: flex;
         padding: 0.5em;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -130,7 +120,7 @@ const navigationItems: NavigationItem[] = [
         &:focus-visible,
         &:hover {
             background-color: var(--color-utils-background);
-            border-radius: 1.25em;
+            border-radius: 1.1em;
         }
 
         &:active {

@@ -6,6 +6,7 @@ import BaseLayout from "./BaseLayout.astro";
 import ArticleNavigation from "../components/article_layout/ArticleNavigation.astro";
 
 import { formatPubDate } from "../utils/format_pub-date";
+
 interface Props {
     collectionName: string;
     entry: CollectionEntry<CollectionKey>;
@@ -14,14 +15,13 @@ interface Props {
 const { collectionName, entry, titlePubDate } = Astro.props;
 
 const frontmatter = entry.data;
-
-const formattedPubDate = formatPubDate(frontmatter.pubDate, false);
+const readablePubDate = formatPubDate(frontmatter.pubDate, false);
 const formatTitle =
     titlePubDate && frontmatter.title
-        ? `${formattedPubDate}．${frontmatter.title}`
+        ? `${readablePubDate}．${frontmatter.title}`
         : frontmatter.title
           ? frontmatter.title
-          : formattedPubDate;
+          : readablePubDate;
 ---
 
 <BaseLayout title={formatTitle} description={frontmatter.description}>
@@ -37,7 +37,7 @@ const formatTitle =
             <slot />
         </div>
     </article>
-    <ArticleNavigation entry={entry} />
+    <ArticleNavigation id={entry.id} />
 </BaseLayout>
 
 <style>
