@@ -9,7 +9,6 @@ const ContactAndCommunicationBookDiaries = defineCollection({
         pubDate: z.date()
     })
 });
-
 const Prose = defineCollection({
     loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/prose" }),
     schema: z.object({
@@ -18,5 +17,14 @@ const Prose = defineCollection({
         pubDate: z.date()
     })
 });
+const ReadingReflection = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/reading-reflection" }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        pubDate: z.date(),
+        author: z.string()
+    })
+});
 
-export const collections = { ContactAndCommunicationBookDiaries, Prose };
+export const collections = { ContactAndCommunicationBookDiaries, Prose, ReadingReflection };

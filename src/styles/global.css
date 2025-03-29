@@ -3,12 +3,14 @@
 	--color-base-translucent: hsla(170, 10%, 10%, 0.9);
 	--color-base-lightness-25: hsl(170, 10%, 25%);
 	--color-base-lightness-25-translucent: hsla(170, 10%, 25%, 0.75);
-	--color-text: hsl(170, 10%, 100%);
-	--color-text-secondary: hsl(170, 10%, 80%);
+	--color-base-lightness-35: hsl(170, 10%, 35%);
+	--color-text-primary: hsl(170, 10%, 100%);
+	--color-text-secondary: hsl(170, 10%, 90%);
+	--color-text-tertiary: hsl(170, 10%, 80%);
 	--color-text-selected: hsl(170, 10%, 60%);
-	--color-primary-lightness-90: hsl(170, 75%, 90%);
-	--color-primary-lightness-75: hsl(170, 75%, 75%);
-	--color-utils-background: hsla(170, 10%, 40%, 0.25);
+	--color-accent-lightness-90: hsl(170, 75%, 90%);
+	--color-accent-lightness-75: hsl(170, 75%, 75%);
+	--color-utils-background: hsla(170, 10%, 35%, 0.25);
 
 	--font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
 	--font-serif: "Noto Serif", "Noto Serif TC", serif;
@@ -40,7 +42,7 @@ body {
 }
 
 main {
-	color: var(--color-text);
+	color: var(--color-text-primary);
 	display: flex;
 	flex-direction: column;
 	font: 18px/2 var(--font-sans);
@@ -62,6 +64,23 @@ blockquote {
 	margin-inline-end: 2em;
 }
 
+details {
+	border: 2px outset var(--color-base-lightness-35);
+	border-radius: 0.75em;
+	margin: 1em 0;
+	padding: 0.25em 0.75em;
+
+	&[open] {
+		summary {
+			margin-bottom: 0.25em;
+		}
+	}
+
+	summary {
+		cursor: pointer;
+	}
+}
+
 button {
 	cursor: pointer;
 	font-family: inherit;
@@ -79,6 +98,17 @@ hr {
 	max-width: var(--max-width);
 }
 
+li p:first-of-type {
+	margin-bottom: 0;
+
+	&+p {
+		margin-top: 0;
+	}
+}
+
 pre {
+	border-radius: 1ch;
+	overflow-wrap: anywhere;
 	padding-inline-start: 1ch;
+	white-space: pre-wrap;
 }

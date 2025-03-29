@@ -17,6 +17,7 @@ const { id } = Astro.props;
 const collectionKey: CollectionKey[] = [
     "ContactAndCommunicationBookDiaries",
     "Prose",
+    "ReadingReflection",
 ];
 const articles = await sortedCollection(collectionKey);
 
@@ -133,7 +134,7 @@ const navigationItems = [
     }
 
     p {
-        color: var(--color-text-secondary);
+        color: var(--color-text-tertiary);
         display: flex;
         flex-direction: column;
         margin: 0;

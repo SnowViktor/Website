@@ -7,7 +7,7 @@ if (id === undefined) {
     return Astro.redirect("/404");
 }
 
-const entry = await getEntry("Prose", id);
+const entry = await getEntry("ReadingReflection", id);
 if (entry === undefined) {
     return Astro.redirect("/404");
 }
@@ -15,6 +15,6 @@ if (entry === undefined) {
 const { Content } = await render(entry);
 ---
 
-<ArticleLayout collectionName={"散文"} entry={entry}>
+<ArticleLayout collectionName={"閱讀心得"} entry={entry}>
     <Content />
 </ArticleLayout>
