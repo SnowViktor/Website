@@ -36,13 +36,13 @@ const navigationItems = [
     prevArticle && {
         article: prevArticle,
         direction: "prev",
-        label: "Go to the previous page",
+        label: "Go to the previous page.",
         icon: arrowLeft,
     },
     nextArticle && {
         article: nextArticle,
         direction: "next",
-        label: "Go to the next page",
+        label: "Go to the next page.",
         icon: arrowRight,
     },
 ].filter(Boolean) as NavigationItem[];
@@ -79,7 +79,7 @@ const navigationItems = [
         align-items: flex-end;
         display: flex;
         justify-content: space-between;
-        margin: auto 0 var(--body-padding-inline);
+        margin: var(--body-padding-inline) 0;
 
         &:has(.prev:only-child) {
             justify-content: flex-start;
