@@ -111,10 +111,13 @@ h1 {
 }
 
 hr {
-	border: 1px dashed var(--color-base-lightness-25-translucent);
+	border: dashed var(--color-base-lightness-25-translucent);
+	border-block-width: 1px;
+	border-inline-width: 0;
 	margin-block-start: 0;
 	margin-block-end: 0;
 	max-width: var(--max-width);
+	width: 100%;
 }
 
 li p:first-of-type {

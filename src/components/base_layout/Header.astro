@@ -5,7 +5,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 ---
 
 <header>
-    <a class="hidden" aria-hidden="true" aria-label="Go to the previous page.">
+    <a aria-hidden="true" aria-label="Go to the previous page.">
         <button>
             <Image
                 src={arrowLeft}
@@ -15,7 +15,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
             />
         </button>
     </a>
-    <p class="hidden" aria-hidden="true"></p>
+    <p></p>
 </header>
 
 <style>
@@ -49,7 +49,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         }
     }
 
-    .hidden {
+    a {
         display: none;
     }
 
@@ -77,7 +77,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         margin: 0;
         opacity: 0;
         text-align: center;
-        transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
         width: calc(100% - 2 * 42px); /* 42px is the width of the a */
 
         &.show {
@@ -92,7 +92,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         const a = header.querySelector("a") as HTMLAnchorElement;
         const p = header.querySelector("p") as HTMLParagraphElement;
 
-        const h1 = document.querySelector("h1") as HTMLHeadingElement;
+        const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
         const currentPath = location.pathname;
         const parentPath =
             currentPath.substring(0, currentPath.lastIndexOf("/")) || "/";
@@ -105,7 +105,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         }
 
         if (currentPath !== "/") {
-            a.classList.remove("hidden");
+            a.style.display = "unset";
             a.ariaHidden = "false";
 
             a.addEventListener("click", (event) => {
@@ -126,8 +126,6 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         }
 
         if (h1) {
-            p.classList.remove("hidden");
-            p.ariaHidden = "false";
             p.textContent = h1.textContent;
 
             function handleScroll() {
@@ -142,6 +140,8 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 
             window.addEventListener("scroll", handleScroll);
             handleScroll();
+        } else {
+            p.ariaHidden = "true";
         }
     });
 </script>

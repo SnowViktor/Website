@@ -8,10 +8,10 @@ import expressiveCode from 'astro-expressive-code';
 import { pluginColorChips } from 'expressive-code-color-chips';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
-import playformCompress from '@playform/compress';
-
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+
+import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
@@ -50,7 +50,7 @@ export default defineConfig({
       uiPaddingInline: '0.75rem'
     },
     themes: ['github-dark-default']
-  }), playformCompress()],
+  }), compress()],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: 'mathml' }]]
