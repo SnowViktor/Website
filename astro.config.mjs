@@ -50,7 +50,7 @@ export default defineConfig({
       uiPaddingInline: '0.75rem'
     },
     themes: ['github-dark-default']
-  }), compress()],
+  }), compress({ CSS: false })],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: 'mathml' }]]
