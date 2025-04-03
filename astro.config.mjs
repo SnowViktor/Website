@@ -36,7 +36,8 @@ export default defineConfig({
       borderColor: 'none',
       borderRadius: '0.5rem',
       borderWidth: '1px',
-      codeFontSize: '16px',
+      codeFontSize: '1rem',
+      codePaddingBlock: '0.75rem',
       colorChips: {
         borderRadius: '10%',
         size: '0.7em'
@@ -49,8 +50,8 @@ export default defineConfig({
       uiPaddingBlock: '0.15rem',
       uiPaddingInline: '0.75rem'
     },
-    themes: ['github-dark-default']
-  }), compress({ CSS: { lightningcss: { drafts: true } } })],
+    themes: ['one-dark-pro']
+  }), compress({ CSS: false })],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: 'mathml' }]]

@@ -28,6 +28,7 @@ const { collectionsList } = Astro.props;
     }
 
     @media (max-width: 700px) {
+        /* --max-width: 700px */
         div {
             display: grid;
             gap: 0.5em 0;
@@ -47,7 +48,7 @@ const { collectionsList } = Astro.props;
         &:focus-visible,
         &:hover {
             background-color: var(--color-utils-background);
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         &:active {

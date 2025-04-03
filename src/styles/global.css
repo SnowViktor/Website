@@ -95,7 +95,7 @@ div.expressive-code .ec-line {
 	}
 
 	.gutter .ln {
-		padding-inline: 1ch;
+		padding-inline: 0.75ch;
 	}
 
 	.ec-css-color-chip::before {
