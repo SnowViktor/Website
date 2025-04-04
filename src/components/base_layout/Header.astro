@@ -89,41 +89,10 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 <script>
     document.addEventListener("astro:page-load", () => {
         const header = document.body.querySelector("header") as HTMLElement;
-        const a = header.querySelector("a") as HTMLAnchorElement;
+
+        // --- p part begin ---
         const p = header.querySelector("p") as HTMLParagraphElement;
-
         const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
-        const currentPath = location.pathname;
-        const parentPath =
-            currentPath.substring(0, currentPath.lastIndexOf("/")) || "/";
-
-        function set(key: string, value: string) {
-            sessionStorage.setItem(key, value);
-        }
-        function get(key: string) {
-            return sessionStorage.getItem(key);
-        }
-
-        if (currentPath !== "/") {
-            a.style.display = "unset";
-            a.ariaHidden = "false";
-
-            a.addEventListener("click", (event) => {
-                if (
-                    currentPath !== get("initialPage") &&
-                    get("previousPage") !== get("initialPage") &&
-                    (get("previousPage")?.length || 0) < currentPath.length
-                ) {
-                    event.preventDefault();
-                    set("previousPage", currentPath);
-                    history.back();
-                } else {
-                    a.href = parentPath;
-                }
-            });
-        } else {
-            header.classList.add("no-a");
-        }
 
         if (h1) {
             p.textContent = h1.textContent;
@@ -143,5 +112,104 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         } else {
             p.ariaHidden = "true";
         }
+        // --- p part end ---
+
+        // --- a part begin ---
+        // --- 頁面加載時更新導航歷史 ---
+        const currentPath = location.pathname;
+        let historyArray: string[] = [];
+
+        try {
+            historyArray = JSON.parse(
+                sessionStorage.getItem("navigationHistory") || "[]",
+            );
+        } catch (e) {
+            console.error("解析 navigationHistory 失敗：", e);
+            historyArray = [currentPath]; // 如果解析失敗，重置歷史記錄
+        }
+
+        // 只有當前路徑與歷史記錄中的最後一個路徑不同時才添加
+        // 這可以防止重新加載同一頁面時重複添加
+        if (
+            historyArray.length === 0 ||
+            historyArray[historyArray.length - 1] !== currentPath
+        ) {
+            historyArray.push(currentPath);
+            sessionStorage.setItem(
+                "navigationHistory",
+                JSON.stringify(historyArray),
+            );
+            console.log("Navigation History (header - updated):", historyArray);
+        } else {
+            console.log(
+                "Navigation History (header - unchanged):",
+                historyArray,
+            );
+        }
+        // --- 頁面加載時更新導航歷史結束 ---
+
+        const a = header.querySelector("a") as HTMLAnchorElement;
+        const parentPath =
+            currentPath.substring(0, currentPath.lastIndexOf("/")) || "/";
+
+        if (currentPath !== "/") {
+            a.style.display = "unset";
+            a.ariaHidden = "false";
+        }
+
+        a.addEventListener("click", (event) => {
+            const currentPathOnClick = location.pathname; // 重新獲取以防萬一
+            let historyArrayOnClick: string[] = [];
+
+            try {
+                historyArrayOnClick = JSON.parse(
+                    sessionStorage.getItem("navigationHistory") || "[]",
+                );
+            } catch (e) {
+                console.error("點擊時解析 navigationHistory 失敗：", e);
+                // 如果出錯，可能無法安全地後退，直接跳轉到父級
+                a.href = parentPath;
+                console.log("解析錯誤，設置 href 為父級：", parentPath);
+                return;
+            }
+
+            console.log("點擊時的歷史記錄：", historyArrayOnClick);
+            console.log("點擊時的當前路徑：", currentPathOnClick);
+
+            // 檢查是否應該執行 history.back()
+            let shouldGoBack = false;
+
+            if (historyArrayOnClick.length > 1) {
+                const previousPath =
+                    historyArrayOnClick[historyArrayOnClick.length - 2];
+                if (previousPath.length <= currentPathOnClick.length) {
+                    shouldGoBack = true;
+                }
+            }
+
+            if (shouldGoBack) {
+                // --- 情況一：執行 history.back() ---
+                event.preventDefault();
+
+                console.log("情況一：允許返回，執行 history.back()");
+
+                // 在執行 history.back() 之前，從歷史記錄中移除當前頁面
+                historyArrayOnClick.pop(); // 移除最後一個元素（即當前頁面）
+                sessionStorage.setItem(
+                    "navigationHistory",
+                    JSON.stringify(historyArrayOnClick),
+                );
+                console.log("返回前更新歷史記錄:", historyArrayOnClick);
+                history.back();
+            } else {
+                // --- 情況二：導航到父級路徑 ---
+                console.log(
+                    "情況二：首次訪問、歷史記錄異常或上一頁更深，設置 href 為父級：",
+                    parentPath,
+                );
+                a.href = parentPath;
+            }
+        });
+        // --- a part end ---
     });
 </script>
