@@ -32,26 +32,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <script>
     import { animate } from "animejs";
 
-    document.addEventListener("astro:page-load", () => {
-        const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
+    const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
 
-        h1.innerHTML = h1.textContent!.replace(
-            /\S/g,
-            "<span style='display: inline-block;'>$&</span>",
-        );
+    h1.innerHTML = h1.textContent!.replace(
+        /\S/g,
+        "<span style='display: inline-block;'>$&</span>",
+    );
 
-        animate("span", {
-            x: [
-                { to: "-0.5em", ease: "outExpo", duration: 600 },
-                { to: "0.5em", ease: "inExpo", duration: 600 },
-                { to: 0, ease: "outExpo", duration: 600, delay: 50 },
-            ],
-            rotate: {
-                from: "-1turn",
-                delay: 0,
-            },
-            delay: (_, i) => i * 50,
-            ease: "inOutCirc",
-        });
+    animate("span", {
+        x: [
+            { to: "-0.5em", ease: "outExpo", duration: 600 },
+            { to: "0.5em", ease: "inExpo", duration: 600 },
+            { to: 0, ease: "outExpo", duration: 600, delay: 50 },
+        ],
+        rotate: {
+            from: "-1turn",
+            delay: 0,
+        },
+        delay: (_, i) => i * 50,
+        ease: "inOutCirc",
     });
 </script>
