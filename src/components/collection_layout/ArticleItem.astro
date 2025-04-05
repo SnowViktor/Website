@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
-import { collectionKeyToPath } from "../../utils/collection_key_to_path";
 import { formatPubDate } from "../../utils/format_pub-date";
+import { collectionKeyToPath } from "../../utils/function_collection";
 
 interface Props {
     article: CollectionEntry<CollectionKey>;

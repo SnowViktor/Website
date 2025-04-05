@@ -2,25 +2,23 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
+import { collectionKey } from "../../content.config";
+
 import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
 import arrowRight from "../../assets/icons/arrow_right_alt.svg";
 
-import { collectionKeyToPath } from "../../utils/collection_key_to_path";
 import { formatPubDate } from "../../utils/format_pub-date";
-import { sortedCollection } from "../../utils/sorted_collection";
+import {
+    collectionKeyToPath,
+    sortedCollection,
+} from "../../utils/function_collection";
 
 interface Props {
     id: string;
 }
 const { id } = Astro.props;
 
-const collectionKey: CollectionKey[] = [
-    "ContactAndCommunicationBookDiaries",
-    "Prose",
-    "ReadingReflection",
-];
 const articles = await sortedCollection(collectionKey);
-
 const currentIndex = articles.findIndex((article) => article.id === id);
 const prevArticle = articles[currentIndex + 1];
 const nextArticle = articles[currentIndex - 1];

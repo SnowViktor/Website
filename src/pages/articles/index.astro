@@ -1,30 +1,15 @@
 ---
-import type { CollectionKey } from "astro:content";
+import { collectionKey, collectionDisplayName } from "../../content.config";
 
 import CollectionLayout from "../../layouts/CollectionLayout.astro";
 
 import CollectionsList from "../../components/page/CollectionsList.astro";
 
-import { collectionKeyToPath } from "../../utils/collection_key_to_path";
+import { collectionKeyToPath } from "../../utils/function_collection";
 
-const collections = [
-    {
-        CollectionKey: "ContactAndCommunicationBookDiaries" as CollectionKey,
-        CollectionDisplayName: "聯絡簿日記",
-    },
-    {
-        CollectionKey: "Prose" as CollectionKey,
-        CollectionDisplayName: "散文",
-    },
-    {
-        CollectionKey: "ReadingReflection" as CollectionKey,
-        CollectionDisplayName: "閱讀心得" as CollectionKey,
-    },
-];
-const collectionKey = collections.map((collection) => collection.CollectionKey);
-const collectionsList = collections.map((collection) => ({
-    CollectionPath: collectionKeyToPath(collection.CollectionKey),
-    CollectionDisplayName: collection.CollectionDisplayName,
+const collectionsList = collectionKey.map((key, index) => ({
+    CollectionPath: collectionKeyToPath(key),
+    CollectionDisplayName: collectionDisplayName[index],
 }));
 ---
 

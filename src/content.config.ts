@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z, type CollectionKey } from "astro:content";
 import { glob } from "astro/loaders";
 
 const ContactAndCommunicationBookDiaries = defineCollection({
@@ -28,3 +28,5 @@ const ReadingReflection = defineCollection({
 });
 
 export const collections = { ContactAndCommunicationBookDiaries, Prose, ReadingReflection };
+export const collectionKey = Object.keys(collections) as CollectionKey[];
+export const collectionDisplayName = ["聯絡簿日記", "散文", "閱讀心得"];

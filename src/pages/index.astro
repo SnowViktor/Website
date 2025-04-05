@@ -5,7 +5,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="SnowViktor" description="【彬彬的個人網站】">
     <h1>SnowViktor</h1>
     <h2>這裡懶得弄，不妨先去<a href="/articles">文章</a>看看。</h2>
-    <p>目前正緩慢更新，會將內容陸續上傳。</p>
     <p>
         如果你要幫我，十分歡迎！（須具備基本 HTML、CSS、JavaScript（TypeScript）
         的能力，以及對 Astro 等 Web Framework 有一定入門知識。）
@@ -29,3 +28,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         }
     }
 </style>
+
+<script>
+    import { animate } from "animejs";
+
+    document.addEventListener("astro:page-load", () => {
+        const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
+
+        h1.innerHTML = h1.textContent!.replace(
+            /\S/g,
+            "<span style='display: inline-block;'>$&</span>",
+        );
+
+        animate("span", {
+            x: [
+                { to: "-0.5em", ease: "outExpo", duration: 600 },
+                { to: "0.5em", ease: "inExpo", duration: 600 },
+                { to: 0, ease: "outExpo", duration: 600, delay: 50 },
+            ],
+            rotate: {
+                from: "-1turn",
+                delay: 0,
+            },
+            delay: (_, i) => i * 50,
+            ease: "inOutCirc",
+        });
+    });
+</script>
