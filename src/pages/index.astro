@@ -36,10 +36,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     h1.innerHTML = h1.textContent!.replace(
         /\S/g,
-        "<span style='display: inline-block;'>$&</span>",
+        "<span class='letter' style='display: inline-block;'>$&</span>",
     );
 
-    animate("span", {
+    animate("h1 span.letter", {
         x: [
             { to: "-0.5em", ease: "outExpo", duration: 600 },
             { to: "0.5em", ease: "inExpo", duration: 600 },

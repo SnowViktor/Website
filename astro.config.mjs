@@ -21,17 +21,13 @@ export default defineConfig({
   integrations: [sitemap(), expressiveCode({
     defaultProps: {
       overridesByLang: {
-        'text': {
-          showLineNumbers: false
-        }
+        'text': { showLineNumbers: false }
       },
       showLineNumbers: true,
       wrap: true
     },
     plugins: [pluginColorChips(), pluginLineNumbers()],
-    shiki: {
-      bundledLangs: []
-    },
+    shiki: { bundledLangs: [] },
     styleOverrides: {
       borderColor: 'none',
       borderRadius: '0.5rem',
@@ -51,7 +47,14 @@ export default defineConfig({
       uiPaddingInline: '0.75rem'
     },
     themes: ['one-dark-pro']
-  }), compress({ CSS: false })],
+  }), compress({
+    CSS: {
+      csso: { forceMediaMerge: false },
+      lightningcss: { drafts: { customMedia: true } }
+    },
+    Image: false,
+    JavaScript: { terser: { ecma: 2024 } }
+  })],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: 'mathml' }]]
