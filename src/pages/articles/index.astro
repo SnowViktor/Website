@@ -1,16 +1,9 @@
 ---
-import { collectionKey, collectionDisplayName } from "../../content.config";
+import { collectionKey } from "../../content.config";
 
 import CollectionLayout from "../../layouts/CollectionLayout.astro";
 
 import CollectionsList from "../../components/page/CollectionsList.astro";
-
-import { collectionKeyToPath } from "../../utils/function_collection";
-
-const collectionsList = collectionKey.map((key, index) => ({
-    CollectionPath: collectionKeyToPath(key),
-    CollectionDisplayName: collectionDisplayName[index],
-}));
 ---
 
 <CollectionLayout
@@ -19,7 +12,7 @@ const collectionsList = collectionKey.map((key, index) => ({
     collectionKey={collectionKey}
     annotation={true}
 >
-    <CollectionsList collectionsList={collectionsList} />
+    <CollectionsList collectionKey={collectionKey} />
     <hr />
 </CollectionLayout>
 

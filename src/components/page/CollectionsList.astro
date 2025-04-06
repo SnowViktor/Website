@@ -1,11 +1,18 @@
 ---
+import type { CollectionKey } from "astro:content";
+import { collectionDisplayName } from "../../content.config";
+
+import { collectionKeyToPath } from "../../utils/function_collection";
+
 interface Props {
-    collectionsList: {
-        CollectionPath: string;
-        CollectionDisplayName: string;
-    }[];
+    collectionKey: CollectionKey[];
 }
-const { collectionsList } = Astro.props;
+const { collectionKey } = Astro.props;
+
+const collectionsList = collectionKey.map((key, index) => ({
+    CollectionPath: collectionKeyToPath(key),
+    CollectionDisplayName: collectionDisplayName[index],
+}));
 ---
 
 <div>

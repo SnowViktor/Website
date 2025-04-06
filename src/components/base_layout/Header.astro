@@ -29,6 +29,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         position: fixed;
         transform: translateX(-50%);
         width: 100%;
+        z-index: 1;
 
         &::before {
             backdrop-filter: blur(2px);
@@ -36,7 +37,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
             content: "";
             height: 100%;
             position: absolute;
-            width: 100%;
+            width: inherit;
             z-index: -1;
         }
 
