@@ -49,7 +49,7 @@ export default defineConfig({
     themes: ['one-dark-pro']
   }), compress({
     CSS: {
-      csso: { forceMediaMerge: false },
+      csso: false,
       lightningcss: { drafts: { customMedia: true } }
     },
     Image: false,
