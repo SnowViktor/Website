@@ -108,6 +108,7 @@ import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
         navigateBack(a);
 
         if (h1) {
+            p.ariaLabel = h1.textContent;
             p.textContent = h1.textContent;
 
             function handleScroll() {
