@@ -3,7 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="SnowViktor" description="【彬彬的個人網站】">
-    <h1>SnowViktor</h1>
+    <h1>
+        {Array.from("SnowViktor").map((letter) => <span>{letter}</span>)}
+    </h1>
     <h2>這裡懶得弄，不妨先去<a href="/articles">文章</a>看看。</h2>
     <p>
         如果你要幫我，十分歡迎！（須具備基本 HTML、CSS、JavaScript（TypeScript）
@@ -19,6 +21,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
+    h1 span {
+        display: inline-block;
+    }
+
     a {
         color: var(--color-accent-lightness-75);
 
@@ -32,14 +38,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <script>
     import { animate } from "animejs";
 
-    const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
-
-    h1.innerHTML = h1.textContent!.replace(
-        /\S/g,
-        "<span class='letter' style='display: inline-block;'>$&</span>",
-    );
-
-    animate("h1 span.letter", {
+    animate("h1 span", {
         x: [
             { to: "-0.5em", ease: "outExpo", duration: 600 },
             { to: "0.5em", ease: "inExpo", duration: 600 },
