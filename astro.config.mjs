@@ -5,7 +5,6 @@ import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 import expressiveCode from 'astro-expressive-code';
-import { pluginColorChips } from 'expressive-code-color-chips';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
 import remarkMath from 'remark-math';
@@ -26,7 +25,7 @@ export default defineConfig({
       showLineNumbers: true,
       wrap: true
     },
-    plugins: [pluginColorChips(), pluginLineNumbers()],
+    plugins: [pluginLineNumbers()],
     shiki: { bundledLangs: [] },
     styleOverrides: {
       borderColor: 'none',

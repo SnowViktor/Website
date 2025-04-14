@@ -91,15 +91,11 @@ details {
 
 div.expressive-code .ec-line {
 	&:first-child .code {
-		padding-inline-end: calc(1.5rem + var(--ec-codePadInl));
+		padding-inline-end: calc(var(--ec-codePadInl) - var(--ecGtrBrdWd));
 	}
 
 	.gutter .ln {
 		padding-inline: 0.75ch;
-	}
-
-	.ec-css-color-chip::before {
-		transform: translateY(-0.25em);
 	}
 
 	::selection {
