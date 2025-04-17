@@ -6,7 +6,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <h1 aria-label="SnowViktor">
         {Array.from("SnowViktor").map((letter) => <span>{letter}</span>)}
     </h1>
-    <h2>這裡懶得弄，不妨先去<a href="/articles">文章</a>看看。</h2>
+    <h2>
+        這裡懶得弄，不妨先去<a href="/articles" data-astro-prefetch="viewport"
+            >文章</a
+        >看看。
+    </h2>
     <p>
         如果你要幫我，十分歡迎！（須具備基本 HTML、CSS、JavaScript（TypeScript）
         的能力，以及對 Astro 等 Web Framework 有一定入門知識。）

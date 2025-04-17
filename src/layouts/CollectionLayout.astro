@@ -40,8 +40,8 @@ const articles = await sortedCollection(collectionKey);
 <style>
     @keyframes fadeInUp {
         from {
-            opacity: 0;
-            transform: translateY(15%);
+            opacity: 0.5;
+            transform: translateY(10%);
         }
         to {
             opacity: 1;
@@ -55,9 +55,9 @@ const articles = await sortedCollection(collectionKey);
     }
 
     li {
-        /* need improving performance */
-        animation: fadeInUp linear;
-        /* animation-timeline: view(block 95% 0%); */
+        animation: fadeInUp 300ms linear both;
+        animation-range: entry 90% cover 10%;
+        animation-timeline: view();
         will-change: opacity, transform;
     }
 </style>

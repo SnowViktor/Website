@@ -1,18 +1,11 @@
 ---
-import { Image } from "astro:assets";
-
-import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
+import ArrowLeft from "../../assets/icons/arrow_left_alt.svg";
 ---
 
 <header>
     <a aria-hidden="true" aria-label="Go to the previous page.">
         <button>
-            <Image
-                src={arrowLeft}
-                height="22"
-                loading="eager"
-                alt="Arrow Left"
-            />
+            <ArrowLeft height="22" width="22" aria-hidden="true" />
         </button>
     </a>
     <p></p>

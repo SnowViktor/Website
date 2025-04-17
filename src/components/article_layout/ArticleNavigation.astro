@@ -1,10 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import type { CollectionEntry, CollectionKey } from "astro:content";
 import { collectionKey } from "../../content.config";
 
-import arrowLeft from "../../assets/icons/arrow_left_alt.svg";
-import arrowRight from "../../assets/icons/arrow_right_alt.svg";
+import ArrowLeft from "../../assets/icons/arrow_left_alt.svg";
+import ArrowRight from "../../assets/icons/arrow_right_alt.svg";
 
 import { formatPubDate } from "../../utils/format_pub-date";
 import {
@@ -26,7 +25,6 @@ type NavigationItem = {
     article: CollectionEntry<CollectionKey>;
     direction: "prev" | "next";
     label: string;
-    icon: ImageMetadata;
 };
 
 const navigationItems = [
@@ -34,38 +32,36 @@ const navigationItems = [
         article: prevArticle,
         direction: "prev",
         label: "Go to the previous page.",
-        icon: arrowLeft,
     },
     nextArticle && {
         article: nextArticle,
         direction: "next",
         label: "Go to the next page.",
-        icon: arrowRight,
     },
 ].filter(Boolean) as NavigationItem[];
 ---
 
 <nav>
     {
-        navigationItems.map(({ article, direction, label, icon }) => (
+        navigationItems.map(({ article, direction, label }) => (
             <a
                 class={direction}
                 href={`/articles/${collectionKeyToPath(article.collection)}/${article.id}`}
                 aria-label={label}
             >
-                <button>
-                    <Image
-                        src={icon}
-                        height="26"
-                        alt={`Arrow ${direction === "prev" ? "Left" : "Right"}`}
-                    />
+                <div tabindex="-1">
+                    {direction === "prev" ? (
+                        <ArrowLeft height="26" width="26" aria-hidden="true" />
+                    ) : (
+                        <ArrowRight height="26" width="26" aria-hidden="true" />
+                    )}
                     <p>
                         {article.data.title}
                         <time datetime={article.data.pubDate.toISOString()}>
                             {formatPubDate(article.data.pubDate, true)}
                         </time>
                     </p>
-                </button>
+                </div>
             </a>
         ))
     }
@@ -89,7 +85,7 @@ const navigationItems = [
     }
 
     a {
-        &.prev button {
+        &.prev div {
             flex-direction: row;
 
             p {
@@ -97,7 +93,7 @@ const navigationItems = [
             }
         }
 
-        &.next button {
+        &.next div {
             flex-direction: row-reverse;
 
             p {
@@ -106,20 +102,20 @@ const navigationItems = [
         }
     }
 
-    button {
+    div {
         align-items: center;
         background-color: transparent;
         border: 1px solid var(--color-utils-background);
-        border-radius: 0.9em;
+        border-radius: 0.65em;
         display: flex;
-        padding: 0.5em;
+        padding: 0.4em 0.4em 0.3em;
         transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
         user-select: none;
 
         &:focus-visible,
         &:hover {
             background-color: var(--color-utils-background);
-            border-radius: 1.1em;
+            border-radius: 0.85em;
         }
 
         &:active {
@@ -127,7 +123,7 @@ const navigationItems = [
         }
     }
 
-    img {
+    svg {
         filter: brightness(0.75);
     }
 
@@ -135,6 +131,9 @@ const navigationItems = [
         color: var(--color-text-tertiary);
         display: flex;
         flex-direction: column;
+        font-size: 0.8em;
+        letter-spacing: 0;
+        line-height: 1.2;
         margin: 0;
     }
 
