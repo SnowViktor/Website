@@ -26,7 +26,7 @@ const articles = await sortedCollection(collectionKey);
         annotation={annotation}
         articlesLength={articles.length}
     />
-    <ul>
+    <ul class="article-items">
         {
             articles.map((article) => (
                 <li>
@@ -40,7 +40,7 @@ const articles = await sortedCollection(collectionKey);
 <style>
     @keyframes fadeInUp {
         from {
-            opacity: 0.25;
+            opacity: 0.5;
         }
         to {
             opacity: 1;
@@ -53,9 +53,39 @@ const articles = await sortedCollection(collectionKey);
     }
 
     li {
+        opacity: 0.5;
+        transition: opacity 150ms;
+        will-change: opacity;
+
+        &.visible {
+            animation: fadeInUp 150ms linear both;
+        }
+    }
+
+    /* li {
         animation: fadeInUp 300ms linear both;
         animation-range: entry 100% cover 10%;
         animation-timeline: view();
         will-change: opacity;
-    }
+    } */
 </style>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            },
+            { rootMargin: "0px 0px 21px 0px", threshold: 0.1 },
+        );
+        document.body
+            .querySelectorAll("ul.article-items li")
+            .forEach((item) => observer.observe(item));
+    });
+</script>

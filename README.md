@@ -24,7 +24,6 @@
 - `@astrojs/sitemap`: Automatic sitemap generation
 - `astro-compress`: Asset compression (HTML, CSS, JavaScript, etc.)
 - `astro-expressive-code`: Advanced code highlighting and presentation
-    - `expressive-code-color-chips`: Displays color previews in code blocks
     - `@expressive-code/plugin-line-numbers`: Adds line numbers to code blocks
 - `remark-math` & `rehype-katex`: Enables math formula rendering using KaTeX in Markdown
 
