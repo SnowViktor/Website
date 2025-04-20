@@ -3,121 +3,121 @@ import ArrowLeft from "../../assets/icons/arrow_left_alt.svg";
 ---
 
 <header>
-    <a aria-hidden="true" aria-label="Go to the previous page.">
-        <button>
-            <ArrowLeft height="22" width="22" aria-hidden="true" />
-        </button>
-    </a>
-    <p></p>
+  <a aria-hidden="true" aria-label="Go to the previous page.">
+    <button>
+      <ArrowLeft height="22" width="22" aria-hidden="true" />
+    </button>
+  </a>
+  <p></p>
 </header>
 
 <style>
-    header {
-        align-items: center;
-        color: var(--color-text-tertiary);
-        display: flex;
-        font: 600 16px/1 var(--font-serif);
-        left: 50%;
-        max-width: var(--max-width);
-        position: fixed;
-        transform: translateX(-50%);
-        width: 100%;
-        z-index: 1;
+  header {
+    align-items: center;
+    color: var(--color-text-tertiary);
+    display: flex;
+    font: 600 16px/1 var(--font-serif);
+    left: 50%;
+    max-width: var(--max-width);
+    position: fixed;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 1;
 
-        &::before {
-            backdrop-filter: blur(2px);
-            background-color: var(--color-base-translucent);
-            content: "";
-            height: 100%;
-            position: absolute;
-            width: inherit;
-            z-index: -1;
-        }
-
-        &.no-a {
-            height: var(--header-height);
-            justify-content: center;
-        }
+    &::before {
+      backdrop-filter: blur(2px);
+      background-color: var(--color-base-translucent);
+      content: "";
+      height: 100%;
+      position: absolute;
+      width: inherit;
+      z-index: -1;
     }
 
-    a {
-        display: none;
+    &.no-a {
+      height: var(--header-height);
+      justify-content: center;
+    }
+  }
+
+  a {
+    display: none;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    padding: 10px;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+
+    &:focus-visible,
+    &:hover {
+      background-color: var(--color-base-lightness-25);
+      border-radius: 10%;
     }
 
-    button {
-        background-color: transparent;
-        border: none;
-        font-size: 0;
-        padding: 10px;
-        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        user-select: none;
-
-        &:focus-visible,
-        &:hover {
-            background-color: var(--color-base-lightness-25);
-            border-radius: 10%;
-        }
-
-        &:active {
-            border-radius: 75%;
-            transform: scale(0.9);
-        }
+    &:active {
+      border-radius: 75%;
+      transform: scale(0.9);
     }
+  }
 
-    p {
-        margin: 0;
-        opacity: 0;
-        text-align: center;
-        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        width: calc(100% - 2 * 42px); /* 42px is the width of the a */
+  p {
+    margin: 0;
+    opacity: 0;
+    text-align: center;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    width: calc(100% - 2 * 42px); /* 42px is the width of the a */
 
-        &.visible {
-            opacity: 1;
-        }
+    &.visible {
+      opacity: 1;
     }
+  }
 </style>
 
 <script>
-    import { updateNavigationHistory, navigateBack } from "../../scripts/main";
+  import { updateNavigationHistory, navigateBack } from "../../scripts/main";
 
-    document.addEventListener("astro:after-swap", () => {
-        updateNavigationHistory();
-    });
+  document.addEventListener("astro:after-swap", () => {
+    updateNavigationHistory();
+  });
 
-    document.addEventListener("astro:page-load", () => {
-        const header = document.body.querySelector("header") as HTMLElement;
-        const a = header.querySelector("a") as HTMLAnchorElement;
-        const p = header.querySelector("p") as HTMLParagraphElement;
-        const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
-        const currentPath = location.pathname;
+  document.addEventListener("astro:page-load", () => {
+    const header = document.body.querySelector("header") as HTMLElement;
+    const a = header.querySelector("a") as HTMLAnchorElement;
+    const p = header.querySelector("p") as HTMLParagraphElement;
+    const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
+    const currentPath = location.pathname;
 
-        if (currentPath !== "/") {
-            a.style.display = "unset";
-            a.ariaHidden = "false";
+    if (currentPath !== "/") {
+      a.style.display = "unset";
+      a.ariaHidden = "false";
+    } else {
+      header.classList.add("no-a");
+    }
+
+    navigateBack(a);
+
+    if (h1) {
+      p.ariaLabel = h1.textContent;
+      p.textContent = h1.textContent;
+
+      function handleScroll() {
+        const h1Bottom = h1.getBoundingClientRect().bottom;
+
+        if (h1Bottom < 0) {
+          p.classList.add("visible");
         } else {
-            header.classList.add("no-a");
+          p.classList.remove("visible");
         }
+      }
 
-        navigateBack(a);
-
-        if (h1) {
-            p.ariaLabel = h1.textContent;
-            p.textContent = h1.textContent;
-
-            function handleScroll() {
-                const h1Bottom = h1.getBoundingClientRect().bottom;
-
-                if (h1Bottom < 0) {
-                    p.classList.add("visible");
-                } else {
-                    p.classList.remove("visible");
-                }
-            }
-
-            window.addEventListener("scroll", handleScroll);
-            handleScroll();
-        } else {
-            p.ariaHidden = "true";
-        }
-    });
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+    } else {
+      p.ariaHidden = "true";
+    }
+  });
 </script>

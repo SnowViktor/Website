@@ -8,76 +8,76 @@ import ArticleNavigation from "../components/article_layout/ArticleNavigation.as
 import { formatPubDate } from "../utils/format_pub-date";
 
 interface Props {
-    collectionName: string;
-    entry: CollectionEntry<CollectionKey>;
-    titlePubDate?: boolean;
+  collectionName: string;
+  entry: CollectionEntry<CollectionKey>;
+  titlePubDate?: boolean;
 }
 const { collectionName, entry, titlePubDate = false } = Astro.props;
 
 const frontmatter: {
-    title: string | null;
-    description: string;
-    pubDate: Date;
-    author?: string;
+  title: string | null;
+  description: string;
+  pubDate: Date;
+  author?: string;
 } = entry.data;
 const readablePubDate = formatPubDate(frontmatter.pubDate, false);
 const formatTitle =
-    titlePubDate && frontmatter.title
-        ? `${readablePubDate}．${frontmatter.title}`
-        : frontmatter.title
-          ? frontmatter.title
-          : readablePubDate;
+  titlePubDate && frontmatter.title
+    ? `${readablePubDate}．${frontmatter.title}`
+    : frontmatter.title
+      ? frontmatter.title
+      : readablePubDate;
 ---
 
 <BaseLayout title={formatTitle} description={frontmatter.description}>
-    <article>
-        <p class="information">
-            {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
-                >{formatPubDate(frontmatter.pubDate, true)}</time
-            >
-        </p>
-        {frontmatter.title && <h1>{frontmatter.title}</h1>}
-        {frontmatter.author && <p>作者：{frontmatter.author}</p>}
-        <hr />
-        <div>
-            <slot />
-        </div>
-    </article>
-    <ArticleNavigation id={entry.id} />
+  <article>
+    <p class="information">
+      {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
+        >{formatPubDate(frontmatter.pubDate, true)}</time
+      >
+    </p>
+    {frontmatter.title && <h1>{frontmatter.title}</h1>}
+    {frontmatter.author && <p>作者：{frontmatter.author}</p>}
+    <hr />
+    <div>
+      <slot />
+    </div>
+  </article>
+  <ArticleNavigation id={entry.id} />
 </BaseLayout>
 
 <style>
-    /* 36px、0.67em 分別是 h1 的 font-size、margin-block。 */
-    p {
-        font-family: var(--font-serif);
-        font-size: 0.8em;
-        font-weight: 500;
-        text-align: center;
+  /* 36px、0.67em 分別是 h1 的 font-size、margin-block。 */
+  p {
+    font-family: var(--font-serif);
+    font-size: 0.8em;
+    font-weight: 500;
+    text-align: center;
 
-        &.information:not(:has(+ h1)) {
-            margin-block: calc(36px * 0.67);
-        }
+    &.information:not(:has(+ h1)) {
+      margin-block: calc(36px * 0.67);
     }
+  }
 
-    time {
-        word-spacing: -0.15em;
+  time {
+    word-spacing: -0.15em;
+  }
+
+  h1:has(+ p) {
+    margin-bottom: 0;
+
+    & + p {
+      margin-block: calc(36px * 0.25) calc(36px * 0.75);
     }
+  }
 
-    h1:has(+ p) {
-        margin-bottom: 0;
+  div {
+    font-family: var(--font-cursive);
+    letter-spacing: 0;
+    margin-block: 1em;
 
-        & + p {
-            margin-block: calc(36px * 0.25) calc(36px * 0.75);
-        }
+    details {
+      color: var(--color-text-secondary);
     }
-
-    div {
-        font-family: var(--font-cursive);
-        letter-spacing: 0;
-        margin-block: 1em;
-
-        details {
-            color: var(--color-text-secondary);
-        }
-    }
+  }
 </style>

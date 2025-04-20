@@ -7,20 +7,20 @@ import CollectionsList from "../../components/page/CollectionsList.astro";
 ---
 
 <CollectionLayout
-    title="文章"
-    description="【文章列表】"
-    collectionKey={collectionKey}
-    annotation={true}
+  title="文章"
+  description="【文章列表】"
+  collectionKey={collectionKey}
+  annotation={true}
 >
-    <CollectionsList collectionKey={collectionKey} />
-    <hr />
+  <CollectionsList collectionKey={collectionKey} />
+  <hr />
 </CollectionLayout>
 
 <style>
-    @media (min-width: 700px) {
-        /* --max-width: 700px */
-        hr {
-            display: none;
-        }
+  @media (min-width: 700px) {
+    /* --max-width: 700px */
+    hr {
+      display: none;
     }
+  }
 </style>

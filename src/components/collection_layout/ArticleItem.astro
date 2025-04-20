@@ -5,7 +5,7 @@ import { formatPubDate } from "../../utils/format_pub-date";
 import { collectionKeyToPath } from "../../utils/function_collection";
 
 interface Props {
-    article: CollectionEntry<CollectionKey>;
+  article: CollectionEntry<CollectionKey>;
 }
 const { article } = Astro.props;
 
@@ -14,57 +14,57 @@ const frontmatter = article.data;
 ---
 
 <a href={`/articles/${collectionPath}/${article.id}`}>
-    <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
-    <span aria-hidden="true"></span>
-    <time datetime={frontmatter.pubDate.toISOString()}
-        >{formatPubDate(frontmatter.pubDate, true)}</time
-    >
+  <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
+  <span aria-hidden="true"></span>
+  <time datetime={frontmatter.pubDate.toISOString()}
+    >{formatPubDate(frontmatter.pubDate, true)}</time
+  >
 </a>
 
 <style>
-    a {
-        align-items: center;
-        border-radius: 0.75em;
-        display: flex;
-        gap: 0.5em;
-        line-height: 1.2;
-        padding: 0.6em 0.75em 0.55em;
-        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  a {
+    align-items: center;
+    border-radius: 0.75em;
+    display: flex;
+    gap: 0.5em;
+    line-height: 1.2;
+    padding: 0.6em 0.75em 0.55em;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
-        &:focus-visible,
-        &:hover {
-            background-color: var(--color-utils-background);
-        }
-
-        &:active {
-            transform: scale(0.98);
-        }
+    &:focus-visible,
+    &:hover {
+      background-color: var(--color-utils-background);
     }
 
-    p {
-        flex: 0 1 auto;
-        margin: 0;
-        white-space: normal;
+    &:active {
+      transform: scale(0.98);
     }
+  }
 
-    span {
-        border: 1px dashed var(--color-base-lightness-25-translucent);
-        flex: 1 1 auto;
-        height: 0;
-    }
+  p {
+    flex: 0 1 auto;
+    margin: 0;
+    white-space: normal;
+  }
 
+  span {
+    border: 1px dashed var(--color-base-lightness-25-translucent);
+    flex: 1 1 auto;
+    height: 0;
+  }
+
+  time {
+    color: var(--color-text-tertiary);
+    flex: 0 0 auto;
+    white-space: nowrap;
+    word-spacing: -0.15em;
+  }
+
+  @media (max-width: 700px) {
+    /* --max-width: 700px */
     time {
-        color: var(--color-text-tertiary);
-        flex: 0 0 auto;
-        white-space: nowrap;
-        word-spacing: -0.15em;
+      font-size: 0.8em;
+      word-spacing: -0.2em;
     }
-
-    @media (max-width: 700px) {
-        /* --max-width: 700px */
-        time {
-            font-size: 0.8em;
-            word-spacing: -0.2em;
-        }
-    }
+  }
 </style>

@@ -5,68 +5,68 @@ import { collectionDisplayName } from "../../content.config";
 import { collectionKeyToPath } from "../../utils/function_collection";
 
 interface Props {
-    collectionKey: CollectionKey[];
+  collectionKey: CollectionKey[];
 }
 const { collectionKey } = Astro.props;
 
 const collectionsList = collectionKey.map((key, index) => ({
-    CollectionPath: collectionKeyToPath(key),
-    CollectionDisplayName: collectionDisplayName[index],
+  CollectionPath: collectionKeyToPath(key),
+  CollectionDisplayName: collectionDisplayName[index],
 }));
 ---
 
 <div>
-    {
-        collectionsList.map((collection) => (
-            <a href={`/articles/${collection.CollectionPath}`}>
-                <p>{collection.CollectionDisplayName}</p>
-            </a>
-        ))
-    }
+  {
+    collectionsList.map((collection) => (
+      <a href={`/articles/${collection.CollectionPath}`}>
+        <p>{collection.CollectionDisplayName}</p>
+      </a>
+    ))
+  }
 </div>
 
 <style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em 2em;
+    justify-content: center;
+    margin: 1em 0;
+  }
+
+  @media (max-width: 700px) {
+    /* --max-width: 700px */
     div {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1em 2em;
-        justify-content: center;
-        margin: 1em 0;
+      display: grid;
+      gap: 0.5em 0;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
+  }
+
+  a {
+    align-items: center;
+    border: 2px solid var(--color-utils-background);
+    border-radius: 0.75em;
+    display: flex;
+    padding: 0.1em 0.75em 0;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:focus-visible,
+    &:hover {
+      background-color: var(--color-utils-background);
+      transform: scale(1.05);
     }
 
-    @media (max-width: 700px) {
-        /* --max-width: 700px */
-        div {
-            display: grid;
-            gap: 0.5em 0;
-            grid-template-columns: 1fr 1fr;
-            justify-items: center;
-        }
+    &:active {
+      transform: scale(1);
     }
+  }
 
-    a {
-        align-items: center;
-        border: 2px solid var(--color-utils-background);
-        border-radius: 0.75em;
-        display: flex;
-        padding: 0.1em 0.75em 0;
-        transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:focus-visible,
-        &:hover {
-            background-color: var(--color-utils-background);
-            transform: scale(1.05);
-        }
-
-        &:active {
-            transform: scale(1);
-        }
-    }
-
-    p {
-        font-family: var(--font-serif);
-        font-size: 1.2em;
-        font-weight: 700;
-        margin: 0;
-    }
+  p {
+    font-family: var(--font-serif);
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 0;
+  }
 </style>

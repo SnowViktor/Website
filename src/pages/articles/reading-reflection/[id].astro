@@ -4,17 +4,17 @@ import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 
 const { id } = Astro.params;
 if (id === undefined) {
-    return Astro.redirect("/404");
+  return Astro.redirect("/404");
 }
 
 const entry = await getEntry("ReadingReflection", id);
 if (entry === undefined) {
-    return Astro.redirect("/404");
+  return Astro.redirect("/404");
 }
 
 const { Content } = await render(entry);
 ---
 
 <ArticleLayout collectionName={"閱讀心得"} entry={entry}>
-    <Content />
+  <Content />
 </ArticleLayout>

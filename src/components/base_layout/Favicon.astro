@@ -5,12 +5,12 @@ const allSizes = [...iconSizes, ...appleIconSizes];
 ---
 
 {
-    allSizes.map((size) => (
-        <link
-            rel={iconSizes.includes(size) ? "icon" : "apple-touch-icon"}
-            type="image/png"
-            sizes={`${size}x${size}`}
-            href={`/favicons/favicon-dark-${size}.png`}
-        />
-    ))
+  allSizes.map((size) => (
+    <link
+      rel={iconSizes.includes(size) ? "icon" : "apple-touch-icon"}
+      type="image/png"
+      sizes={`${size}x${size}`}
+      href={`/favicons/favicon-dark-${size}.png`}
+    />
+  ))
 }

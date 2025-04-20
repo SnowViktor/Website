@@ -5,8 +5,8 @@
     "dbaeumer.vscode-eslint",
     "visualstudioexptteam.vscodeintellicode",
     "visualstudioexptteam.intellicode-api-usage-examples",
-    "ms-vscode.live-server",
-    "darian-benam.vscode-robots-dot-txt-support"
-  ],
-  "unwantedRecommendations": []
+    "esbenp.prettier-vscode",
+    "darian-benam.vscode-robots-dot-txt-support",
+    "richie5um2.vscode-sort-json"
+  ]
 }

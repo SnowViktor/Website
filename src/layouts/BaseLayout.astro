@@ -9,36 +9,36 @@ import Header from "../components/base_layout/Header.astro";
 import "../styles/global.css";
 
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
 }
 const { title, description } = Astro.props;
 ---
 
 <html lang="zh-TW" transition:animate="initial">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="author" content="SnowViktor" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="viewport" content="width=device-width" />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<meta property="og:site_name" content="SnowViktor" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content="/og_image.png" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<Fonts />
-		<Favicon />
-		<ClientRouter />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<hr />
-		<Footer />
-		<script src="../scripts/main.ts"></script>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="SnowViktor" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:site_name" content="SnowViktor" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og_image.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Fonts />
+    <Favicon />
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <hr />
+    <Footer />
+    <script src="../scripts/main.ts"></script>
+  </body>
 </html>

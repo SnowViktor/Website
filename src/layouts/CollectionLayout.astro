@@ -9,10 +9,10 @@ import ArticleItem from "../components/collection_layout/ArticleItem.astro";
 import { sortedCollection } from "../utils/function_collection";
 
 interface Props {
-    title: string;
-    description: string;
-    collectionKey: CollectionKey | CollectionKey[];
-    annotation?: boolean;
+  title: string;
+  description: string;
+  collectionKey: CollectionKey | CollectionKey[];
+  annotation?: boolean;
 }
 const { title, description, collectionKey, annotation = false } = Astro.props;
 
@@ -20,49 +20,49 @@ const articles = await sortedCollection(collectionKey);
 ---
 
 <BaseLayout title={title} description={description}>
-    <h1>{title}</h1>
-    <slot />
-    <ArticlesInformation
-        annotation={annotation}
-        articlesLength={articles.length}
-    />
-    <ul class="article-items">
-        {
-            articles.map((article) => (
-                <li>
-                    <ArticleItem article={article} />
-                </li>
-            ))
-        }
-    </ul>
+  <h1>{title}</h1>
+  <slot />
+  <ArticlesInformation
+    annotation={annotation}
+    articlesLength={articles.length}
+  />
+  <ul class="article-items">
+    {
+      articles.map((article) => (
+        <li>
+          <ArticleItem article={article} />
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>
 
 <style>
-    @keyframes fadeInUp {
-        from {
-            opacity: 0.5;
-        }
-        to {
-            opacity: 1;
-        }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0.5;
     }
-
-    ul {
-        list-style-type: none;
-        padding-inline-start: 0;
+    to {
+      opacity: 1;
     }
+  }
 
-    li {
-        opacity: 0.5;
-        transition: opacity 150ms;
-        will-change: opacity;
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
 
-        &.visible {
-            animation: fadeInUp 150ms linear both;
-        }
+  li {
+    opacity: 0.5;
+    transition: opacity 150ms;
+    will-change: opacity;
+
+    &.visible {
+      animation: fadeInUp 150ms linear both;
     }
+  }
 
-    /* li {
+  /* li {
         animation: fadeInUp 300ms linear both;
         animation-range: entry 100% cover 10%;
         animation-timeline: view();
@@ -71,21 +71,21 @@ const articles = await sortedCollection(collectionKey);
 </style>
 
 <script>
-    document.addEventListener("astro:page-load", () => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    } else {
-                        entry.target.classList.remove("visible");
-                    }
-                });
-            },
-            { rootMargin: "0px 0px 21px 0px", threshold: 0.1 },
-        );
-        document.body
-            .querySelectorAll("ul.article-items li")
-            .forEach((item) => observer.observe(item));
-    });
+  document.addEventListener("astro:page-load", () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible");
+          }
+        });
+      },
+      { rootMargin: "0px 0px 21px 0px", threshold: 0.1 }
+    );
+    document.body
+      .querySelectorAll("ul.article-items li")
+      .forEach((item) => observer.observe(item));
+  });
 </script>
