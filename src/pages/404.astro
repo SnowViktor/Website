@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="SnowViktor" />
+    <meta name="viewport" content="width=device-width" />
+    <title>404 Error Page</title>
+  </head>
+  <body>
+    <h1>404 Error Page</h1>
+  </body>
+</html>
+
+<style>
+  body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font: 900 6rem monospace;
+    text-align: center;
+  }
+</style>
+
+<script>
+  const currentPath = location.pathname;
+  const parentPath =
+    currentPath.substring(0, currentPath.lastIndexOf("/")) || "/";
+
+  setTimeout(() => {
+    location.replace(parentPath);
+  }, 1000);
+</script>
