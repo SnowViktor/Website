@@ -7,7 +7,6 @@ import sitemap from "@astrojs/sitemap";
 import expressiveCode from "astro-expressive-code";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 
-import remarkCallout from "@r4ai/remark-callout";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
@@ -60,7 +59,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkCallout, remarkMath],
+    remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: "mathml" }]],
   },
 });
