@@ -36,21 +36,3 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
   }
 </style>
-
-<script>
-  import { animate } from "animejs";
-
-  animate("h1 span", {
-    x: [
-      { to: "-0.5em", ease: "outExpo", duration: 600 },
-      { to: "0.5em", ease: "inExpo", duration: 600 },
-      { to: 0, ease: "outExpo", duration: 600, delay: 50 },
-    ],
-    rotate: {
-      from: "-1turn",
-      delay: 0,
-    },
-    delay: (_, i) => i * 50,
-    ease: "inOutCirc",
-  });
-</script>

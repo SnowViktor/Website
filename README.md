@@ -2,36 +2,19 @@
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/small.svg)](https://astro.build)
 
-## Tech Stack
+## Commands
 
-### Runtime Environment
-
-- Node.js
-
-### Web Framework
-
-- Astro
-
-### Core Libraries
-
-- AnimeJS (Animations)
-- KaTeX (Mathematical typesetting)
-
-### Fonts (Sourced from Google Fonts)
-
-- Iansui
-- Noto Sans & Noto Sans TC
-- Noto Serif & Noto Serif TC
-
-### Astro Integrations & Plugins
-
-- `@astrojs/vercel`: Vercel deployment adapter
-- `@astrojs/sitemap`: Automatic sitemap generation
-- `astro-compress`: Asset compression (HTML, CSS, JavaScript, etc.)
-- `astro-expressive-code`: Advanced code highlighting and presentation
-  - `@expressive-code/plugin-line-numbers`: Adds line numbers to code blocks
-- `remark-math` & `rehype-katex`: Enables math formula rendering using KaTeX in Markdown
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `pnpm upgrade`         | Upgrade Astro and dependencies                   |
+| `pnpm update`          | Update packages to their latest version          |
+| `pnpm install`         | Install dependencies                             |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
 ## License
 
-This work by SnowViktor is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International**](https://creativecommons.org/licenses/by-nc/4.0/).
+[Website](https://snow-viktor.vercel.app) by SnowViktor is licensed under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).

@@ -3,23 +3,24 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "upgrade": "pnpm dlx @astrojs/upgrade",
+    "update": "pnpm update",
     "dev": "astro dev",
-    "update": "npx @astrojs/upgrade && npx npm-check-updates -u && npm install && npm update",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.3.1",
-    "@astrojs/vercel": "^8.1.4",
-    "@expressive-code/plugin-line-numbers": "^0.41.2",
-    "@lucide/astro": "^0.503.0",
-    "animejs": "^4.0.2",
-    "astro": "^5.7.5",
-    "astro-compress": "^2.3.8",
-    "astro-expressive-code": "^0.41.2",
-    "katex": "^0.16.22",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.4.1",
+    "@astrojs/vercel": "^8.1.5",
+    "@lucide/astro": "^0.507.0",
+    "astro": "^5.9.4",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
+  },
+  "devDependencies": {
+    "vite-plugin-devtools-json": "^0.1.1"
   }
 }

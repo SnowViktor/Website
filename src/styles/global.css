@@ -89,20 +89,6 @@ details {
   }
 }
 
-div.expressive-code .ec-line {
-  &:first-child .code {
-    padding-inline-end: calc(var(--ec-codePadInl) - var(--ecGtrBrdWd));
-  }
-
-  .gutter .ln {
-    padding-inline: 0.75ch;
-  }
-
-  ::selection {
-    background-color: var(--color-text-selected-translucent);
-  }
-}
-
 button {
   cursor: pointer;
   font-family: inherit;

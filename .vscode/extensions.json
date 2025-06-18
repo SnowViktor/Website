@@ -3,10 +3,8 @@
     "astro-build.astro-vscode",
     "jacobcassidy.css-nesting-syntax-highlighting",
     "dbaeumer.vscode-eslint",
-    "visualstudioexptteam.vscodeintellicode",
-    "visualstudioexptteam.intellicode-api-usage-examples",
     "esbenp.prettier-vscode",
-    "darian-benam.vscode-robots-dot-txt-support",
-    "richie5um2.vscode-sort-json"
-  ]
+    "darian-benam.vscode-robots-dot-txt-support"
+  ],
+  "unwantedRecommendations": []
 }

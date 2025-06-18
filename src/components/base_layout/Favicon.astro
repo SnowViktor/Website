@@ -1,6 +1,6 @@
 ---
-const iconSizes = [32, 48, 64, 96, 128, 192];
-const appleIconSizes = [180];
+const iconSizes = [48];
+const appleIconSizes = [192];
 const allSizes = [...iconSizes, ...appleIconSizes];
 ---
 
@@ -10,7 +10,7 @@ const allSizes = [...iconSizes, ...appleIconSizes];
       rel={iconSizes.includes(size) ? "icon" : "apple-touch-icon"}
       type="image/png"
       sizes={`${size}x${size}`}
-      href={`/favicons/favicon-dark-${size}.png`}
+      href={`/favicons/favicon-${size}.png`}
     />
   ))
 }
