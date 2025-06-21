@@ -2,8 +2,8 @@
 import type { CollectionEntry, CollectionKey } from "astro:content";
 import { collectionKey } from "../../content.config";
 
-import ArrowLeft from "../../assets/icons/arrow_left_alt.svg";
-import ArrowRight from "../../assets/icons/arrow_right_alt.svg";
+import ArrowLeft from "@lucide/astro/icons/arrow-left";
+import ArrowRight from "@lucide/astro/icons/arrow-right";
 
 import { formatPubDate } from "../../utils/format_pub-date";
 import {
@@ -51,9 +51,9 @@ const navigationItems = [
       >
         <div tabindex="-1">
           {direction === "prev" ? (
-            <ArrowLeft height="26" width="26" aria-hidden="true" />
+            <ArrowLeft size={20} />
           ) : (
-            <ArrowRight height="26" width="26" aria-hidden="true" />
+            <ArrowRight size={20} />
           )}
           <p>
             {article.data.title}
