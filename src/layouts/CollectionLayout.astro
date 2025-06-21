@@ -12,9 +12,8 @@ interface Props {
   title: string;
   description: string;
   collectionKey: CollectionKey | CollectionKey[];
-  annotation?: boolean;
 }
-const { title, description, collectionKey, annotation = false } = Astro.props;
+const { title, description, collectionKey } = Astro.props;
 
 const articles = await sortedCollection(collectionKey);
 ---
@@ -23,7 +22,6 @@ const articles = await sortedCollection(collectionKey);
   <h1>{title}</h1>
   <slot />
   <ArticlesInformation
-    annotation={annotation}
     articlesLength={articles.length}
   />
   <ul class="article-items">

@@ -46,7 +46,7 @@ const navigationItems = [
     navigationItems.map(({ article, direction, label }) => (
       <a
         class={direction}
-        href={`/articles/${collectionKeyToPath(article.collection)}/${article.id}`}
+        href={`/${collectionKeyToPath(article.collection)}/${article.id}`}
         aria-label={label}
       >
         <div tabindex="-1">

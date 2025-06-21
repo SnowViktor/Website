@@ -1,13 +1,11 @@
 ---
 interface Props {
-  annotation: boolean;
   articlesLength: number;
 }
-const { annotation, articlesLength } = Astro.props;
+const { articlesLength } = Astro.props;
 ---
 
 <p>
-  {annotation && <span class="annotation">註：「〇」表示無題</span>}
   <span>共 {articlesLength} 篇</span>
 </p>
 

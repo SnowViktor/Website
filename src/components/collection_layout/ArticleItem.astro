@@ -13,8 +13,8 @@ const collectionPath = collectionKeyToPath(article.collection);
 const frontmatter = article.data;
 ---
 
-<a href={`/articles/${collectionPath}/${article.id}`}>
-  <p>{frontmatter.title ? frontmatter.title : "〇"}</p>
+<a href={`/${collectionPath}/${article.id}`}>
+  <p>{frontmatter.title}</p>
   <span aria-hidden="true"></span>
   <time datetime={frontmatter.pubDate.toISOString()}
     >{formatPubDate(frontmatter.pubDate, true)}</time

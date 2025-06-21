@@ -18,7 +18,7 @@ const collectionsList = collectionKey.map((key, index) => ({
 <div>
   {
     collectionsList.map((collection) => (
-      <a href={`/articles/${collection.CollectionPath}`}>
+      <a href={`/${collection.CollectionPath}`}>
         <p>{collection.CollectionDisplayName}</p>
       </a>
     ))
