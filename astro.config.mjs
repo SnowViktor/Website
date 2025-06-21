@@ -15,6 +15,9 @@ export default defineConfig({
   vite: {
     plugins: [devtoolsJson()],
   },
+  build: {
+    format: "file",
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "viewport",
@@ -22,5 +25,9 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: "mathml" }]],
+  },
+  experimental: {
+    clientPrerender: true,
+    contentIntellisense: true,
   },
 });
