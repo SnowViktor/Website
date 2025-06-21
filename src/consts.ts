@@ -1,6 +1,6 @@
 export const SITE_TITLE = "SnowViktor";
 export const SITE_DESCRIPTION =
-  "【SnowViktor's Personal Website｜彬彬的個人網站】";
+  "【SnowViktor's Personal Website｜彬彬的個人網站】"; //【關於我轉生變成彬彬這檔事】
 export const SITE_AUTHOR = "SnowViktor｜彬彬";
 
 export const CATEGORIES = [
