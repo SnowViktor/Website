@@ -46,29 +46,17 @@
 </style>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const header = document.body.querySelector("header") as HTMLElement;
-    const p = header.querySelector("p") as HTMLParagraphElement;
-    const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
+  const p = document.querySelector("header p") as HTMLParagraphElement;
+  const h1 = document.querySelector("h1") as HTMLHeadingElement;
 
-    if (h1) {
-      p.ariaLabel = h1.textContent;
-      p.textContent = h1.textContent;
+  p.ariaLabel = h1.textContent;
+  p.textContent = h1.textContent;
 
-      function handleScroll() {
-        const h1Bottom = h1.getBoundingClientRect().bottom;
+  function handleScroll() {
+    const h1Bottom = h1.getBoundingClientRect().bottom;
+    p.classList.toggle("visible", h1Bottom < 0);
+  }
 
-        if (h1Bottom < 0) {
-          p.classList.add("visible");
-        } else {
-          p.classList.remove("visible");
-        }
-      }
-
-      window.addEventListener("scroll", handleScroll);
-      handleScroll();
-    } else {
-      p.ariaHidden = "true";
-    }
-  });
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
 </script>

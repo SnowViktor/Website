@@ -1,6 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
-
 import Favicon from "../components/base_layout/Favicon.astro";
 import Fonts from "../components/base_layout/Fonts.astro";
 import Footer from "../components/base_layout/Footer.astro";
@@ -30,7 +28,6 @@ const { title, description } = Astro.props;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Fonts />
     <Favicon />
-    <ClientRouter />
   </head>
   <body>
     <Header />

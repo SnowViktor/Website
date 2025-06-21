@@ -28,6 +28,10 @@
   margin-block-end: 0.67em;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 ::selection {
   background-color: var(--color-text-selected);
 }

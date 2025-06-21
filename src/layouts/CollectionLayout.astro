@@ -21,9 +21,7 @@ const articles = await sortedCollection(collectionKey);
 <BaseLayout title={title} description={description}>
   <h1>{title}</h1>
   <slot />
-  <ArticlesInformation
-    articlesLength={articles.length}
-  />
+  <ArticlesInformation articlesLength={articles.length} />
   <ul class="article-items">
     {
       articles.map((article) => (
@@ -69,21 +67,19 @@ const articles = await sortedCollection(collectionKey);
 </style>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          } else {
-            entry.target.classList.remove("visible");
-          }
-        });
-      },
-      { rootMargin: "0px 0px 21px 0px", threshold: 0.1 }
-    );
-    document.body
-      .querySelectorAll("ul.article-items li")
-      .forEach((item) => observer.observe(item));
-  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    },
+    { rootMargin: "0px 0px 21px 0px", threshold: 0.1 }
+  );
+  document
+    .querySelectorAll("ul.article-items li")
+    .forEach((item) => observer.observe(item));
 </script>
