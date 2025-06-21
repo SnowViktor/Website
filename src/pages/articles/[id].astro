@@ -1,20 +1,20 @@
 ---
-import { getEntry, render } from "astro:content";
-import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import ArticleLayout from "@layouts/ArticleLayout.astro";
 
-const { id } = Astro.params;
-if (id === undefined) {
-  return Astro.redirect("/404");
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({
+    params: { id: article.id },
+    props: article,
+  }));
 }
+type Props = CollectionEntry<"articles">;
 
-const entry = await getEntry("articles", id);
-if (entry === undefined) {
-  return Astro.redirect("/404");
-}
-
-const { Content } = await render(entry);
+const article = Astro.props;
+const { Content } = await render(article);
 ---
 
-<ArticleLayout collectionName={"文章"} entry={entry}>
+<ArticleLayout collectionName={"文章"} entry={article} {...article.data}>
   <Content />
 </ArticleLayout>

@@ -1,13 +1,8 @@
 ---
-import ArrowLeft from "@lucide/astro/icons/arrow-left";
+
 ---
 
 <header>
-  <a aria-hidden="true" aria-label="Go to the previous page.">
-    <button>
-      <ArrowLeft color="#fff" size={24} />
-    </button>
-  </a>
   <p></p>
 </header>
 
@@ -21,6 +16,8 @@ import ArrowLeft from "@lucide/astro/icons/arrow-left";
     max-width: var(--max-width);
     position: fixed;
     transform: translateX(-50%);
+    height: var(--header-height);
+    justify-content: center;
     width: 100%;
     z-index: 1;
 
@@ -32,35 +29,6 @@ import ArrowLeft from "@lucide/astro/icons/arrow-left";
       position: absolute;
       width: inherit;
       z-index: -1;
-    }
-
-    &.no-a {
-      height: var(--header-height);
-      justify-content: center;
-    }
-  }
-
-  a {
-    display: none;
-  }
-
-  button {
-    background-color: transparent;
-    border: none;
-    font-size: 0;
-    padding: 10px;
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    user-select: none;
-
-    &:focus-visible,
-    &:hover {
-      background-color: var(--color-base-lightness-25);
-      border-radius: 10%;
-    }
-
-    &:active {
-      border-radius: 75%;
-      transform: scale(0.9);
     }
   }
 
@@ -78,27 +46,10 @@ import ArrowLeft from "@lucide/astro/icons/arrow-left";
 </style>
 
 <script>
-  import { updateNavigationHistory, navigateBack } from "../../scripts/main";
-
-  document.addEventListener("astro:after-swap", () => {
-    updateNavigationHistory();
-  });
-
   document.addEventListener("astro:page-load", () => {
     const header = document.body.querySelector("header") as HTMLElement;
-    const a = header.querySelector("a") as HTMLAnchorElement;
     const p = header.querySelector("p") as HTMLParagraphElement;
     const h1 = document.body.querySelector("h1") as HTMLHeadingElement;
-    const currentPath = location.pathname;
-
-    if (currentPath !== "/") {
-      a.style.display = "unset";
-      a.ariaHidden = "false";
-    } else {
-      header.classList.add("no-a");
-    }
-
-    navigateBack(a);
 
     if (h1) {
       p.ariaLabel = h1.textContent;

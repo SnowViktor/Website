@@ -18,15 +18,15 @@ const articles = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      author: z.string().optional().default(SITE_AUTHOR),
       description: z.string(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      category: z.array(
+      categories: z.array(
         z.enum(
           CATEGORIES.map((category) => category.name) as [string, ...string[]]
         )
       ),
+      author: z.string().optional().default(SITE_AUTHOR),
       heroImage: imageSchema({ image }).optional(),
     }),
 });
