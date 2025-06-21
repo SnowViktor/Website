@@ -12,11 +12,15 @@ export default defineConfig({
   site: "https://snow-viktor.vercel.app",
   adapter: vercel(),
   integrations: [mdx(), sitemap()],
+  vite: {
+    plugins: [devtoolsJson()],
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: "mathml" }]],
-  },
-  vite: {
-    plugins: [devtoolsJson()],
   },
 });

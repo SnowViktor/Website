@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-import ArticleNavigation from "../components/article_layout/ArticleNavigation.astro";
+import ArticleNavigation from "@components/article_layout/ArticleNavigation.astro";
 
-import { formatPubDate } from "../utils/format_pub-date";
+import { formatPubDate } from "@utils/format_pub-date";
 
 interface Props {
   collectionName: string;
