@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { CATEGORIES } from "../../consts";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  const uniqueCategories = [
+    ...new Set(articles.map((article) => article.data.categories).flat()),
+  ];
+
+  return uniqueCategories.map((category) => {
+    const object = CATEGORIES.find((obj) => obj.name === category);
+    const filteredArticles = articles.filter((article) =>
+      article.data.categories.includes(category)
+    );
+
+    return {
+      params: { category: object!.id },
+      props: { articles: filteredArticles },
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { articles } = Astro.props;
+
+const categoryName = CATEGORIES.find((obj) => obj.id === category)!.name;
+---
+
+<BaseLayout title={categoryName} description=`【分類：${categoryName}】`>
+  <h1>分類：{categoryName}</h1>
+  <ul>
+    {
+      articles.map((article) => (
+        <li>
+          <a href={`/articles/${article.id}`}>{article.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+import Github from "@lucide/astro/icons/github";
+---
+
+<footer>
+  <div>
+    <a
+      href="https://github.com/SnowViktor/Website"
+      target="_blank"
+      aria-label="Go to Website's GitHub repository"
+    >
+      <Github size={24} />
+    </a>
+  </div>
+  <p>
+    Powered by <a href="https://astro.build/" target="_blank">Astro</a>.
+  </p>
+  <p>
+    <a href="https://snow-viktor.vercel.app" target="_blank">Website</a> by SnowViktor
+    is licensed under <a
+      href="https://creativecommons.org/licenses/by-nc/4.0/"
+      target="_blank">CC BY-NC 4.0</a
+    >.
+  </p>
+</footer>
+
+<style>
+  footer {
+    color: var(--color-text-tertiary);
+    font: italic 14px/1.5 var(--font-serif);
+    margin: 1em auto;
+    max-width: var(--max-width);
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a:focus-visible,
+  a:hover {
+    text-decoration: underline wavy 1px;
+  }
+</style>

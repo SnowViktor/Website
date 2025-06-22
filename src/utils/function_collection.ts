@@ -13,8 +13,5 @@ export async function sortedCollection(
     )
   )
     .flat()
-    .sort(
-      (a, b) =>
-        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-    );
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }

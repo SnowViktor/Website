@@ -27,6 +27,18 @@ const formatTitle =
     : frontmatter.title
       ? frontmatter.title
       : readablePubDate;
+
+// type Props = CollectionEntry<"articles">["data"];
+
+// const {
+//   title,
+//   author,
+//   description,
+//   pubDate,
+//   updatedDate,
+//   category,
+//   heroImage,
+// } = Astro.props;
 ---
 
 <BaseLayout title={formatTitle} description={frontmatter.description}>

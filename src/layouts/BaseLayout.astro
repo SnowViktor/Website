@@ -1,7 +1,7 @@
 ---
 import BaseHead from "@components/BaseHead.astro";
-import Header from "@components/base_layout/Header.astro";
-import Footer from "@components/base_layout/Footer.astro";
+import BaseHeader from "@components/BaseHeader.astro";
+import BaseFooter from "@components/BaseFooter.astro";
 
 interface Props {
   title: string;
@@ -14,11 +14,11 @@ const { title, description, image = "/og-image.png" } = Astro.props;
 <html lang="zh-tw">
   <BaseHead title={title} description={description} image={image} />
   <body>
-    <Header />
+    <BaseHeader />
     <main>
       <slot />
     </main>
     <hr />
-    <Footer />
+    <BaseFooter />
   </body>
 </html>

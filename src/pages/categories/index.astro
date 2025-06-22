@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { CATEGORIES } from "../../consts";
+
+const articles = await getCollection("articles");
+const categories = [
+  ...new Set(articles.map((article) => article.data.categories).flat()),
+];
+---
+
+<BaseLayout title="分類" description="【分不清，類不似】">
+  <div class="categories">
+    {
+      categories.map((category) => (
+        <p class="category">
+          <a
+            href={`/categories/${CATEGORIES.find((obj) => obj.name === category)!.id}`}
+          >
+            {category}
+          </a>
+        </p>
+      ))
+    }
+  </div>
+</BaseLayout>

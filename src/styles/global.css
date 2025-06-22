@@ -37,13 +37,12 @@
 }
 
 body {
-  background-color: var(--color-base);
-  interpolate-size: allow-keywords;
   margin: 0 auto;
   padding: 0 var(--body-padding-inline);
-  text-rendering: optimizeLegibility;
+  background-color: var(--color-base);
+  overflow-wrap: break-word;
   touch-action: manipulation;
-  -webkit-font-smoothing: antialiased;
+  interpolate-size: allow-keywords;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -118,5 +117,174 @@ li p:first-of-type {
 
   & + p {
     margin-top: 0;
+  }
+}
+
+/* to-do */
+
+:root {
+  --color-new-taiwan-red: #f72589; /* rgb(247, 37, 137) 新臺灣紅 */
+  --color-everlasting-teal: #104e48; /* rgb(16, 78, 72) 永生青 */
+
+  --font-iansui: "Iansui", cursive;
+  --font-noto-sans-tc: "Noto Sans TC", sans-serif;
+  --font-noto-serif-tc: "Noto Serif TC", serif;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.2s;
+}
+
+/* element { text-box: trim-both cap alphabetic; } */
+
+body {
+  margin: 0;
+  font-optical-sizing: auto;
+  overflow-wrap: break-word;
+  touch-action: manipulation;
+  interpolate-size: allow-keywords;
+  -webkit-tap-highlight-color: transparent;
+
+  * {
+    transition: all 0.2s ease-in-out allow-discrete;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+}
+
+h1 {
+  margin: 0 0 0.25em 0;
+  font-size: 2.5em;
+}
+
+h2 {
+  margin: 0 0 0.5em 0;
+  font-size: 2.25em;
+}
+
+h3 {
+  margin: 0 0 0.75em 0;
+  font-size: 2em;
+}
+
+h4 {
+  margin: 0 0 1em 0;
+  font-size: 1.75em;
+}
+
+h5 {
+  margin: 0 0 1.25em 0;
+  font-size: 1.5em;
+}
+
+h6 {
+  margin: 0 0 1.5em 0;
+  font-size: 1.25em;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: var(--color-accent-3);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-accent-2);
+  }
+}
+
+details {
+  border-radius: 0.75em;
+  margin: 1em 0;
+  padding: 0.25em 0.75em;
+
+  &[open]::details-content {
+    padding-top: 0.25em;
+    height: auto;
+  }
+
+  &::details-content {
+    padding-top: 0;
+    height: 0;
+    overflow-y: clip;
+    transition: inherit;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+}
+
+input {
+  font-size: 16px;
+}
+
+textarea {
+  width: 100%;
+  font-size: 16px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1em;
+}
+
+code {
+  padding: 0.1em 0.5ch;
+  border-radius: 0.5ch;
+  background-color: var(--color-base-1);
+}
+
+pre {
+  padding: 1em;
+  border-radius: 1em;
+}
+
+pre > code {
+  all: unset;
+}
+
+blockquote {
+  margin: 1em 0;
+  padding: 0 0 0 1ch;
+  border-left: 0.5ch solid var(--color-accent-2);
+  font-size: 1.25em;
+}
+
+hr {
+  border: 1px solid hsl(from var(--color-base-1) h s 20% / 90%);
+}
+
+li p:first-of-type {
+  margin-block-end: 0;
+
+  + p {
+    margin-block-start: 0;
   }
 }
