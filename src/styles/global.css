@@ -120,18 +120,16 @@ li p:first-of-type {
   }
 }
 
-/* to-do */
-
-:root {
-  --color-new-taiwan-red: #f72589; /* rgb(247, 37, 137) 新臺灣紅 */
-  --color-everlasting-teal: #104e48; /* rgb(16, 78, 72) 永生青 */
-
+/* :root {
+  --color-new-taiwan-red: #f72589; rgb(247, 37, 137) 新臺灣紅
+  --color-everlasting-teal: #104e48; rgb(16, 78, 72) 永生青
+/* 
   --font-iansui: "Iansui", cursive;
   --font-noto-sans-tc: "Noto Sans TC", sans-serif;
   --font-noto-serif-tc: "Noto Serif TC", serif;
-}
+} */
 
-@view-transition {
+/* @view-transition {
   navigation: auto;
 }
 
@@ -140,11 +138,11 @@ li p:first-of-type {
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 0.2s;
-}
+} */
 
 /* element { text-box: trim-both cap alphabetic; } */
 
-body {
+/* body {
   margin: 0;
   font-optical-sizing: auto;
   overflow-wrap: break-word;
@@ -287,4 +285,4 @@ li p:first-of-type {
   + p {
     margin-block-start: 0;
   }
-}
+} */

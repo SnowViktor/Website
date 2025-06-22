@@ -1,23 +1,24 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { collectionKey } from "../../content.config";
+import { formatContentDate } from "@utils/formatDate";
+import {
+  collectionKeyToPath,
+  sortedCollection,
+} from "@utils/functionCollection";
+import { collectionKey } from "src/content.config";
 
 import ArrowLeft from "@lucide/astro/icons/arrow-left";
 import ArrowRight from "@lucide/astro/icons/arrow-right";
 
-import { formatPubDate } from "@utils/format_pub-date";
-import {
-  collectionKeyToPath,
-  sortedCollection,
-} from "@utils/function_collection";
-
 interface Props {
-  id: string;
+  title: string;
 }
-const { id } = Astro.props;
+const { title } = Astro.props;
 
 const articles = await sortedCollection(collectionKey);
-const currentIndex = articles.findIndex((article) => article.id === id);
+const currentIndex = articles.findIndex(
+  (article) => article.data.title === title
+);
 const prevArticle = articles[currentIndex + 1];
 const nextArticle = articles[currentIndex - 1];
 
@@ -58,7 +59,7 @@ const navigationItems = [
           <p>
             {article.data.title}
             <time datetime={article.data.pubDate.toISOString()}>
-              {formatPubDate(article.data.pubDate, true)}
+              {formatContentDate(article.data.pubDate, true)}
             </time>
           </p>
         </div>

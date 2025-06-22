@@ -1,81 +1,55 @@
 ---
-import type { CollectionEntry, CollectionKey } from "astro:content";
-
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
-
 import ArticleNavigation from "@components/article_layout/ArticleNavigation.astro";
+import { formatAttributeDate, formatContentDate } from "@utils/formatDate";
 
-import { formatPubDate } from "@utils/format_pub-date";
-
-interface Props {
-  collectionName: string;
-  entry: CollectionEntry<CollectionKey>;
-  titlePubDate?: boolean;
-}
-const { collectionName, entry, titlePubDate = false } = Astro.props;
-
-const frontmatter: {
-  title: string | null;
-  description: string;
-  pubDate: Date;
-  author?: string;
-} = entry.data;
-const readablePubDate = formatPubDate(frontmatter.pubDate, false);
-const formatTitle =
-  titlePubDate && frontmatter.title
-    ? `${readablePubDate}．${frontmatter.title}`
-    : frontmatter.title
-      ? frontmatter.title
-      : readablePubDate;
-
-// type Props = CollectionEntry<"articles">["data"];
-
-// const {
-//   title,
-//   author,
-//   description,
-//   pubDate,
-//   updatedDate,
-//   category,
-//   heroImage,
-// } = Astro.props;
+type Props = CollectionEntry<"articles">["data"];
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  categories,
+  author,
+  heroImage,
+} = Astro.props;
 ---
 
-<BaseLayout title={formatTitle} description={frontmatter.description}>
+<BaseLayout
+  title=`${formatContentDate(pubDate, false)}．${title}`
+  description={description}
+>
   <article>
     <p class="information">
-      {collectionName}．<time datetime={frontmatter.pubDate.toISOString()}
-        >{formatPubDate(frontmatter.pubDate, true)}</time
+      {categories.map((category) => <a>＃{category}</a>)}．<time
+        datetime={formatAttributeDate(pubDate)}
+        >{formatContentDate(pubDate)}</time
       >
     </p>
-    {frontmatter.title && <h1>{frontmatter.title}</h1>}
-    {frontmatter.author && <p>作者：{frontmatter.author}</p>}
+    <h1>{title}</h1>
+    <p>作者：{author}</p>
     <hr />
     <div>
       <slot />
     </div>
   </article>
-  <ArticleNavigation id={entry.id} />
+  <ArticleNavigation title={title} />
 </BaseLayout>
 
 <style>
-  /* 36px、0.67em 分別是 h1 的 font-size、margin-block。 */
   p {
     font-family: var(--font-serif);
     font-size: 0.8em;
     font-weight: 500;
     text-align: center;
-
-    &.information:not(:has(+ h1)) {
-      margin-block: calc(36px * 0.67);
-    }
   }
 
   time {
     word-spacing: -0.15em;
   }
 
-  h1:has(+ p) {
+  h1 {
     margin-bottom: 0;
 
     & + p {

@@ -2,6 +2,7 @@
 import BaseHead from "@components/BaseHead.astro";
 import BaseHeader from "@components/BaseHeader.astro";
 import BaseFooter from "@components/BaseFooter.astro";
+import { SITE_TITLE } from "src/consts";
 
 interface Props {
   title: string;
@@ -12,7 +13,11 @@ const { title, description, image = "/og-image.png" } = Astro.props;
 ---
 
 <html lang="zh-tw">
-  <BaseHead title={title} description={description} image={image} />
+  <BaseHead
+    title={title === SITE_TITLE ? SITE_TITLE : `${title}－${SITE_TITLE}`}
+    description={description}
+    image={image}
+  />
   <body>
     <BaseHeader />
     <main>

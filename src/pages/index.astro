@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from "src/consts";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -14,10 +14,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 </BaseLayout>
 
 <style>
-  h1 span {
-    display: inline-block;
-  }
-
   a {
     color: var(--color-accent-lightness-75);
 

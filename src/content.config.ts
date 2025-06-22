@@ -1,11 +1,11 @@
-import { glob } from "astro/loaders";
 import {
   defineCollection,
   z,
   type CollectionKey,
   type SchemaContext,
 } from "astro:content";
-import { SITE_AUTHOR, CATEGORIES } from "./consts.ts";
+import { glob } from "astro/loaders";
+import { SITE_AUTHOR, CATEGORIES } from "src/consts";
 
 const imageSchema = ({ image }: SchemaContext) =>
   z.object({

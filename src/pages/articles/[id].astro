@@ -11,11 +11,11 @@ export async function getStaticPaths() {
 }
 
 type Props = CollectionEntry<"articles">;
-
 const article = Astro.props;
+
 const { Content } = await render(article);
 ---
 
-<ArticleLayout collectionName={"文章"} entry={article} {...article.data}>
+<ArticleLayout {...article.data}>
   <Content />
 </ArticleLayout>

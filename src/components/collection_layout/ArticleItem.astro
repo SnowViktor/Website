@@ -1,8 +1,7 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-
-import { formatPubDate } from "@utils/format_pub-date";
-import { collectionKeyToPath } from "@utils/function_collection";
+import { formatContentDate } from "@utils/formatDate";
+import { collectionKeyToPath } from "@utils/functionCollection";
 
 interface Props {
   article: CollectionEntry<CollectionKey>;
@@ -17,7 +16,7 @@ const frontmatter = article.data;
   <p>{frontmatter.title}</p>
   <span aria-hidden="true"></span>
   <time datetime={frontmatter.pubDate.toISOString()}
-    >{formatPubDate(frontmatter.pubDate, true)}</time
+    >{formatContentDate(frontmatter.pubDate, true)}</time
   >
 </a>
 
