@@ -1,18 +1,16 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { formatContentDate } from "@utils/formatDate";
-import { collectionKeyToPath } from "@utils/functionCollection";
+import { formatContentDate } from "@utils/time";
 
 interface Props {
   article: CollectionEntry<CollectionKey>;
 }
 const { article } = Astro.props;
 
-const collectionPath = collectionKeyToPath(article.collection);
 const frontmatter = article.data;
 ---
 
-<a href={`/${collectionPath}/${article.id}`}>
+<a href={`/articles/${article.id}`}>
   <p>{frontmatter.title}</p>
   <span aria-hidden="true"></span>
   <time datetime={frontmatter.pubDate.toISOString()}

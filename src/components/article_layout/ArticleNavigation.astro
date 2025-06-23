@@ -1,10 +1,7 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { formatContentDate } from "@utils/formatDate";
-import {
-  collectionKeyToPath,
-  sortedCollection,
-} from "@utils/functionCollection";
+import { formatContentDate } from "@utils/time";
+import { sortCollection } from "@utils/collection";
 import ArrowLeft from "@lucide/astro/icons/arrow-left";
 import ArrowRight from "@lucide/astro/icons/arrow-right";
 
@@ -13,7 +10,7 @@ interface Props {
 }
 const { title } = Astro.props;
 
-const articles = await sortedCollection("articles");
+const articles = await sortCollection("articles");
 const currentIndex = articles.findIndex(
   (article) => article.data.title === title
 );
@@ -43,11 +40,7 @@ const navigationItems = [
 <nav>
   {
     navigationItems.map(({ article, direction, label }) => (
-      <a
-        class={direction}
-        href={`/${collectionKeyToPath(article.collection)}/${article.id}`}
-        aria-label={label}
-      >
+      <a class={direction} href={`/articles/${article.id}`} aria-label={label}>
         <div tabindex="-1">
           {direction === "prev" ? (
             <ArrowLeft size={20} />

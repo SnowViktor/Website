@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { CATEGORIES } from "../../consts";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { CATEGORIES_LIST } from "src/consts";
 
 const articles = await getCollection("articles");
 const categories = [
@@ -15,7 +15,7 @@ const categories = [
       categories.map((category) => (
         <p class="category">
           <a
-            href={`/categories/${CATEGORIES.find((obj) => obj.name === category)!.id}`}
+            href={`/categories/${CATEGORIES_LIST.find((obj) => obj.name === category)!.id}`}
           >
             {category}
           </a>

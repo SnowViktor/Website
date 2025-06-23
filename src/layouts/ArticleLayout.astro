@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleNavigation from "@components/article_layout/ArticleNavigation.astro";
-import { formatAttributeDate, formatContentDate } from "@utils/formatDate";
+import { formatAttributeDate, formatContentDate } from "@utils/time";
 
 type Props = CollectionEntry<"articles">["data"];
 const {

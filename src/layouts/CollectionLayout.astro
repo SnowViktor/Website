@@ -1,21 +1,16 @@
 ---
-import type { CollectionKey } from "astro:content";
-
-import BaseLayout from "./BaseLayout.astro";
-
-import ArticlesInformation from "../components/collection_layout/ArticlesInformation.astro";
-import ArticleItem from "../components/collection_layout/ArticleItem.astro";
-
-import { sortedCollection } from "../utils/functionCollection";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ArticlesInformation from "@components/collection_layout/ArticlesInformation.astro";
+import ArticleItem from "@components/collection_layout/ArticleItem.astro";
+import { sortCollection } from "@utils/collection";
 
 interface Props {
   title: string;
   description: string;
-  collectionKey: CollectionKey | CollectionKey[];
 }
-const { title, description, collectionKey } = Astro.props;
+const { title, description } = Astro.props;
 
-const articles = await sortedCollection(collectionKey);
+const articles = await sortCollection("articles");
 ---
 
 <BaseLayout title={title} description={description}>
