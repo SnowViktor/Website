@@ -1,17 +1,12 @@
 ---
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import CollectionsList from "@components/page/CollectionsList.astro";
-import { collectionKey } from "src/content.config";
 ---
 
 <CollectionLayout
   title="文章"
-  description="【文章列表】"
-  collectionKey={collectionKey}
->
-  <CollectionsList collectionKey={collectionKey} />
-  <hr />
-</CollectionLayout>
+  description="【彬彬的思考烘焙坊：剛出爐的文章】"
+  collectionKey={"articles"}
+/>
 
 <style>
   @media (min-width: 700px) {

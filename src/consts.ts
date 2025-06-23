@@ -1,9 +1,9 @@
 export const SITE_TITLE = "SnowViktor";
 export const SITE_DESCRIPTION =
-  "【SnowViktor's Personal Website｜彬彬的個人網站】"; //【關於我轉生變成彬彬這檔事】【彬彬的思考烘焙坊：剛出爐的文章】
+  "【SnowViktor's Personal Website｜彬彬的個人網站】";
 export const SITE_AUTHOR = "SnowViktor｜彬彬";
 
-export const CATEGORIES = [
+export const CATEGORIES_LIST = [
   { name: "聯絡簿日記", id: "contact-and-communication-book-diary" },
   { name: "閱讀心得", id: "reading-reflection" },
   { name: "散文", id: "prose" },

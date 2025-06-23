@@ -5,8 +5,6 @@ import {
   collectionKeyToPath,
   sortedCollection,
 } from "@utils/functionCollection";
-import { collectionKey } from "src/content.config";
-
 import ArrowLeft from "@lucide/astro/icons/arrow-left";
 import ArrowRight from "@lucide/astro/icons/arrow-right";
 
@@ -15,7 +13,7 @@ interface Props {
 }
 const { title } = Astro.props;
 
-const articles = await sortedCollection(collectionKey);
+const articles = await sortedCollection("articles");
 const currentIndex = articles.findIndex(
   (article) => article.data.title === title
 );

@@ -1,11 +1,6 @@
-import {
-  defineCollection,
-  z,
-  type CollectionKey,
-  type SchemaContext,
-} from "astro:content";
+import { type SchemaContext, defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
-import { SITE_AUTHOR, CATEGORIES } from "src/consts";
+import { SITE_AUTHOR, CATEGORIES_LIST } from "src/consts";
 
 const imageSchema = ({ image }: SchemaContext) =>
   z.object({
@@ -22,9 +17,7 @@ const articles = defineCollection({
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       categories: z.array(
-        z.enum(
-          CATEGORIES.map((category) => category.name) as [string, ...string[]]
-        )
+        z.enum(CATEGORIES_LIST.map((category) => category.name) as [string])
       ),
       author: z.string().optional().default(SITE_AUTHOR),
       heroImage: imageSchema({ image }).optional(),
@@ -32,5 +25,3 @@ const articles = defineCollection({
 });
 
 export const collections = { articles };
-export const collectionKey = Object.keys(collections) as CollectionKey[];
-export const collectionDisplayName = ["文章"];
