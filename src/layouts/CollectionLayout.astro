@@ -1,15 +1,16 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import ArticleItem from "@components/CollectionItem.astro";
-import { sortCollection } from "@utils/collection";
+import CollectionItem from "@components/CollectionItem.astro";
+import { filterAndSortArticlesByCategories } from "@utils/collection";
 
 interface Props {
   title: string;
   description: string;
+  categories: string | string[];
 }
-const { title, description } = Astro.props;
+const { title, description, categories } = Astro.props;
 
-const articles = await sortCollection("articles");
+const articles = await filterAndSortArticlesByCategories(categories);
 ---
 
 <BaseLayout title={title} description={description}>
@@ -22,7 +23,7 @@ const articles = await sortCollection("articles");
     {
       articles.map((article) => (
         <li>
-          <ArticleItem article={article} />
+          <CollectionItem article={article} />
         </li>
       ))
     }

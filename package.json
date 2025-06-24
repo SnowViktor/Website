@@ -7,11 +7,12 @@
     "upgrade": "pnpm dlx @astrojs/upgrade",
     "update": "pnpm update",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
@@ -19,7 +20,8 @@
     "@lucide/astro": "^0.507.0",
     "astro": "^5.10.1",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "vite-plugin-devtools-json": "^0.1.1"

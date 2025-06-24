@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { sortCollection } from "@utils/collection";
 import { SITE_TITLE, SITE_DESCRIPTION } from "src/consts";
 
-export async function GET(context) {
-  const articles = await getCollection("articles");
+export async function GET(context: { site: any }) {
+  const articles = await sortCollection("articles");
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,

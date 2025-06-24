@@ -1,61 +1,60 @@
 ---
-import type { CollectionEntry, CollectionKey } from "astro:content";
-import { formatContentDate } from "@utils/time";
-import { sortCollection } from "@utils/collection";
+import type { CollectionEntry } from "astro:content";
+import { getAdjacentArticles } from "@utils/collection";
+import { formatAttributeDate, formatContentDate } from "@utils/time";
 import ArrowLeft from "@lucide/astro/icons/arrow-left";
 import ArrowRight from "@lucide/astro/icons/arrow-right";
 
 interface Props {
-  title: string;
+  id: string;
 }
-const { title } = Astro.props;
+const { id } = Astro.props;
 
-const articles = await sortCollection("articles");
-const currentIndex = articles.findIndex(
-  (article) => article.data.title === title
-);
-const prevArticle = articles[currentIndex + 1];
-const nextArticle = articles[currentIndex - 1];
-
-type NavigationItem = {
-  article: CollectionEntry<CollectionKey>;
-  direction: "prev" | "next";
-  label: string;
-};
-
+const { prev: prevArticle, next: nextArticle } = await getAdjacentArticles(id);
 const navigationItems = [
   prevArticle && {
     article: prevArticle,
     direction: "prev",
-    label: "Go to the previous page.",
+    label: "Go to the previous page",
   },
   nextArticle && {
     article: nextArticle,
     direction: "next",
-    label: "Go to the next page.",
+    label: "Go to the next page",
   },
-].filter(Boolean) as NavigationItem[];
+].filter(Boolean) as {
+  article: CollectionEntry<"articles">;
+  direction: "prev" | "next";
+  label: string;
+}[];
 ---
 
 <nav>
   {
-    navigationItems.map(({ article, direction, label }) => (
-      <a class={direction} href={`/articles/${article.id}`} aria-label={label}>
-        <div tabindex="-1">
-          {direction === "prev" ? (
-            <ArrowLeft size={20} />
-          ) : (
-            <ArrowRight size={20} />
-          )}
-          <p>
-            {article.data.title}
-            <time datetime={article.data.pubDate.toISOString()}>
-              {formatContentDate(article.data.pubDate, true)}
-            </time>
-          </p>
-        </div>
-      </a>
-    ))
+    navigationItems.map(({ article, direction, label }) => {
+      const frontmatter = article.data;
+      return (
+        <a
+          class={direction}
+          href={`/articles/${article.id}`}
+          aria-label={label}
+        >
+          <div tabindex="-1">
+            {direction === "prev" ? (
+              <ArrowLeft size={20} />
+            ) : (
+              <ArrowRight size={20} />
+            )}
+            <p>
+              {frontmatter.title}
+              <time datetime={formatAttributeDate(frontmatter.pubDate)}>
+                {formatContentDate(frontmatter.pubDate)}
+              </time>
+            </p>
+          </div>
+        </a>
+      );
+    })
   }
 </nav>
 
