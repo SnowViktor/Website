@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import ArticleNavigation from "@components/article_layout/ArticleNavigation.astro";
+import ArticleNavigation from "@components/ArticleNavigation.astro";
 import { formatAttributeDate, formatContentDate } from "@utils/time";
 
 type Props = CollectionEntry<"articles">["data"];
@@ -52,15 +52,15 @@ const {
   h1 {
     margin-bottom: 0;
 
-    & + p {
+    + p {
       margin-block: calc(36px * 0.25) calc(36px * 0.75);
     }
   }
 
   div {
+    margin-block: 1em;
     font-family: var(--font-cursive);
     letter-spacing: 0;
-    margin-block: 1em;
 
     details {
       color: var(--color-text-secondary);

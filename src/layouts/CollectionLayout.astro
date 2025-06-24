@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import ArticlesInformation from "@components/collection_layout/ArticlesInformation.astro";
-import ArticleItem from "@components/collection_layout/ArticleItem.astro";
+import ArticleItem from "@components/CollectionItem.astro";
 import { sortCollection } from "@utils/collection";
 
 interface Props {
@@ -16,7 +15,9 @@ const articles = await sortCollection("articles");
 <BaseLayout title={title} description={description}>
   <h1>{title}</h1>
   <slot />
-  <ArticlesInformation articlesLength={articles.length} />
+  <p>
+    <span>共 {articles.length} 篇</span>
+  </p>
   <ul class="article-items">
     {
       articles.map((article) => (
@@ -38,9 +39,30 @@ const articles = await sortCollection("articles");
     }
   }
 
+  p {
+    margin-block: 0;
+    padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 ArticleItem 的 font-size、margin-inline。 */
+    display: flex;
+    justify-content: flex-end;
+    color: var(--color-text-tertiary);
+    font-size: 16px;
+    font-weight: 500;
+
+    &:has(.annotation) {
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 700px) {
+    /* --max-width: 700px */
+    p {
+      margin-block-start: 1em;
+    }
+  }
+
   ul {
-    list-style-type: none;
     padding-inline-start: 0;
+    list-style-type: none;
   }
 
   li {
@@ -65,15 +87,12 @@ const articles = await sortCollection("articles");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        } else {
-          entry.target.classList.remove("visible");
-        }
+        entry.target.classList.toggle("visible", entry.isIntersecting);
       });
     },
     { rootMargin: "0px 0px 21px 0px", threshold: 0.1 }
   );
+
   document
     .querySelectorAll("ul.article-items li")
     .forEach((item) => observer.observe(item));

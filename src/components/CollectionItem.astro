@@ -20,12 +20,12 @@ const frontmatter = article.data;
 
 <style>
   a {
-    align-items: center;
-    border-radius: 0.75em;
-    display: flex;
-    gap: 0.5em;
-    line-height: 1.2;
     padding: 0.6em 0.75em 0.55em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 0.75em;
+    line-height: 1.2;
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:focus-visible,
@@ -39,22 +39,22 @@ const frontmatter = article.data;
   }
 
   p {
-    flex: 0 1 auto;
     margin: 0;
+    flex: 0 1 auto;
     white-space: normal;
   }
 
   span {
-    border: 1px dashed var(--color-base-lightness-25-translucent);
-    flex: 1 1 auto;
     height: 0;
+    flex: 1 1 auto;
+    border: 1px dashed var(--color-base-lightness-25-translucent);
   }
 
   time {
-    color: var(--color-text-tertiary);
     flex: 0 0 auto;
-    white-space: nowrap;
+    color: var(--color-text-tertiary);
     word-spacing: -0.15em;
+    white-space: nowrap;
   }
 
   @media (max-width: 700px) {

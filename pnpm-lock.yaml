@@ -600,8 +600,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/routing-utils@5.0.7':
-    resolution: {integrity: sha512-YIsxOMZIaD+z+lSMsmCo34SZwcyj10UwpZfMbtIKCUtgj8fPwaUtpqKDDvgYWcvxKJ1Px+Hbi4EaYuiXRUEJXw==}
+  '@vercel/routing-utils@5.0.8':
+    resolution: {integrity: sha512-R/lz7BqN3EY8MBM9PSUdZ0o48fN5et0e54ra3+LIHgpuf6mtVVIjC7poEp09I+vnmUYd26263opo3fb10JhUxQ==}
 
   abbrev@3.0.1:
     resolution: {integrity: sha512-AO2ac6pjRB3SJmGJo+v5/aK6Omggp6fsLrs6wN9bd35ulu4cCwaAU9+7ZhXjeqHVkaHThLuzH0nZr0YpCDhygg==}
@@ -2015,7 +2015,7 @@ snapshots:
       '@vercel/analytics': 1.5.0
       '@vercel/edge': 1.2.2
       '@vercel/nft': 0.29.4(rollup@4.44.0)
-      '@vercel/routing-utils': 5.0.7
+      '@vercel/routing-utils': 5.0.8
       astro: 5.10.1(@types/node@24.0.3)(rollup@4.44.0)(typescript@5.8.3)
       esbuild: 0.25.5
       tinyglobby: 0.2.14
@@ -2450,7 +2450,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/routing-utils@5.0.7':
+  '@vercel/routing-utils@5.0.8':
     dependencies:
       path-to-regexp: 6.1.0
       path-to-regexp-updated: path-to-regexp@6.3.0
