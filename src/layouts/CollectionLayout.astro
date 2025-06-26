@@ -54,8 +54,8 @@ const articles = await filterAndSortArticlesByCategories(categories);
     }
   }
 
-  @media (max-width: 700px) {
-    /* --max-width: 700px */
+  @media (max-width: 768px) {
+    /* --max-width: 768px */
     p {
       margin-block-start: 1em;
     }
@@ -68,11 +68,11 @@ const articles = await filterAndSortArticlesByCategories(categories);
 
   li {
     opacity: 0.5;
-    transition: opacity 150ms;
+    transition: opacity var(--transition-duration);
     will-change: opacity;
 
     &.visible {
-      animation: fadeInUp 150ms linear both;
+      animation: fadeInUp var(--transition-duration) linear both;
     }
   }
 
@@ -91,7 +91,7 @@ const articles = await filterAndSortArticlesByCategories(categories);
         entry.target.classList.toggle("visible", entry.isIntersecting);
       });
     },
-    { rootMargin: "0px 0px 21px 0px", threshold: 0.1 }
+    { rootMargin: "0px 0px 21px 0px", threshold: 0.1 },
   );
 
   document

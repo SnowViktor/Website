@@ -40,11 +40,9 @@ const navigationItems = [
           aria-label={label}
         >
           <div tabindex="-1">
-            {direction === "prev" ? (
+            {direction === "prev" ?
               <ArrowLeft size={20} />
-            ) : (
-              <ArrowRight size={20} />
-            )}
+            : <ArrowRight size={20} />}
             <p>
               {frontmatter.title}
               <time datetime={formatAttributeDate(frontmatter.pubDate)}>
@@ -98,14 +96,14 @@ const navigationItems = [
     display: flex;
     align-items: center;
     border: 1px solid var(--color-utils-background);
-    border-radius: 0.65em;
+    border-radius: var(--border-radius-small);
     background-color: transparent;
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-duration) var(--transition-timing-function);
     user-select: none;
 
     &:focus-visible,
     &:hover {
-      border-radius: 0.85em;
+      border-radius: var(--border-radius-large);
       background-color: var(--color-utils-background);
     }
 

@@ -23,7 +23,7 @@
       z-index: -1;
       width: inherit;
       height: 100%;
-      backdrop-filter: blur(2px);
+      backdrop-filter: var(--blur-small);
       background-color: var(--color-base-translucent);
     }
   }
@@ -33,7 +33,7 @@
     width: calc(100% - 2 * 42px); /* 42px is the width of the a */
     opacity: 0;
     text-align: center;
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-duration) var(--transition-timing-function);
 
     &.visible {
       opacity: 1;

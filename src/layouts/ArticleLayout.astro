@@ -64,7 +64,7 @@ const {
   }
 
   a {
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-duration) var(--transition-timing-function);
 
     &:focus-visible,
     &:hover {
@@ -78,10 +78,10 @@ const {
 
   h1 {
     margin-bottom: 0;
+  }
 
-    + p {
-      margin-block: calc(36px * 0.25) calc(36px * 0.75);
-    }
+  h1 + p {
+    margin-block: calc(36px * 0.25) calc(36px * 0.75);
   }
 
   div {
