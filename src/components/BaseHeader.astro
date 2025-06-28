@@ -6,16 +6,19 @@
   header {
     position: fixed;
     z-index: 1;
+    top: 0;
     left: 50%;
     max-width: var(--max-width);
     width: 100%;
-    height: var(--header-height);
+    height: 2.5em;
+    opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-text-tertiary);
     font: 600 16px/1 var(--font-serif);
     transform: translateX(-50%);
+    transition: all var(--transition-duration) var(--transition-timing-function);
 
     &::before {
       content: "";
@@ -25,6 +28,10 @@
       height: 100%;
       backdrop-filter: var(--blur-small);
       background-color: var(--color-base-translucent);
+    }
+
+    &.visible {
+      opacity: 1;
     }
   }
 
@@ -42,7 +49,8 @@
 </style>
 
 <script>
-  const p = document.querySelector("header p") as HTMLParagraphElement;
+  const header = document.querySelector("header") as HTMLElement;
+  const p = header.querySelector("p") as HTMLParagraphElement;
   const h1 = document.querySelector("h1") as HTMLHeadingElement;
 
   p.ariaLabel = h1.textContent;
@@ -50,6 +58,7 @@
 
   function handleScroll() {
     const h1Bottom = h1.getBoundingClientRect().bottom;
+    header.classList.toggle("visible", h1Bottom < 0);
     p.classList.toggle("visible", h1Bottom < 0);
   }
 
