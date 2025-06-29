@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.12.4",
   "scripts": {
-    "upgrade": "pnpm dlx @astrojs/upgrade",
+    "upgrade": "pnpx @astrojs/upgrade",
     "update": "pnpm update",
     "dev": "astro dev",
     "build": "astro check && astro build",
