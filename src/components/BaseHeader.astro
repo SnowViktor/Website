@@ -1,5 +1,18 @@
+---
+import BaseHeaderLink from "./BaseHeaderLink.astro";
+// import BaseHeaderSearch from "./BaseHeaderSearch.astro";
+---
+
 <header>
-  <p></p>
+  <a href="/" class="brand">SnowViktor</a>
+  <nav>
+    <ul>
+      <li><BaseHeaderLink href="/">首頁</BaseHeaderLink></li>
+      <li><BaseHeaderLink href="/articles">文章</BaseHeaderLink></li>
+    </ul>
+  </nav>
+  <span class="search-placeholder"></span>
+  <!-- <BaseHeaderSearch /> -->
 </header>
 
 <style>
@@ -8,79 +21,90 @@
     z-index: 1;
     top: 0;
     left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     max-width: var(--max-width);
     width: 100%;
     height: 2.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0 1em;
+    box-sizing: border-box;
+
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
     color: var(--color-text-tertiary);
-    font: 600 16px/1 var(--font-serif);
-    transform: translateX(-50%);
+
     transition: transform var(--transition-duration)
       var(--transition-timing-function);
-
-    &.retracted {
-      transform: translate(-50%, -100%);
-    }
 
     &::before {
       content: "";
       position: absolute;
       z-index: -1;
-      width: inherit;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      backdrop-filter: var(--blur-small);
       background-color: var(--color-base-translucent);
+      backdrop-filter: var(--blur-small);
+    }
+
+    &.retracted {
+      transform: translate(-50%, -100%);
     }
   }
 
-  p {
-    margin: 0;
-    width: calc(100% - 2 * 42px); /* 42px is the width of the a */
-    opacity: 0;
-    text-align: center;
-    transition: opacity var(--transition-duration)
-      var(--transition-timing-function);
+  a {
+    text-box: trim-both cap alphabetic;
+  }
 
-    &.visible {
-      opacity: 1;
-    }
+  .brand {
+    flex: 1;
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  nav {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .search-placeholder {
+    flex: 1;
   }
 </style>
 
 <script>
   const header = document.querySelector("header") as HTMLElement;
-  const p = header.querySelector("p") as HTMLParagraphElement;
-  const h1 = document.querySelector("h1") as HTMLHeadingElement;
-
-  if (h1) {
-    p.ariaLabel = h1.textContent;
-    p.textContent = h1.textContent;
-  }
 
   let lastScrollY = window.scrollY;
 
   function handleScroll() {
     const currentScrollY = window.scrollY;
     // Retract header when scrolling down
-    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    if (currentScrollY > lastScrollY && currentScrollY > header.clientHeight) {
       header.classList.add("retracted");
     } else {
       header.classList.remove("retracted");
     }
     lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
-
-    // Show title in header when h1 is not visible
-    if (h1) {
-      const h1Bottom = h1.getBoundingClientRect().bottom;
-      p.classList.toggle("visible", h1Bottom < 0);
-    }
   }
 
   window.addEventListener("scroll", handleScroll, { passive: true });
   // Run once on load in case the page is already scrolled down
-  if (h1) {
-    handleScroll();
-  }
+  handleScroll();
 </script>

@@ -7,6 +7,8 @@ dist/
 
 # dependencies
 node_modules/
+# devDependencies
+public/pagefind/
 
 # logs
 npm-debug.log*

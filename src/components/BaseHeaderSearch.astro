@@ -1,0 +1,14 @@
+---
+export const prerender = false;
+
+const q = Astro.url.searchParams.get("q") ?? undefined;
+---
+
+<div id="search" class="pagefind-ui">{q}</div>
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+<script>
+  window.addEventListener("DOMContentLoaded", (_) => {
+    // @ts-expect-error
+    new PagefindUI({ element: "#search", showSubResults: true });
+  });
+</script>
