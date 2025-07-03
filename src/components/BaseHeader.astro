@@ -48,7 +48,9 @@ import BaseHeaderLink from "./BaseHeaderLink.astro";
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: var(--color-base-translucent);
+      background-color: oklch(
+        from var(--color-bg-dark) l c h / var(--opacity-stronger)
+      );
       backdrop-filter: var(--blur-small);
     }
 

@@ -1,29 +1,46 @@
-:root {
-  --color-bg-dark: oklch(from var(--color-bg) 0.17 c h);
+/* At-rules */
+@view-transition {
+  navigation: auto;
+}
+
+/* Main root */
+html:root {
+  /* Colors */
+  --color-bg-dark: oklch(from var(--color-bg) calc(l - 0.05) c h);
   --color-bg: oklch(0.22 0.008 180);
-  --color-bg-light: oklch(from var(--color-bg) 0.27 c h);
+  --color-bg-light: oklch(from var(--color-bg) calc(l + 0.05) c h);
+
   --color-text: oklch(0.95 0.008 180);
-  --color-text-muted: oklch(from var(--color-text) 0.75 c h);
-  --color-border: oklch(0.47 0.008 180);
-  --color-border-muted: oklch(from var(--color-border) 0.37 c h);
+  --color-text-muted: oklch(from var(--color-text) calc(l - 0.2) c h);
+
+  --color-selected-bg: oklch(from var(--color-bg) 0.95 c calc(h));
+  --color-selected-text: oklch(from var(--color-text) 0.22 c calc(h));
+
+  --color-border: oklch(from var(--color-bg) calc(l + 0.25) c h);
+  --color-border-muted: oklch(from var(--color-border) calc(l - 0.1) c h);
+
   --color-primary: oklch(from var(--color-new-taiwan-red) 0.75 c h);
   --color-secondary: oklch(from var(--color-everlasting-teal) 0.75 c h);
   --color-new-taiwan-red: #f72589; /* rgb(247, 37, 137) 新臺灣紅 */
   --color-everlasting-teal: #104e48; /* rgb(16, 78, 72) 永生青 */
 
-  /* Colors */
-  --color-base-translucent: oklch(from var(--color-bg-dark) l c h / 90%);
-  --color-base-lightness-25: hsl(170, 10%, 25%);
-  --color-base-lightness-25-translucent: hsla(170, 10%, 25%, 0.75);
-  --color-base-lightness-35: hsl(170, 10%, 35%);
+  --opacity-strongest: 0.9;
+  --opacity-stronger: 0.75;
+  --opacity-strong: 0.6;
+  --opacity: 0.5;
+  --opacity-light: 0.4;
+  --opacity-lighter: 0.25;
+  --opacity-lightest: 0.1;
+
+  /* need refactoring */
   --color-text-primary: hsl(170, 10%, 95%);
   --color-text-secondary: hsl(170, 10%, 85%);
   --color-text-tertiary: hsl(170, 10%, 75%);
   --color-text-selected: hsl(170, 10%, 55%);
-  --color-text-selected-translucent: hsla(170, 10%, 60%, 0.5);
+  --color-text-selected-translucent: hsl(170, 10%, 60%, var(--opacity));
   --color-accent-lightness-90: hsl(170, 75%, 90%);
   --color-accent-lightness-75: hsl(170, 75%, 75%);
-  --color-utils-background: hsla(170, 10%, 35%, 0.25);
+  --color-utils-background: hsl(170, 10%, 35%, var(--opacity-light));
 
   /* Typography */
   --font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
@@ -48,14 +65,7 @@
   --blur-small: blur(2px);
 }
 
-@view-transition {
-  navigation: auto;
-}
-
-::selection {
-  background-color: var(--color-text-selected);
-}
-
+/* Sectioning root */
 body {
   margin: 16px;
   background-color: var(--color-bg-dark);
@@ -63,65 +73,14 @@ body {
   touch-action: manipulation;
   interpolate-size: allow-keywords;
   -webkit-tap-highlight-color: transparent;
-}
 
-main {
-  margin: 45px auto 1em;
-  max-width: var(--max-width);
-  min-height: calc(100vh - (45px + 1em));
-  display: flex;
-  flex-direction: column;
-  color: var(--color-text-primary);
-  font: 18px/2 var(--font-sans);
-  letter-spacing: 0.04em;
-  text-align: justify;
-}
-
-main > * {
-  transition-behavior: allow-discrete;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-blockquote {
-  margin: 1em 0;
-  padding: 0 0 0 1ch;
-  border-left: 0.5ch solid var(--color-accent-2);
-  font-size: 1.25em;
-}
-
-details {
-  margin: 1em 0;
-  padding: 0.25em 0.75em;
-  border: 2px outset var(--color-base-lightness-35);
-  border-radius: var(--border-radius-medium);
-
-  &::details-content {
-    padding-top: 0;
-    height: 0;
-    overflow-y: clip;
-    transition: all var(--transition-duration-long)
-      var(--transition-timing-function) allow-discrete;
-  }
-
-  &[open]::details-content {
-    padding-top: 0.25em;
-    height: auto;
-  }
-
-  summary {
-    cursor: pointer;
+  &::selection {
+    background-color: var(--color-secondary);
+    color: var(--color-selected-text);
   }
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
+/* Content sectioning */
 h1,
 h2,
 h3,
@@ -163,14 +122,39 @@ h6 {
   font-size: 1.25em;
 }
 
+main {
+  margin: 45px auto 1em;
+  max-width: var(--max-width);
+  min-height: calc(100vh - (45px + 1em));
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text);
+  font: 18px/2 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-align: justify;
+
+  > * {
+    transition-behavior: allow-discrete;
+  }
+}
+
+/* Text content */
+blockquote {
+  margin: 1em 0;
+  padding: 0 0 0 1ch;
+  border-left: 0.5ch solid var(--color-accent-2);
+  font-size: 1.25em;
+}
+
 hr {
   margin-block-start: 0;
   margin-block-end: 0;
   max-width: var(--max-width);
   width: 100%;
-  border: dashed var(--color-base-lightness-25-translucent);
+  border-style: dashed;
   border-block-width: 1px;
   border-inline-width: 0;
+  border-color: var(--color-border-muted);
 }
 
 li p:first-of-type {
@@ -178,5 +162,42 @@ li p:first-of-type {
 
   + p {
     margin-block-start: 0;
+  }
+}
+
+/* Inline text semantics */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Forms */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Interactive elements */
+details {
+  margin: 1em 0;
+  padding: 0.25em 0.75em;
+  border: 2px outset var(--color-border);
+  border-radius: var(--border-radius-medium);
+
+  &::details-content {
+    padding-top: 0;
+    height: 0;
+    overflow-y: clip;
+    transition: all var(--transition-duration-long)
+      var(--transition-timing-function) allow-discrete;
+  }
+
+  &[open]::details-content {
+    padding-top: 0.25em;
+    height: auto;
+  }
+
+  summary {
+    cursor: pointer;
   }
 }

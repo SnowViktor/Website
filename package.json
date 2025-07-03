@@ -16,9 +16,9 @@
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
-    "@astrojs/vercel": "^8.2.0",
+    "@astrojs/vercel": "^8.2.1",
     "@lucide/astro": "^0.507.0",
-    "astro": "^5.10.1",
+    "astro": "^5.11.0",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "typescript": "^5.8.3"
