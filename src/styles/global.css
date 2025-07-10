@@ -11,18 +11,18 @@ html:root {
   --color-bg-light: oklch(from var(--color-bg) calc(l + 0.05) c h);
 
   --color-text: oklch(0.95 0.008 180);
-  --color-text-muted: oklch(from var(--color-text) calc(l - 0.2) c h);
+  --color-text-muted: oklch(from var(--color-text) calc(l - 0.15) c h);
 
   --color-selected-bg: oklch(from var(--color-bg) 0.95 c calc(h));
   --color-selected-text: oklch(from var(--color-text) 0.22 c calc(h));
 
-  --color-border: oklch(from var(--color-bg) calc(l + 0.25) c h);
+  --color-border: oklch(from var(--color-bg) calc(l + 0.225) c h);
   --color-border-muted: oklch(from var(--color-border) calc(l - 0.1) c h);
 
-  --color-primary: oklch(from var(--color-new-taiwan-red) 0.75 c h);
-  --color-secondary: oklch(from var(--color-everlasting-teal) 0.75 c h);
-  --color-new-taiwan-red: #f72589; /* rgb(247, 37, 137) 新臺灣紅 */
   --color-everlasting-teal: #104e48; /* rgb(16, 78, 72) 永生青 */
+  --color-new-taiwan-red: #f72589; /* rgb(247, 37, 137) 新臺灣紅 */
+  --color-primary: oklch(from var(--color-everlasting-teal) 0.8 c h);
+  --color-secondary: oklch(from var(--color-new-taiwan-red) 0.8 c h);
 
   --opacity-strongest: 0.9;
   --opacity-stronger: 0.75;
@@ -31,16 +31,6 @@ html:root {
   --opacity-light: 0.4;
   --opacity-lighter: 0.25;
   --opacity-lightest: 0.1;
-
-  /* need refactoring */
-  --color-text-primary: hsl(170, 10%, 95%);
-  --color-text-secondary: hsl(170, 10%, 85%);
-  --color-text-tertiary: hsl(170, 10%, 75%);
-  --color-text-selected: hsl(170, 10%, 55%);
-  --color-text-selected-translucent: hsl(170, 10%, 60%, var(--opacity));
-  --color-accent-lightness-90: hsl(170, 75%, 90%);
-  --color-accent-lightness-75: hsl(170, 75%, 75%);
-  --color-utils-background: hsl(170, 10%, 35%, var(--opacity-light));
 
   /* Typography */
   --font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
@@ -75,7 +65,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 
   &::selection {
-    background-color: var(--color-secondary);
+    background-color: var(--color-selected-bg);
     color: var(--color-selected-text);
   }
 }
@@ -142,7 +132,7 @@ main {
 blockquote {
   margin: 1em 0;
   padding: 0 0 0 1ch;
-  border-left: 0.5ch solid var(--color-accent-2);
+  border-left: 0.5ch solid var(--color-primary);
   font-size: 1.25em;
 }
 
