@@ -4,7 +4,7 @@ export const SITE_DESCRIPTION =
 export const SITE_AUTHOR = "SnowViktor｜彬彬";
 
 export const CATEGORIES_LIST = [
-  { name: "聯絡簿日記", id: "contact-and-communication-book-diary" },
+  { name: "聯絡簿日記", id: "contact-and-communication-book-journal" },
   { name: "閱讀心得", id: "reading-reflection" },
   { name: "散文", id: "prose" },
   { name: "新詩", id: "free-verse" },
