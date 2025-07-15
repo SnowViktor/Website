@@ -19,7 +19,7 @@ const {
 ---
 
 <BaseLayout
-  title={`${formatContentDate(pubDate, false)}．${title}`}
+  title={`${title}．${formatContentDate(pubDate, false)}`}
   description={description}
   image={heroImage?.image.src}
 >
@@ -88,7 +88,7 @@ const {
     margin-block: 1em;
     font-family: var(--font-cursive);
     letter-spacing: 0;
-    word-spacing: -0.15ch;
+    word-spacing: -0.2ch;
 
     details {
       color: var(--color-text-muted);
