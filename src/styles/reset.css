@@ -1,0 +1,238 @@
+/* 1. Global Resets */
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  vertical-align: inherit;
+  text-decoration: inherit;
+}
+
+:where(html) {
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(body) {
+  margin: 0;
+}
+
+/* 2. Layout & Block Elements */
+:where(hr) {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+  color: inherit;
+}
+
+:where(dl, ol, ul) {
+  margin: 1em 0;
+}
+
+:where(dl, ol, ul) :where(dl, ol, ul) {
+  margin: 0;
+}
+
+:where(nav) :where(ol, ul) {
+  padding: 0;
+  list-style-type: none;
+}
+
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+  text-indent: 0;
+}
+
+/* 3. Typography */
+:where(h1) {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+:where(abbr[title]) {
+  text-decoration: underline dotted;
+}
+
+:where(code, kbd, samp, pre) {
+  font-family: monospace;
+  font-size: 1em;
+}
+
+:where(pre) {
+  overflow: auto;
+}
+
+:where(small) {
+  font-size: 80%;
+}
+
+:where(sub, sup) {
+  position: relative;
+  vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+}
+
+:where(sub) {
+  bottom: -0.25em;
+}
+
+:where(sup) {
+  top: -0.5em;
+}
+
+/* 4. Media Elements */
+:where(audio, canvas, iframe, img, svg, video) {
+  vertical-align: middle;
+}
+
+:where(audio, canvas, img, picture, svg, video) {
+  display: inline-block;
+}
+
+:where(img, picture, svg, video) {
+  max-width: 100%;
+}
+
+:where(iframe) {
+  border-style: none;
+}
+
+:where(svg:not([fill])) {
+  fill: currentColor;
+}
+
+/* 5. Form Elements */
+:where(button, input, optgroup, select, textarea) {
+  margin: 0;
+  border: 1px solid currentColor;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+}
+
+:where(button) {
+  overflow: visible;
+  text-transform: none;
+}
+
+:where(button, [type="button" i], [type="reset" i], [type="submit" i]) {
+  appearance: button;
+}
+
+:where(input) {
+  overflow: visible;
+}
+
+:where([type="search" i]) {
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+:where([type="color"]) {
+  background: inherit;
+}
+
+:where(fieldset) {
+  border: 1px solid currentColor;
+}
+
+:where(legend) {
+  display: table;
+  padding: 0;
+  max-width: 100%;
+  color: inherit;
+  white-space: normal;
+}
+
+:where(progress) {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+:where(select) {
+  text-transform: none;
+}
+
+:where(textarea) {
+  margin: 0;
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+/* 6. Interactive & Hidden Elements */
+:where(details) {
+  display: block;
+}
+
+:where(summary) {
+  display: list-item;
+}
+
+:where(dialog) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 1em;
+  border: solid;
+  background-color: inherit;
+  color: inherit;
+}
+
+:where(dialog):not([open]) {
+  display: none;
+}
+
+:where(template, [hidden]) {
+  display: none;
+}
+
+/* 7. ARIA & Accessibility */
+:where([aria-busy="true" i]) {
+  cursor: progress;
+}
+
+:where([aria-disabled="true" i], [disabled]) {
+  cursor: not-allowed;
+}
+
+:where([aria-hidden="false" i][hidden]) {
+  display: initial;
+}
+
+:where([aria-hidden="false" i][hidden]:not(:focus)) {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* 8. Vendor-Specific & Pseudo-elements */
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+::-webkit-input-placeholder {
+  opacity: 0.54;
+  color: inherit;
+}
+
+::-webkit-search-decoration {
+  font: inherit;
+  appearance: none;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  appearance: button;
+}

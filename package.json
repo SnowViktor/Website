@@ -7,7 +7,8 @@
     "upgrade": "pnpx @astrojs/upgrade",
     "update": "pnpm update",
     "dev": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "local-build": "pnpm run build && cp -r dist/pagefind public/",
+    "build": "astro check && astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },

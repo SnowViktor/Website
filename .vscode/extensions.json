@@ -4,7 +4,8 @@
     "jacobcassidy.css-nesting-syntax-highlighting",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "darian-benam.vscode-robots-dot-txt-support"
+    "darian-benam.vscode-robots-dot-txt-support",
+    "yzhang.markdown-all-in-one"
   ],
   "unwantedRecommendations": []
 }
