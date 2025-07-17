@@ -62,8 +62,6 @@ html:root {
 body {
   margin: 16px;
   background-color: var(--color-bg-dark);
-  -webkit-tap-highlight-color: transparent;
-  overflow-wrap: break-word;
   touch-action: manipulation;
   interpolate-size: allow-keywords;
 
@@ -162,12 +160,6 @@ li p:first-of-type {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-/* Forms */
-button {
-  font-family: inherit;
-  cursor: pointer;
 }
 
 /* Interactive elements */
