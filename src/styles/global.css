@@ -124,7 +124,7 @@ main {
   letter-spacing: 0.04em;
   text-align: justify;
 
-  > * {
+  * {
     transition-behavior: allow-discrete;
   }
 }
