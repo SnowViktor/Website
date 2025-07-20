@@ -137,6 +137,10 @@ blockquote {
   font-size: 1.25em;
 }
 
+code {
+  white-space: initial;
+}
+
 hr {
   width: 100%;
   max-width: var(--max-width);

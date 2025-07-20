@@ -14,6 +14,7 @@ const {
   updatedDate,
   categories,
   author,
+  originalAuthor,
   heroImage,
 } = Astro.props;
 ---
@@ -46,6 +47,7 @@ const {
       }
     </p>
     <h1>{title}</h1>
+    {originalAuthor && <p>書籍作者：{originalAuthor}</p>}
     <p>作者：{author}</p>
     <hr />
     <div>
@@ -80,7 +82,7 @@ const {
     margin-bottom: 0;
   }
 
-  h1 + p {
+  h1 + p + p {
     margin-block: calc(36px * 0.25) calc(36px * 0.75);
   }
 

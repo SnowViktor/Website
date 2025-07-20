@@ -20,6 +20,7 @@ const articles = defineCollection({
         z.enum(CATEGORIES_LIST.map((category) => category.name) as [string])
       ),
       author: z.string().optional().default(SITE_AUTHOR),
+      originalAuthor: z.string().optional(),
       heroImage: imageSchema({ image }).optional(),
     }),
 });
