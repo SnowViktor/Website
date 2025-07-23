@@ -25,75 +25,121 @@ const {
   image={heroImage?.image.src}
 >
   <article>
-    <p class="information">
-      {
-        categories.map((category) => (
-          <a
-            href={`/categories/${CATEGORIES_LIST.find((obj) => obj.name === category)!.id}`}
-          >
-            ＃{category}
-          </a>
-        ))
-      }．<time datetime={formatAttributeDate(pubDate)}
+    <hgroup>
+      <ul>
+        {
+          categories.map((category) => (
+            <li>
+              <a
+                href={`/categories/${CATEGORIES_LIST.find((obj) => obj.name === category)!.id}`}
+              >
+                ＃{category}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <time datetime={formatAttributeDate(pubDate)}
         >{formatContentDate(pubDate)}</time
-      >{
-        updatedDate &&
-          "上次更改：" +
-          (
+      >
+      {
+        updatedDate && (
+          <span>
+            更：
             <time datetime={formatAttributeDate(updatedDate)}>
               {formatContentDate(updatedDate)}
             </time>
-          )
+          </span>
+        )
       }
-    </p>
-    <h1>{title}</h1>
-    {originalAuthor && <p>書籍作者：{originalAuthor}</p>}
-    <p>作者：{author}</p>
+      {
+        originalAuthor ?
+          <div class="original-author">
+            <h1>{title}</h1>
+            <span>by {originalAuthor}</span>
+          </div>
+        : <h1>{title}</h1>
+      }
+      <span>作者：{author}</span>
+    </hgroup>
     <hr />
-    <div>
+    <div class="text">
       <slot />
     </div>
   </article>
-  <ArticleNavigation id={id} />
+  <aside><ArticleNavigation id={id} /></aside>
 </BaseLayout>
 
 <style>
-  p {
-    font-family: var(--font-serif);
-    font-size: 0.8em;
-    font-weight: 500;
-    text-align: center;
-  }
+  hgroup {
+    ul,
+    time,
+    span {
+      font-family: var(--font-serif);
+      font-size: 0.8em;
+      font-weight: 500;
+      text-align: center;
+    }
 
-  a {
-    transition: all var(--transition-duration) var(--transition-timing-function);
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 1ch;
+      padding-left: 0;
+      list-style-type: none;
+    }
 
-    &:focus-visible,
-    &:hover {
-      color: var(--color-primary);
+    a {
+      transition: all var(--transition-duration)
+        var(--transition-timing-function);
+
+      &:focus-visible,
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+
+    time {
+      display: block;
+      word-spacing: -0.25ch;
+    }
+
+    span {
+      display: block;
+    }
+
+    .original-author {
+      position: relative;
+
+      span {
+        position: absolute;
+        bottom: 0;
+        left: 17ch;
+      }
     }
   }
 
-  time {
-    word-spacing: -0.15em;
-  }
-
-  h1 {
-    margin-bottom: 0;
-  }
-
-  h1 + p + p {
-    margin-block: calc(36px * 0.25) calc(36px * 0.75);
-  }
-
-  div {
+  .text {
     margin-block: 1em;
     font-family: var(--font-cursive);
     letter-spacing: 0;
     word-spacing: -0.2ch;
+    text-wrap: pretty;
 
     details {
       color: var(--color-text-muted);
+    }
+
+    p:has(+ blockquote) {
+      margin-bottom: 0;
+
+      + blockquote {
+        margin-top: 0;
+
+        p {
+          margin-top: inherit;
+        }
+      }
     }
   }
 </style>

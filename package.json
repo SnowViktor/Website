@@ -19,7 +19,7 @@
     "@astrojs/sitemap": "^3.4.1",
     "@astrojs/vercel": "^8.2.3",
     "@lucide/astro": "^0.507.0",
-    "astro": "^5.12.1",
+    "astro": "^5.12.2",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "typescript": "^5.8.3"

@@ -23,6 +23,10 @@ export default defineConfig({
     defaultStrategy: "viewport",
   },
   markdown: {
+    shikiConfig: {
+      theme: "one-dark-pro",
+      wrap: true,
+    },
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, { output: "mathml" }]],
   },

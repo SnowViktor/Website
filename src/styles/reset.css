@@ -26,7 +26,7 @@
 :where(hr) {
   box-sizing: content-box;
   height: 0;
-  overflow: visible;
+  border-inline-width: 0;
   color: inherit;
 }
 
@@ -145,8 +145,8 @@
 
 :where(legend) {
   display: table;
-  padding: 0;
   max-width: 100%;
+  padding: 0;
   color: inherit;
   white-space: normal;
 }
@@ -223,16 +223,16 @@
 }
 
 ::-webkit-input-placeholder {
-  opacity: 0.54;
   color: inherit;
+  opacity: 0.54;
 }
 
 ::-webkit-search-decoration {
-  font: inherit;
   appearance: none;
+  font: inherit;
 }
 
 ::-webkit-file-upload-button {
-  font: inherit;
   appearance: button;
+  font: inherit;
 }
