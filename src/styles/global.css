@@ -116,6 +116,7 @@ h6 {
 main {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   max-width: var(--max-width);
   min-height: calc(100vh - (45px + 1em));
   margin: 45px auto 1em;
