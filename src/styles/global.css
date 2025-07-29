@@ -1,13 +1,12 @@
-/* CSS reset */
-@import "./reset.css"; /* content below need refactoring */
+/* 1. At-rules & Resets */
+@import "./reset.css";
 
-/* At-rules */
 @view-transition {
   navigation: auto;
 }
 
-/* Main root */
-html:root {
+/* 2. Custom Properties */
+:root {
   /* Colors */
   --color-bg-dark: oklch(from var(--color-bg) calc(l - 0.05) c h);
   --color-bg: oklch(0.22 0.008 180);
@@ -58,7 +57,7 @@ html:root {
   --blur-small: blur(2px);
 }
 
-/* Sectioning root */
+/* 3. Layout & Block Elements */
 body {
   margin: 16px;
   background-color: var(--color-bg-dark);
@@ -71,7 +70,34 @@ body {
   }
 }
 
-/* Content sectioning */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  min-height: calc(100vh - (45px + 1em));
+  margin: 45px auto 1em;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 2;
+  letter-spacing: 0.06ch;
+  text-align: justify;
+}
+
+blockquote {
+  margin-inline: 0;
+  padding-left: 0.75ch;
+  border-left: 0.5ch solid var(--color-primary);
+}
+
+hr {
+  max-width: var(--max-width);
+  border-color: var(--color-border-muted);
+  border-style: dashed;
+}
+
+/* 4. Typography */
 h1,
 h2,
 h3,
@@ -113,34 +139,6 @@ h6 {
   font-size: 1.25em;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: var(--max-width);
-  min-height: calc(100vh - (45px + 1em));
-  margin: 45px auto 1em;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 2;
-  letter-spacing: 0.06ch;
-  text-align: justify;
-}
-
-/* Text content */
-blockquote {
-  margin-inline: 0;
-  padding-left: 0.75ch;
-  border-left: 0.5ch solid var(--color-primary);
-}
-
-hr {
-  max-width: var(--max-width);
-  border-color: var(--color-border-muted);
-  border-style: dashed;
-}
-
 li p:first-of-type {
   margin-bottom: 0;
 
@@ -149,12 +147,12 @@ li p:first-of-type {
   }
 }
 
-/* Inline text semantics */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* 5. Components */
 .astro-code {
   anchor-name: --astro-code;
   padding: 0.5ch 0 0.5ch 1ch;
@@ -202,7 +200,13 @@ a {
   }
 }
 
-/* Interactive elements */
+/* 6. Interactive Elements */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
 details {
   margin-block: 1em;
   padding: 0.2em 0.7em;
