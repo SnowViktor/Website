@@ -2,7 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleNavigation from "@components/ArticleNavigation.astro";
-import { formatAttributeDate, formatContentDate } from "@utils/time";
+import LayoutsTime from "@components/LayoutsTime.astro";
+import { formatContentDate } from "@utils/time";
 import { CATEGORIES_LIST } from "src/consts";
 
 type Props = { id: string } & CollectionEntry<"articles">["data"];
@@ -25,8 +26,26 @@ const {
   image={heroImage?.image.src}
 >
   <article>
-    <hgroup>
-      <ul>
+    <section class="metadata">
+      <hgroup class="meta-title">
+        <h1>{title}</h1>
+        {originalAuthor && <span>└ {originalAuthor}</span>}
+      </hgroup>
+      <div class="meta-info">
+        <span>{author}</span>
+        <span>～</span>
+        <span>
+          <LayoutsTime date={pubDate} />
+          {
+            updatedDate && (
+              <span>
+                （更：<LayoutsTime date={updatedDate} />）
+              </span>
+            )
+          }
+        </span>
+      </div>
+      <ul class="meta-categories">
         {
           categories.map((category) => (
             <li>
@@ -39,54 +58,26 @@ const {
           ))
         }
       </ul>
-      <time datetime={formatAttributeDate(pubDate)}
-        >{formatContentDate(pubDate)}</time
-      >
-      {
-        updatedDate && (
-          <span>
-            更：
-            <time datetime={formatAttributeDate(updatedDate)}>
-              {formatContentDate(updatedDate)}
-            </time>
-          </span>
-        )
-      }
-      {
-        originalAuthor ?
-          <div class="original-author">
-            <h1>{title}</h1>
-            <span>by {originalAuthor}</span>
-          </div>
-        : <h1>{title}</h1>
-      }
-      <span>作者：{author}</span>
-    </hgroup>
+    </section>
     <hr />
-    <div class="text">
+    <section class="content">
       <slot />
-    </div>
+    </section>
   </article>
   <aside><ArticleNavigation id={id} /></aside>
 </BaseLayout>
 
 <style>
-  hgroup {
-    ul,
-    time,
-    span {
+  .metadata {
+    span,
+    a {
       font-family: var(--font-serif);
-      font-size: 0.8em;
-      font-weight: 500;
-      text-align: center;
+      font-size: 0.9em;
+      font-weight: 400;
     }
 
-    ul {
-      display: flex;
-      justify-content: center;
-      gap: 1ch;
-      padding-left: 0;
-      list-style-type: none;
+    time {
+      word-spacing: -0.25ch;
     }
 
     a {
@@ -98,32 +89,56 @@ const {
         color: var(--color-primary);
       }
     }
+  }
 
-    time {
-      display: block;
-      word-spacing: -0.25ch;
+  .meta-title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    h1 {
+      anchor-name: --title;
+
+      &:is(:last-child) {
+        margin-bottom: 0;
+      }
     }
 
     span {
-      display: block;
+      position: absolute;
+      position-anchor: --title;
+      bottom: calc(anchor(bottom) - 0.4em);
+      left: anchor(left);
     }
+  }
 
-    .original-author {
-      position: relative;
+  .meta-info {
+    display: flex;
+    gap: 1ch;
+    margin-block: 1em;
 
-      span {
-        position: absolute;
-        bottom: 0;
-        left: 17ch;
+    > span:not(:nth-child(even)) {
+      flex: 1;
+      text-align: right;
+
+      &:last-child {
+        text-align: left;
       }
     }
   }
 
-  .text {
-    margin-block: 1em;
+  .meta-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1ch;
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  .content {
     font-family: var(--font-cursive);
     letter-spacing: 0;
-    word-spacing: -0.2ch;
+    word-spacing: -0.175ch;
     text-wrap: pretty;
 
     details {
@@ -141,5 +156,9 @@ const {
         }
       }
     }
+  }
+
+  aside {
+    margin-top: auto;
   }
 </style>

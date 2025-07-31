@@ -41,10 +41,10 @@ const articles = await filterAndSortArticlesByCategories(categories);
   }
 
   p {
-    margin-block: 0;
-    padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 ArticleItem 的 font-size、margin-inline。 */
     display: flex;
     justify-content: flex-end;
+    margin-block: 0;
+    padding: 0 calc(18px * 0.75); /* 18px、0.75em 分別是 ArticleItem 的 font-size、margin-inline。 */
     color: var(--color-text-muted);
     font-size: 16px;
     font-weight: 500;
@@ -62,7 +62,7 @@ const articles = await filterAndSortArticlesByCategories(categories);
   }
 
   ul {
-    padding-inline-start: 0;
+    padding-left: 0;
     list-style-type: none;
   }
 

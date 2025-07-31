@@ -1,0 +1,13 @@
+---
+import { formatAttributeDate, formatContentDate } from "@utils/time";
+
+interface Props {
+  date: Date;
+  spacing?: boolean;
+}
+const { date, spacing = true } = Astro.props;
+---
+
+<time datetime={formatAttributeDate(date)}
+  >{formatContentDate(date, spacing)}</time
+>

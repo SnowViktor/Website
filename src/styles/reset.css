@@ -9,11 +9,11 @@
 
 :where(html) {
   box-sizing: border-box;
-  overflow-wrap: break-word;
   font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.15;
+  overflow-wrap: break-word;
   tab-size: 4;
   -webkit-tap-highlight-color: transparent;
 }

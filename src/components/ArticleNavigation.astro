@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import LayoutsTime from "./LayoutsTime.astro";
 import { getAdjacentArticles } from "@utils/collection";
-import { formatAttributeDate, formatContentDate } from "@utils/time";
 import ArrowLeft from "@lucide/astro/icons/arrow-left";
 import ArrowRight from "@lucide/astro/icons/arrow-right";
 
@@ -45,9 +45,7 @@ const navigationItems = [
             : <ArrowRight size={20} />}
             <p>
               {frontmatter.title}
-              <time datetime={formatAttributeDate(frontmatter.pubDate)}>
-                {formatContentDate(frontmatter.pubDate)}
-              </time>
+              <LayoutsTime date={frontmatter.pubDate} />
             </p>
           </div>
         </a>
@@ -58,10 +56,10 @@ const navigationItems = [
 
 <style>
   nav {
-    margin-top: auto;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    margin-top: auto;
 
     &:has(.prev:only-child) {
       justify-content: flex-start;
@@ -91,9 +89,9 @@ const navigationItems = [
   }
 
   div {
-    padding: 0.4em 0.4em 0.3em;
     display: flex;
     align-items: center;
+    padding: 0.4em 0.4em 0.3em;
     border: 1px solid var(--color-border-muted);
     border-radius: var(--border-radius-small);
     background-color: transparent;
@@ -115,13 +113,13 @@ const navigationItems = [
   }
 
   p {
-    margin: 0;
     display: flex;
     flex-direction: column;
+    margin: 0;
     color: var(--color-text-muted);
     font-size: 0.8em;
-    letter-spacing: 0;
     line-height: 1.2;
+    letter-spacing: 0;
   }
 
   time {

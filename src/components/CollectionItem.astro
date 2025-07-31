@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { formatContentDate } from "@utils/time";
+import LayoutsTime from "./LayoutsTime.astro";
 
 interface Props {
   article: CollectionEntry<CollectionKey>;
@@ -13,17 +13,15 @@ const frontmatter = article.data;
 <a href={`/articles/${article.id}`}>
   <p>{frontmatter.title}</p>
   <span aria-hidden="true"></span>
-  <time datetime={frontmatter.pubDate.toISOString()}
-    >{formatContentDate(frontmatter.pubDate, true)}</time
-  >
+  <LayoutsTime date={frontmatter.pubDate} />
 </a>
 
 <style>
   a {
-    padding: 0.6em 0.75em 0.55em;
     display: flex;
     align-items: center;
     gap: 0.5em;
+    padding: 0.6em 0.75em 0.55em;
     border-radius: var(--border-radius-medium);
     line-height: 1.2;
     transition: all var(--transition-duration) var(--transition-timing-function);
@@ -39,14 +37,14 @@ const frontmatter = article.data;
   }
 
   p {
-    margin: 0;
     flex: 0 1 auto;
+    margin: 0;
     white-space: normal;
   }
 
   span {
-    height: 0;
     flex: 1 1 auto;
+    height: 0;
     border: 1px dashed var(--color-border-muted);
   }
 

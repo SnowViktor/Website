@@ -73,7 +73,6 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   max-width: var(--max-width);
   min-height: calc(100vh - (45px + 1em));
   margin: 45px auto 1em;
@@ -83,6 +82,15 @@ main {
   line-height: 2;
   letter-spacing: 0.06ch;
   text-align: justify;
+  text-autospace: normal;
+  /*
+  當 Chrome version: 140
+  替換成 text-autospace: ideograph-alpha ideograph-numeric replace;
+  移除 ArticleLayout 裡的 word-spacing
+  考慮移除text-align
+  */
+  text-spacing-trim: trim-start;
+  word-break: auto-phrase;
 }
 
 blockquote {
@@ -98,12 +106,7 @@ hr {
 }
 
 /* 4. Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:is(h1, h2, h3, h4, h5, h6) {
   font-weight: 900;
 }
 
@@ -139,7 +142,7 @@ h6 {
   font-size: 1.25em;
 }
 
-li p:first-of-type {
+li p:first-child {
   margin-bottom: 0;
 
   + p {
@@ -165,8 +168,8 @@ a {
     &::before {
       position: absolute;
       position-anchor: --astro-code;
-      top: calc(anchor(--astro-code top) - (1em * 1.4 + 0.15em + 0.15em));
-      right: anchor(--astro-code right);
+      top: calc(anchor(top) - (1em * 1.4 + 0.15em + 0.15em));
+      right: anchor(right);
       padding-top: 0.15em;
       padding-inline: 1ch;
       border-bottom: 0.15em solid var(--color-border);
@@ -216,9 +219,9 @@ details {
   &::details-content {
     height: 0;
     padding-top: 0;
-    overflow-y: clip;
     transition: all var(--transition-duration-long)
       var(--transition-timing-function) allow-discrete;
+    overflow-y: clip;
   }
 
   &[open]::details-content {
