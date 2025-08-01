@@ -1,18 +1,17 @@
 ---
-import BaseHeaderLink from "./BaseHeaderLink.astro";
-// import BaseHeaderSearch from "./BaseHeaderSearch.astro";
+import BaseHeaderLink from "@components/BaseHeaderLink.astro";
+import BaseHeaderSearch from "@components/BaseHeaderSearch.astro";
 ---
 
 <header>
-  <a href="/" class="brand">SnowViktor</a>
-  <nav>
+  <a class="brand" href="/">SnowViktor</a>
+  <nav class="menu">
     <ul>
       <li><BaseHeaderLink href="/">首頁</BaseHeaderLink></li>
       <li><BaseHeaderLink href="/articles">文章</BaseHeaderLink></li>
     </ul>
   </nav>
-  <span class="search-placeholder"></span>
-  <!-- <BaseHeaderSearch /> -->
+  <BaseHeaderSearch class="search" />
 </header>
 
 <style>
@@ -21,7 +20,6 @@ import BaseHeaderLink from "./BaseHeaderLink.astro";
     z-index: 1;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,12 +27,13 @@ import BaseHeaderLink from "./BaseHeaderLink.astro";
     width: 100%;
     height: 2.5em;
     padding: 0 1em;
+    color: var(--color-text-muted);
+    translate: -50%;
+    transition: translate var(--transition-duration)
+      var(--transition-timing-function);
     font-family: var(--font-serif);
     font-size: 18px;
     font-weight: 600;
-    color: var(--color-text-muted);
-    transition: transform var(--transition-duration)
-      var(--transition-timing-function);
 
     &::before {
       content: "";
@@ -51,37 +50,36 @@ import BaseHeaderLink from "./BaseHeaderLink.astro";
     }
 
     &.retracted {
-      transform: translate(-50%, -100%);
+      translate: -50% -100%;
     }
-  }
 
-  a {
-    text-box: trim-both cap alphabetic;
+    a {
+      text-box: trim-both cap alphabetic;
+    }
   }
 
   .brand {
     flex: 1;
-    font-weight: 700;
     color: inherit;
     text-decoration: none;
+    font-weight: 700;
   }
 
-  nav {
+  .menu {
     flex: 2;
     display: flex;
     justify-content: center;
+
+    ul {
+      display: flex;
+      gap: 4ch;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
   }
 
-  nav ul {
-    display: flex;
-    align-items: center;
-    gap: 2em;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .search-placeholder {
+  .search {
     flex: 1;
   }
 </style>
