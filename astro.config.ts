@@ -17,11 +17,11 @@ export default defineConfig({
   }),
   integrations: [mdx(), sitemap()],
   vite: {
-    // build: {
-    //   rollupOptions: {
-    //     external: "/pagefind/pagefind.js",
-    //   },
-    // },
+    build: {
+      rollupOptions: {
+        external: "/pagefind/pagefind.js",
+      },
+    },
     plugins: [devtoolsJson()],
   },
   build: {
