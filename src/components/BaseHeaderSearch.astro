@@ -1,163 +1,56 @@
-<div id="search-container">
-  <input
-    type="text"
-    id="search-input-field"
-    placeholder="Search for articles..."
-    autocomplete="off"
-  />
-  <div id="search-results-container"></div>
-</div>
+---
+import type { HTMLAttributes, HTMLTag } from "astro/types";
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("search-input-field");
-    const searchResultsContainer = document.getElementById(
-      "search-results-container",
-    );
-    let pagefind: any = null;
-    let isLoaded = false;
+type Props = HTMLAttributes<HTMLTag>;
+const { ...props } = Astro.props;
+---
 
-    const initPagefind = async () => {
-      if (isLoaded) return;
-      try {
-        isLoaded = true;
-        // I don't know how it works, but it works!
-        // @ts-ignore
-        pagefind = await import("/pagefind/pagefind.js");
-        console.log("Pagefind loaded successfully.");
-      } catch (e) {
-        console.error(
-          "Pagefind failed to load. Did you run `pnpm local-build` first?",
-          e,
-        );
-        if (searchResultsContainer) {
-          searchResultsContainer.innerHTML = `<p style="color: #ff6666;">Search is not available. Please run the build command first.</p>`;
-        }
-      }
-    };
-
-    const debounce = (func: Function, delay: number) => {
-      let timeoutId: NodeJS.Timeout;
-      return (...args: any[]) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          func.apply(null, args);
-        }, delay);
-      };
-    };
-
-    const performSearch = debounce(async (term: string) => {
-      if (!isLoaded || !pagefind || !searchResultsContainer) {
-        if (searchResultsContainer)
-          searchResultsContainer.innerHTML = `<p>Initializing search...</p>`;
-        await initPagefind();
-        // If it's still not loaded, the error message is already shown.
-        if (!isLoaded) return;
-      }
-
-      term = term.trim();
-      searchResultsContainer!.innerHTML = "";
-
-      if (term.length === 0) {
-        return;
-      }
-
-      if (term.length < 2) {
-        searchResultsContainer!.innerHTML = `<p>Please enter at least 2 characters.</p>`;
-        return;
-      }
-
-      searchResultsContainer!.innerHTML = `<p>Searching for "${term}"...</p>`;
-
-      try {
-        const search = await pagefind.search(term);
-
-        if (search.results.length === 0) {
-          searchResultsContainer!.innerHTML = `<p>No results found for "${term}".</p>`;
-        } else {
-          const resultList = document.createElement("ul");
-          const results = await Promise.all(
-            search.results.map((r: any) => r.data()),
-          );
-
-          results.forEach((data) => {
-            const listItem = document.createElement("li");
-            const link = document.createElement("a");
-            link.href = data.url;
-            link.innerHTML = data.meta.title; // Use innerHTML to render highlights
-
-            const excerpt = document.createElement("p");
-            excerpt.innerHTML = data.excerpt; // Use innerHTML to render highlights
-
-            listItem.appendChild(link);
-            listItem.appendChild(excerpt);
-            resultList.appendChild(listItem);
-          });
-
-          searchResultsContainer!.innerHTML = ""; // Clear "Searching..." message
-          searchResultsContainer!.appendChild(resultList);
-        }
-      } catch (e) {
-        console.error("Search failed:", e);
-        searchResultsContainer!.innerHTML = `<p>Search encountered an error.</p>`;
-      }
-    }, 300);
-
-    searchInput?.addEventListener("focus", initPagefind, { once: true });
-    searchInput?.addEventListener("input", (e) => {
-      performSearch((e.target as HTMLInputElement).value);
-    });
-  });
-</script>
+<search {...props}>
+  <input id="search-input" type="search" />
+  <output id="search-output" for="search-input"></output>
+</search>
 
 <style>
-  /* Minimal styles for basic functionality */
-  #search-container {
-    margin: 1.5rem 0;
-    position: relative;
-  }
-  #search-input-field {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-  }
-  #search-results-container {
-    margin-top: 1rem;
-    padding: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    min-height: 50px;
-  }
-  #search-results-container ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  #search-results-container li {
-    margin-bottom: 1rem;
-  }
-  #search-results-container a {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-  #search-results-container a:hover {
-    text-decoration: underline;
-  }
-  #search-results-container p {
-    margin: 0;
-    color: var(--color-text-secondary);
-  }
-  /* Highlight style from Pagefind */
-  mark {
-    background-color: #fde047;
-    color: #18181b;
-    border-radius: 2px;
-    padding: 1px 2px;
+  search {
+    translate: 0 50%;
   }
 </style>
+
+<script is:inline async>
+  const searchInput = document.getElementById("search-input");
+  const searchOutput = document.getElementById("search-output");
+  let pagefind;
+
+  const initPagefind = async () => {
+    if (pagefind) return;
+    pagefind = await import("/pagefind/pagefind.js");
+    pagefind.init();
+  };
+
+  searchInput.addEventListener("focus", initPagefind);
+
+  searchInput.addEventListener("input", async (event) => {
+    await initPagefind();
+
+    const searchTerm = event.target.value;
+    if (!searchTerm) {
+      searchOutput.innerHTML = "";
+      return;
+    }
+
+    const modifiedTerm = `"${searchTerm.split("").join(" ")}"`;
+    const search = await pagefind.search(modifiedTerm);
+    const results = await Promise.all(search.results.map((r) => r.data()));
+
+    if (!results.length) {
+      searchOutput.innerHTML = "";
+      return;
+    }
+
+    const listItems = results
+      .map((data) => `<li>${data.excerpt}</li>`)
+      .join("");
+
+    searchOutput.innerHTML = `<ul>${listItems}</ul>`;
+  });
+</script>
