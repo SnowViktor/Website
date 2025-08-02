@@ -1,4 +1,5 @@
 ---
+import VercelWebAnalytics from "@vercel/analytics/astro";
 import { SITE_TITLE, SITE_AUTHOR } from "src/consts";
 import "@styles/global.css";
 
@@ -64,4 +65,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+  <!-- Web Analytics -->
+  <VercelWebAnalytics />
 </head>
