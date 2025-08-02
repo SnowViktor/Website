@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "local-build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
-    "build": "astro check && astro build && pagefind --site dist",
+    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
     "astro": "astro"
   },
   "dependencies": {
