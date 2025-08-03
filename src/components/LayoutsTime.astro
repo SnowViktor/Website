@@ -1,13 +1,14 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { formatAttributeDate, formatContentDate } from "@utils/time";
 
-interface Props {
+interface Props extends HTMLAttributes<"time"> {
   date: Date;
   spacing?: boolean;
 }
-const { date, spacing = true } = Astro.props;
+const { date, spacing = true, ...props } = Astro.props;
 ---
 
-<time datetime={formatAttributeDate(date)}
+<time datetime={formatAttributeDate(date)} {...props}
   >{formatContentDate(date, spacing)}</time
 >

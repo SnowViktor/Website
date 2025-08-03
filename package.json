@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.14.0",
   "scripts": {
-    "upgrade": "pnpx @astrojs/upgrade",
-    "update": "pnpm update",
     "dev": "astro dev",
-    "local-build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "deps:update": "pnpm update",
+    "deps:upgrade": "pnpx @astrojs/upgrade",
+    "build": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
+    "build:local": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
+    "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {

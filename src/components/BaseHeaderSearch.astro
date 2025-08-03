@@ -20,37 +20,43 @@ const { ...props } = Astro.props;
   const searchInput = document.getElementById("search-input");
   const searchOutput = document.getElementById("search-output");
   let pagefind;
+  let pagefindInitialized = false;
+  let debounceTimer;
 
   const initPagefind = async () => {
-    if (pagefind) return;
+    if (pagefindInitialized) return;
     pagefind = await import("/pagefind/pagefind.js");
     pagefind.init();
+    pagefindInitialized = true;
   };
 
   searchInput.addEventListener("focus", initPagefind);
 
   searchInput.addEventListener("input", async (event) => {
-    await initPagefind();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(async () => {
+      await initPagefind();
 
-    const searchTerm = event.target.value;
-    if (!searchTerm) {
-      searchOutput.innerHTML = "";
-      return;
-    }
+      const searchTerm = event.target.value;
+      if (!searchTerm) {
+        searchOutput.innerHTML = "";
+        return;
+      }
 
-    const modifiedTerm = `"${searchTerm.split("").join(" ")}"`;
-    const search = await pagefind.search(modifiedTerm);
-    const results = await Promise.all(search.results.map((r) => r.data()));
+      const modifiedTerm = `"${searchTerm.split("").join(" ")}"`;
+      const search = await pagefind.search(modifiedTerm);
+      const results = await Promise.all(search.results.map((r) => r.data()));
 
-    if (!results.length) {
-      searchOutput.innerHTML = "";
-      return;
-    }
+      if (!results.length) {
+        searchOutput.innerHTML = "";
+        return;
+      }
 
-    const listItems = results
-      .map((data) => `<li>${data.excerpt}</li>`)
-      .join("");
+      const listItems = results
+        .map((data) => `<li>${data.excerpt}</li>`)
+        .join("");
 
-    searchOutput.innerHTML = `<ul>${listItems}</ul>`;
+      searchOutput.innerHTML = `<ul>${listItems}</ul>`;
+    }, 300); // 300ms debounce
   });
 </script>

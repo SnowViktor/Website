@@ -11,9 +11,9 @@ const frontmatter = article.data;
 ---
 
 <a href={`/articles/${article.id}`}>
-  <p>{frontmatter.title}</p>
-  <span aria-hidden="true"></span>
-  <LayoutsTime date={frontmatter.pubDate} />
+  <span class="title">{frontmatter.title}</span>
+  <span class="separator" aria-hidden="true"></span>
+  <LayoutsTime class="date" date={frontmatter.pubDate} />
 </a>
 
 <style>
@@ -37,28 +37,26 @@ const frontmatter = article.data;
     }
   }
 
-  p {
+  .title {
     flex: 0 1 auto;
     margin: 0;
-    white-space: normal;
   }
 
-  span {
+  .separator {
     flex: 1 1 auto;
     height: 0;
     border: 1px dashed var(--color-border-muted);
   }
 
-  time {
+  .date {
     flex: 0 0 auto;
     color: var(--color-text-muted);
     word-spacing: -0.15em;
-    white-space: nowrap;
   }
 
   @media (max-width: 768px) {
     /* --max-width: 768px */
-    time {
+    .date {
       font-size: 0.8em;
       word-spacing: -0.2em;
     }

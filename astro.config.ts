@@ -10,11 +10,7 @@ import devtoolsJson from "vite-plugin-devtools-json";
 export default defineConfig({
   site: "https://snow-viktor.vercel.app",
   trailingSlash: "never",
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+  adapter: vercel(),
   integrations: [mdx(), sitemap()],
   vite: {
     build: {
