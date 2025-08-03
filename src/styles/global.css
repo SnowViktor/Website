@@ -160,15 +160,17 @@ a {
   anchor-name: --astro-code;
   padding: 0.5ch 0 0.5ch 1ch;
   border-radius: var(--border-radius-small);
-  transition: all var(--transition-duration) var(--transition-timing-function);
+  transition: border-top-right-radius var(--transition-duration)
+    var(--transition-timing-function);
   font-size: 16px;
   line-height: 1.4;
 
   @supports (anchor-name: --astro-code) {
     &::before {
+      content: attr(data-language);
       position: absolute;
       position-anchor: --astro-code;
-      top: calc(anchor(top) - (1em * 1.4 + 0.15em + 0.15em));
+      top: calc(anchor(top) - (1lh + 0.15em + 0.15em));
       right: anchor(right);
       padding-top: 0.15em;
       padding-inline: 1ch;
@@ -179,7 +181,6 @@ a {
       transition: inherit;
       transition-property: opacity;
       font-size: 14px;
-      content: attr(data-language);
     }
 
     &:focus-visible::before {
@@ -187,13 +188,16 @@ a {
       outline: inherit;
     }
 
-    &:hover {
-      transition: border-top-right-radius var(--transition-duration)
-        var(--transition-timing-function);
-    }
-
     &:focus-visible,
     &:hover {
+      border-top-right-radius: 0;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
       border-top-right-radius: 0;
 
       &::before {
@@ -205,9 +209,8 @@ a {
 
 /* 6. Interactive Elements */
 :focus-visible {
-  outline: 2px solid var(--color-secondary);
-  outline-offset: 2px;
   border-radius: inherit;
+  outline: 2px solid var(--color-secondary);
 }
 
 details {

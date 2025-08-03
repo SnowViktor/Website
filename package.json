@@ -5,8 +5,8 @@
   "packageManager": "pnpm@10.14.0",
   "scripts": {
     "dev": "astro dev",
-    "deps:update": "pnpm update",
     "deps:upgrade": "pnpx @astrojs/upgrade",
+    "deps:update": "pnpm update",
     "build": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
     "build:local": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
