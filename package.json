@@ -7,8 +7,8 @@
     "dev": "astro dev",
     "deps:upgrade": "pnpx @astrojs/upgrade",
     "deps:update": "pnpm update",
-    "build": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
     "build:local": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro"

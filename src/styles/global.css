@@ -1,8 +1,10 @@
 /* 1. At-rules & Resets */
 @import "./reset.css";
 
-@view-transition {
-  navigation: auto;
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 /* 2. Custom Properties */

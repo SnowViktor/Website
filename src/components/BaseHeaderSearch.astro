@@ -6,57 +6,124 @@ const { ...props } = Astro.props;
 ---
 
 <search {...props}>
-  <input id="search-input" type="search" />
+  <input
+    id="search-input"
+    type="search"
+    size="10"
+    autocomplete="off"
+    placeholder="search"
+  />
   <output id="search-output" for="search-input"></output>
 </search>
 
 <style>
   search {
-    translate: 0 50%;
+    font-family: var(--font-sans);
+  }
+
+  #search-input {
+  }
+
+  #search-output {
+    position: fixed;
+    z-index: 1;
+    top: 45px;
+    left: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: oklch(
+        from var(--color-bg) l c h / var(--opacity-strongest)
+      );
+      backdrop-filter: var(--blur-small);
+    }
+
+    ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    a {
+      display: flex;
+      gap: 2ch;
+    }
+
+    .title {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    .excerpt {
+      font-size: 0.9em;
+      font-weight: 400;
+
+      mark {
+        font-weight: 500;
+      }
+    }
   }
 </style>
 
-<script is:inline async>
+<script async is:inline>
   const searchInput = document.getElementById("search-input");
   const searchOutput = document.getElementById("search-output");
-  let pagefind;
-  let pagefindInitialized = false;
-  let debounceTimer;
+  let pagefind = null;
 
-  const initPagefind = async () => {
-    if (pagefindInitialized) return;
-    pagefind = await import("/pagefind/pagefind.js");
-    pagefind.init();
-    pagefindInitialized = true;
-  };
+  searchInput.addEventListener("focus", async () => {
+    if (!pagefind) {
+      pagefind = await import("/pagefind/pagefind.js");
+      await pagefind.options({
+        excerptLength: 25,
+      });
+      pagefind.init();
+    }
+  });
 
-  searchInput.addEventListener("focus", initPagefind);
+  searchInput.addEventListener("input", async (e) => {
+    const value = e.target.value;
+    // 將 CJK 連續字串分字並加引號，英文等 ASCII 自動與前面非 ASCII 空格分隔
+    const searchTerm = value
+      .replace(
+        /([\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]+)/g,
+        (match) => `"${match.split("").join(" ")}"`,
+      )
+      .replace(/" ([A-Za-z0-9])/g, `" $1`) // 去除 CJK 分字後引號與英文間多餘空格
+      .replace(/(".*?")([A-Za-z0-9])/g, "$1 $2"); // 若 CJK 與 ASCII 之間沒有空格，補上一個空格
+    const search = await pagefind.debouncedSearch(searchTerm, {}, 300);
 
-  searchInput.addEventListener("input", async (event) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(async () => {
-      await initPagefind();
-
-      const searchTerm = event.target.value;
-      if (!searchTerm) {
-        searchOutput.innerHTML = "";
-        return;
-      }
-
-      const modifiedTerm = `"${searchTerm.split("").join(" ")}"`;
-      const search = await pagefind.search(modifiedTerm);
+    if (search && search.results.length > 0) {
       const results = await Promise.all(search.results.map((r) => r.data()));
+      console.log(results);
 
-      if (!results.length) {
-        searchOutput.innerHTML = "";
-        return;
-      }
+      const ul = document.createElement("ul");
+      results.forEach((data) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = data.url.replace(/\/$/, "");
 
-      const listItems = results
-        .map((data) => `<li>${data.excerpt}</li>`)
-        .join("");
+        const title = document.createElement("span");
+        title.classList.add("title");
+        title.textContent = data.meta.title;
 
-      searchOutput.innerHTML = `<ul>${listItems}</ul>`;
-    }, 300); // 300ms debounce
+        const excerpt = document.createElement("span");
+        excerpt.classList.add("excerpt");
+        excerpt.innerHTML = data.excerpt;
+
+        a.appendChild(title);
+        a.appendChild(excerpt);
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      searchOutput.innerHTML = "";
+      searchOutput.appendChild(ul);
+    } else {
+      searchOutput.innerHTML = "";
+    }
   });
 </script>
