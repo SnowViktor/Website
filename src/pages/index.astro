@@ -4,11 +4,53 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "src/consts";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <h1>I'm SnowViktor. 我是彬彬。</h1>
-  <h2>I'm SnowViktor. 我是彬彬。</h2>
-  <h3>I'm SnowViktor. 我是彬彬。</h3>
-  <h4>I'm SnowViktor. 我是彬彬。</h4>
-  <h5>I'm SnowViktor. 我是彬彬。</h5>
-  <h6>I'm SnowViktor. 我是彬彬。</h6>
+  <section class="intro">
+    <h1>I'm SnowViktor. 我是彬彬。</h1>
+    <h2>I'm SnowViktor. 我是彬彬。</h2>
+    <h3>I'm SnowViktor. 我是彬彬。</h3>
+    <h4>I'm SnowViktor. 我是彬彬。</h4>
+    <h5>I'm SnowViktor. 我是彬彬。</h5>
+    <h6>I'm SnowViktor. 我是彬彬。</h6>
+  </section>
   <!--【關於我轉生變成彬彬這檔事】-->
 </BaseLayout>
+
+<style>
+  .intro {
+    font-family: var(--font-serif);
+    text-align: center;
+  }
+</style>
+
+<script>
+  const introSection = document.querySelector("section.intro") as HTMLElement;
+  const headingTemplate = Array.from(
+    introSection.querySelectorAll(
+      "h1, h2, h3, h4, h5, h6",
+    ) as NodeListOf<HTMLHeadingElement>,
+  );
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      const entry = entries[0];
+      if (!entry.isIntersecting) return;
+
+      headingTemplate.forEach((h) => {
+        introSection.appendChild(h.cloneNode(true));
+      });
+
+      obs.unobserve(entry.target);
+
+      const newLastH6 = introSection.querySelector(
+        "h6:last-of-type",
+      ) as HTMLHeadingElement;
+      obs.observe(newLastH6);
+    },
+    { threshold: 1.0 },
+  );
+
+  const initialLastH6 = introSection.querySelector(
+    "h6:last-of-type",
+  ) as HTMLHeadingElement;
+  observer.observe(initialLastH6);
+</script>
