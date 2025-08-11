@@ -46,8 +46,8 @@ importers:
         specifier: ^1.3.0
         version: 1.3.0
       vite-plugin-devtools-json:
-        specifier: ^0.1.1
-        version: 0.1.1(vite@6.3.5(@types/node@24.2.1)(yaml@2.8.1))
+        specifier: ^0.4.1
+        version: 0.4.1(vite@6.3.5(@types/node@24.2.1)(yaml@2.8.1))
 
 packages:
 
@@ -2054,10 +2054,10 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  vite-plugin-devtools-json@0.1.1:
-    resolution: {integrity: sha512-kjXyDTZDwOKiqum/DBWZ6JenUh9qWFr/0/peoQqARanseFyNmtxOrexAxbE7ERqBSsMSkQA7qNTSQkZGw1SfPw==}
+  vite-plugin-devtools-json@0.4.1:
+    resolution: {integrity: sha512-pN+QJL+NwZUV+Via8w/Sh6X2pDrVClIMDAXdl7+EteXKB6mcHhsFGGclmxrPx6ZPGKSK5ez5ns64oRpjE5wFCg==}
     peerDependencies:
-      vite: ^2.7.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+      vite: ^2.7.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
   vite@6.3.5:
     resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
@@ -4842,7 +4842,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite-plugin-devtools-json@0.1.1(vite@6.3.5(@types/node@24.2.1)(yaml@2.8.1)):
+  vite-plugin-devtools-json@0.4.1(vite@6.3.5(@types/node@24.2.1)(yaml@2.8.1)):
     dependencies:
       uuid: 11.1.0
       vite: 6.3.5(@types/node@24.2.1)(yaml@2.8.1)
