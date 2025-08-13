@@ -9,41 +9,47 @@
 
 /* 2. Custom Properties */
 :root {
-  /* Colors */
-  --color-bg-dark: oklch(from var(--color-bg) calc(l - 0.05) c h);
-  --color-bg: oklch(0.22 0.008 180);
-  --color-bg-light: oklch(from var(--color-bg) calc(l + 0.05) c h);
+  --hue-neutral: 180;
+  --chroma-neutral: 0.008;
+  --neutral-100: oklch(0.99 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-200: oklch(0.95 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-300: oklch(0.85 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-400: oklch(0.7 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-500: oklch(0.55 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-600: oklch(0.45 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-700: oklch(0.35 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-800: oklch(0.27 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-900: oklch(0.22 var(--chroma-neutral) var(--hue-neutral));
+  --neutral-950: oklch(0.17 var(--chroma-neutral) var(--hue-neutral));
 
-  --color-text: oklch(0.95 0.008 180);
-  --color-text-muted: oklch(from var(--color-text) calc(l - 0.15) c h);
+  --color-everlasting-teal: #104e48;
+  --hue-primary: 185;
+  --chroma-primary: 0.06;
+  --primary-100: oklch(0.95 var(--chroma-primary) var(--hue-primary));
+  --primary-200: oklch(0.9 var(--chroma-primary) var(--hue-primary));
+  --primary-300: oklch(0.85 var(--chroma-primary) var(--hue-primary));
+  --primary-400: oklch(0.8 var(--chroma-primary) var(--hue-primary));
+  --primary-500: oklch(0.75 var(--chroma-primary) var(--hue-primary));
+  --primary-600: oklch(0.7 var(--chroma-primary) var(--hue-primary));
+  --primary-700: oklch(0.65 var(--chroma-primary) var(--hue-primary));
+  --primary-800: oklch(0.6 var(--chroma-primary) var(--hue-primary));
+  --primary-900: oklch(0.55 var(--chroma-primary) var(--hue-primary));
 
-  --color-selected-bg: oklch(from var(--color-bg) 0.95 c calc(h));
-  --color-selected-text: oklch(from var(--color-text) 0.22 c calc(h));
-
-  --color-border: oklch(from var(--color-bg) calc(l + 0.225) c h);
-  --color-border-muted: oklch(from var(--color-border) calc(l - 0.1) c h);
-
-  --color-everlasting-teal: #104e48; /* rgb(16, 78, 72) 永生青 */
-  --color-new-taiwan-red: #f72589; /* rgb(247, 37, 137) 新臺灣紅 */
-  --color-primary: oklch(from var(--color-everlasting-teal) 0.8 c h);
-  --color-secondary: oklch(from var(--color-new-taiwan-red) 0.8 c h);
-
-  --opacity-strongest: 0.9;
-  --opacity-stronger: 0.75;
-  --opacity-strong: 0.6;
-  --opacity: 0.5;
-  --opacity-light: 0.4;
-  --opacity-lighter: 0.25;
-  --opacity-lightest: 0.1;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
 
   /* Typography */
   --font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
   --font-serif: "Noto Serif", "Noto Serif TC", serif;
   --font-cursive: "Iansui", cursive;
   --font-mono: "Cascadia Code", monospace;
-
-  /* Layout */
-  --max-width: 768px;
 
   /* Transitions & Animations */
   --transition-duration: 150ms;
@@ -56,34 +62,16 @@
   --border-radius-large: 0.9em;
 
   /* Effects */
-  --blur-small: blur(2px);
+  --blur-small: 2px;
 }
 
 /* 3. Layout & Block Elements */
 body {
-  margin: 16px;
-  background-color: var(--color-bg-dark);
-  touch-action: manipulation;
-  interpolate-size: allow-keywords;
-
-  &::selection {
-    background-color: var(--color-selected-bg);
-    color: var(--color-selected-text);
-  }
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  max-width: var(--max-width);
-  min-height: calc(100vh - (45px + 1em));
-  margin: 45px auto 1em;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 2;
-  letter-spacing: 0.06ch;
-  text-align: justify;
+  margin: auto;
+  max-width: 768px;
+  background-color: var(--neutral-950);
+  font-size: max(18px, 1rem);
+  letter-spacing: 0.03em;
   text-autospace: normal;
   /*
   當 Chrome version: 140
@@ -93,17 +81,41 @@ main {
   */
   text-spacing-trim: trim-start;
   word-break: auto-phrase;
+  interpolate-size: allow-keywords;
+  touch-action: manipulation;
+
+  @media (max-width: 768px) {
+    padding: 0.75em;
+  }
+
+  &::selection {
+    background-color: var(--neutral-200);
+    color: var(--neutral-950);
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  max-width: inherit;
+  min-height: calc(100vh - (2.95em + 1em));
+  margin: 2.95em auto 1em;
+  color: var(--neutral-200);
+  font-family: var(--font-sans);
+  font-size: inherit;
+  line-height: 2;
+  text-align: justify;
 }
 
 blockquote {
   margin-inline: 0;
   padding-left: 0.75ch;
-  border-left: 0.5ch solid var(--color-primary);
+  border-left: 0.5ch solid var(--neutral-400);
 }
 
 hr {
   max-width: var(--max-width);
-  border-color: var(--color-border-muted);
+  border-color: var(--neutral-700);
   border-style: dashed;
 }
 
@@ -176,7 +188,7 @@ a {
       right: anchor(right);
       padding-top: 0.15em;
       padding-inline: 1ch;
-      border-bottom: 0.15em solid var(--color-border);
+      border-bottom: 0.15em solid var(--neutral-600);
       border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
       background-color: inherit;
       opacity: 0;
@@ -218,7 +230,7 @@ a {
 details {
   margin-block: 1em;
   padding: 0.2em 0.7em;
-  border: 0.1em outset var(--color-border);
+  border: 0.1em outset var(--neutral-600);
   border-radius: var(--border-radius-medium);
 
   &::details-content {

@@ -1,54 +1,48 @@
 ---
 import BaseHeaderLink from "@components/BaseHeaderLink.astro";
-import BaseHeaderSearch from "@components/BaseHeaderSearch.astro";
+// import BaseHeaderSearch from "@components/BaseHeaderSearch.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <header>
   <a class="brand" href="/">SnowViktor</a>
   <nav class="menu">
+    <label style="display: none;">Menu<Icon name="lucide:menu" /></label>
     <ul>
       <li><BaseHeaderLink href="/">首頁</BaseHeaderLink></li>
       <li><BaseHeaderLink href="/articles">文章</BaseHeaderLink></li>
     </ul>
   </nav>
-  <BaseHeaderSearch class="search" />
+  <button>Search<Icon name="lucide:search" /></button>
+  <!-- <BaseHeaderSearch class="search" /> -->
 </header>
 
 <style>
   header {
     position: fixed;
     z-index: 1;
-    inset: 0 50%;
+    inset: 0.75em 50%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    max-width: var(--max-width);
+    max-width: inherit;
     width: 100%;
-    height: 2.5em;
-    padding: 0 1em;
-    color: var(--color-text-muted);
+    height: fit-content;
+    border-radius: 0.7em;
+    background-color: oklch(from var(--neutral-700) l c h / var(--opacity-80));
+    backdrop-filter: blur(var(--blur-small));
+    color: var(--neutral-200);
     translate: -50%;
     transition: translate var(--transition-duration)
       var(--transition-timing-function);
     font-family: var(--font-serif);
-    font-size: 18px;
-    font-weight: 600;
+    font-size: inherit;
 
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      background-color: oklch(
-        from var(--color-bg-dark) l c h / var(--opacity-stronger)
-      );
-      backdrop-filter: var(--blur-small);
+    @media (max-width: 768px) {
+      width: calc(100% - 0.75em);
     }
 
     &.retracted {
-      translate: -50% -100%;
+      translate: -50% -150%;
     }
 
     a {
@@ -57,20 +51,24 @@ import BaseHeaderSearch from "@components/BaseHeaderSearch.astro";
   }
 
   .brand {
-    flex: 1;
-    color: inherit;
+    flex: 0;
+    padding: 0.6em 0.7em;
+    border-radius: inherit;
+    background-color: var(--primary-300);
+    color: var(--neutral-800);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .menu {
     flex: 2;
     display: flex;
     justify-content: center;
+    font-weight: 500;
 
     ul {
       display: flex;
-      gap: 4ch;
+      gap: 2em;
       margin: 0;
       padding: 0;
       list-style: none;

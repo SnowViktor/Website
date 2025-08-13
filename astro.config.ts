@@ -2,16 +2,17 @@ import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
+import devtoolsJson from "vite-plugin-devtools-json";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import devtoolsJson from "vite-plugin-devtools-json";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://snow-viktor.vercel.app",
   trailingSlash: "never",
   adapter: vercel(),
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), icon({ iconDir: "src/assets/icons" })],
   vite: {
     build: {
       rollupOptions: {

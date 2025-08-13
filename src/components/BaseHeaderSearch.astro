@@ -38,9 +38,9 @@ const { ...props } = Astro.props;
       width: 100%;
       height: 100%;
       background-color: oklch(
-        from var(--color-bg) l c h / var(--opacity-strongest)
+        from var(--neutral-900) l c h / var(--opacity-90)
       );
-      backdrop-filter: var(--blur-small);
+      backdrop-filter: blur(var(--blur-small));
     }
 
     ul {
@@ -54,7 +54,7 @@ const { ...props } = Astro.props;
     }
 
     .title {
-      color: var(--color-primary);
+      color: var(--neutral-400);
       font-weight: 700;
     }
 

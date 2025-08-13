@@ -2,8 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import LayoutsTime from "@components/LayoutsTime.astro";
 import { getAdjacentArticles } from "@utils/collection";
-import ArrowLeft from "@lucide/astro/icons/arrow-left";
-import ArrowRight from "@lucide/astro/icons/arrow-right";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   id: string;
@@ -41,8 +40,8 @@ const navigationItems = [
         >
           <div tabindex="-1">
             {direction === "prev" ?
-              <ArrowLeft size={20} />
-            : <ArrowRight size={20} />}
+              <Icon name="lucide:arrow-left" size={20} />
+            : <Icon name="lucide:arrow-right" size={20} />}
             <p>
               {frontmatter.title}
               <LayoutsTime date={frontmatter.pubDate} />
@@ -92,7 +91,7 @@ const navigationItems = [
     display: flex;
     align-items: center;
     padding: 0.4em 0.4em 0.3em;
-    border: 1px solid var(--color-border-muted);
+    border: 1px solid var(--neutral-700);
     border-radius: var(--border-radius-small);
     background-color: transparent;
     transition: all var(--transition-duration) var(--transition-timing-function);
@@ -100,7 +99,7 @@ const navigationItems = [
 
     &:focus-visible,
     &:hover {
-      background-color: var(--color-bg-light);
+      background-color: var(--neutral-800);
     }
 
     &:active {
@@ -116,7 +115,7 @@ const navigationItems = [
     display: flex;
     flex-direction: column;
     margin: 0;
-    color: var(--color-text-muted);
+    color: var(--neutral-400);
     font-size: 0.8em;
     line-height: 1.2;
     letter-spacing: 0;

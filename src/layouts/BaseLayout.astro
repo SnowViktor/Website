@@ -12,7 +12,7 @@ interface Props {
 const { title, description, image = "/og-image.png" } = Astro.props;
 ---
 
-<html lang="zh-tw">
+<html lang="zh-hant-tw">
   <BaseHead
     title={title === SITE_TITLE ? SITE_TITLE : `${title}－${SITE_TITLE}`}
     description={description}
@@ -23,7 +23,6 @@ const { title, description, image = "/og-image.png" } = Astro.props;
     <main data-pagefind-body>
       <slot />
     </main>
-    <hr />
     <BaseFooter />
   </body>
 </html>

@@ -1,23 +1,35 @@
 ---
-import Github from "@assets/icons/github.svg";
+import { Icon } from "astro-icon/components";
 ---
 
 <footer>
-  <div>
-    <a
-      href="https://github.com/SnowViktor/Website"
-      target="_blank"
-      aria-label="Go to Website's GitHub repository"
-    >
-      <Github />
-    </a>
-  </div>
+  <ul class="social">
+    <li>
+      <a
+        href="https://github.com/SnowViktor/Website"
+        target="_blank"
+        aria-label="Go to Website's GitHub repository"
+      >
+        <Icon name="github" size={32} />
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://www.youtube.com/@SnowViktor"
+        target="_blank"
+        aria-label="Go to SnowViktor's YouTube channel"
+      >
+        <Icon name="youtube" size={36} />
+      </a>
+    </li>
+  </ul>
   <p>
     Powered by <a href="https://astro.build/" target="_blank">Astro</a>.
   </p>
   <p>
     <a href="https://snow-viktor.vercel.app" target="_blank">Website</a> by SnowViktor
     is licensed under <a
+      class="license"
       href="https://creativecommons.org/licenses/by-nc/4.0/"
       target="_blank">CC BY-NC 4.0</a
     >.
@@ -26,19 +38,37 @@ import Github from "@assets/icons/github.svg";
 
 <style>
   footer {
-    margin: 1em auto;
-    max-width: var(--max-width);
-    color: var(--color-text-muted);
-    font: italic 14px/1.5 var(--font-serif);
+    margin-block: 2em 1em;
+    padding: 1em;
+    max-width: inherit;
+    border-radius: 1.5em;
+    background-color: var(--neutral-800);
+    color: var(--neutral-400);
+    font-family: var(--font-serif);
+    font-size: 0.8em;
     text-align: center;
+    text-wrap: balance;
+
+    a {
+      text-decoration: underline wavy currentColor 1px;
+
+      &:focus-visible,
+      &:hover {
+        color: var(--neutral-300);
+      }
+    }
   }
 
-  p {
-    margin: 0;
+  .social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+    padding-left: 0;
+    list-style: none;
   }
 
-  a:focus-visible,
-  a:hover {
-    text-decoration: underline wavy 1px;
+  .license {
+    text-wrap: nowrap;
   }
 </style>

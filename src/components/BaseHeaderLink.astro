@@ -14,6 +14,12 @@ const isActive = href === pathname || href === "/" + (subpath?.[0] ?? "");
 </a>
 
 <style>
+  a:is(:focus-visible, :hover) {
+    color: var(--primary-300);
+  }
+
   .active {
+    text-decoration: underline solid var(--primary-600) 2px;
+    text-underline-offset: 36%;
   }
 </style>
