@@ -66,6 +66,11 @@
 }
 
 /* 3. Layout & Block Elements */
+html {
+  scrollbar-color: oklch(from var(--primary-900) l c h / var(--opacity-70))
+    transparent;
+}
+
 body {
   margin: auto;
   max-width: 768px;
@@ -98,8 +103,8 @@ main {
   display: flex;
   flex-direction: column;
   max-width: inherit;
-  min-height: calc(100vh - (2.95em + 1em));
-  margin: 2.95em auto 1em;
+  min-height: calc(100vh - (2.75em + 1em));
+  margin: 2.75em auto 1em;
   color: var(--neutral-200);
   font-family: var(--font-sans);
   font-size: inherit;
@@ -195,6 +200,8 @@ a {
       transition: inherit;
       transition-property: opacity;
       font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
     }
 
     &:focus-visible::before {

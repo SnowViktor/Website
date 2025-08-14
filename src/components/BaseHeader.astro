@@ -13,8 +13,10 @@ import { Icon } from "astro-icon/components";
       <li><BaseHeaderLink href="/articles">文章</BaseHeaderLink></li>
     </ul>
   </nav>
-  <button>Search<Icon name="lucide:search" /></button>
-  <!-- <BaseHeaderSearch class="search" /> -->
+  <button class="search" onclick="alert('Search🔍 function is disabled.')"
+    >搜尋<Icon name="lucide:search" size={18} /></button
+  >
+  <!-- <BaseHeaderSearch style="display: none;" /> -->
 </header>
 
 <style>
@@ -24,6 +26,7 @@ import { Icon } from "astro-icon/components";
     inset: 0.75em 50%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     max-width: inherit;
     width: 100%;
     height: fit-content;
@@ -36,32 +39,32 @@ import { Icon } from "astro-icon/components";
       var(--transition-timing-function);
     font-family: var(--font-serif);
     font-size: inherit;
+    line-height: 1;
 
     @media (max-width: 768px) {
       width: calc(100% - 0.75em);
     }
 
     &.retracted {
-      translate: -50% -150%;
-    }
+      translate: -50% -2.75em;
 
-    a {
-      text-box: trim-both cap alphabetic;
+      .brand {
+        box-shadow: none;
+      }
     }
   }
 
   .brand {
-    flex: 0;
-    padding: 0.6em 0.7em;
+    padding: 0.5em 0.6em;
     border-radius: inherit;
     background-color: var(--primary-300);
+    box-shadow: 0 0 5px 0 var(--primary-300);
     color: var(--neutral-800);
     text-decoration: none;
     font-weight: 600;
   }
 
   .menu {
-    flex: 2;
     display: flex;
     justify-content: center;
     font-weight: 500;
@@ -76,7 +79,16 @@ import { Icon } from "astro-icon/components";
   }
 
   .search {
-    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+    padding: calc(1 / 0.9 * 0.5em) 0.7em;
+    border: none;
+    border-radius: inherit;
+    background-color: var(--neutral-600);
+    color: var(--neutral-300);
+    font-family: var(--font-sans);
+    font-size: 0.9em;
   }
 </style>
 
