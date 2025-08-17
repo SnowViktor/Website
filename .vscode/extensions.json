@@ -5,8 +5,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "darian-benam.vscode-robots-dot-txt-support",
-    "yzhang.markdown-all-in-one",
-    "shd101wyy.markdown-preview-enhanced"
+    "yzhang.markdown-all-in-one"
   ],
   "unwantedRecommendations": []
 }

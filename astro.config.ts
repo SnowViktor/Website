@@ -3,7 +3,6 @@ import vercel from "@astrojs/vercel";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
-import devtoolsJson from "vite-plugin-devtools-json";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
@@ -19,7 +18,6 @@ export default defineConfig({
         external: "/pagefind/pagefind.js",
       },
     },
-    plugins: [devtoolsJson()],
   },
   build: {
     format: "file",
