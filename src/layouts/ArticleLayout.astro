@@ -39,7 +39,8 @@ const {
           {
             updatedDate && (
               <span>
-                （更：<LayoutsTime date={updatedDate} />）
+                （更：
+                <LayoutsTime date={updatedDate} />）
               </span>
             )
           }
@@ -140,6 +141,10 @@ const {
     letter-spacing: 0;
     word-spacing: -0.175ch;
     text-wrap: pretty;
+
+    :is(h2, h3, h4, h5, h6) {
+      font-family: var(--font-serif);
+    }
 
     details {
       color: var(--neutral-400);
