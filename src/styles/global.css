@@ -76,6 +76,7 @@ body {
   max-width: 768px;
   background-color: var(--neutral-950);
   font-size: max(18px, 1rem);
+  font-variant-numeric: ordinal;
   letter-spacing: 0.03em;
   text-autospace: normal;
   /*
