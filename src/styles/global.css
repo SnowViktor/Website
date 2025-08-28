@@ -78,13 +78,7 @@ body {
   font-size: max(18px, 1rem);
   font-variant-numeric: ordinal;
   letter-spacing: 0.03em;
-  text-autospace: normal;
-  /*
-  當 Chrome version: 140
-  替換成 text-autospace: ideograph-alpha ideograph-numeric replace;
-  移除 ArticleLayout 裡的 word-spacing
-  考慮移除text-align
-  */
+  text-autospace: normal; /* text-autospace: normal replace */
   text-spacing-trim: trim-start;
   word-break: auto-phrase;
   interpolate-size: allow-keywords;
