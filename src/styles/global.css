@@ -122,6 +122,7 @@ hr {
 /* 4. Typography */
 :is(h1, h2, h3, h4, h5, h6) {
   font-weight: 900;
+  line-height: 1.25;
 }
 
 h1 {
@@ -177,6 +178,7 @@ a {
   transition: border-top-right-radius var(--transition-duration)
     var(--transition-timing-function);
   font-size: 16px;
+  font-variant-numeric: unset;
   line-height: 1.4;
 
   @supports (anchor-name: --astro-code) {

@@ -95,10 +95,12 @@ const {
   .meta-title {
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     h1 {
       anchor-name: --title;
+      margin-bottom: 0.5em;
 
       &:last-child {
         margin-bottom: 0;
@@ -106,16 +108,17 @@ const {
     }
 
     span {
-      display: none;
-    }
+      position: absolute;
+      bottom: -0.9em;
 
-    @supports (anchor-name: --title) {
-      span {
-        position: absolute;
+      @supports (anchor-name: --title) {
         position-anchor: --title;
-        bottom: calc(anchor(bottom) - 0.5em);
+        bottom: calc(anchor(bottom) - 1.6em);
         left: anchor(left);
-        display: unset;
+      }
+
+      @media (max-width: 768px) {
+        left: unset;
       }
     }
   }
@@ -174,3 +177,13 @@ const {
     margin-top: auto;
   }
 </style>
+
+<script>
+  const originalAuthor = document.querySelector(
+    ".meta-title span",
+  ) as HTMLSpanElement;
+
+  if (window.innerWidth <= 768) {
+    originalAuthor.textContent = originalAuthor.innerText.replace("└", "by");
+  }
+</script>
