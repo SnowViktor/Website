@@ -29,7 +29,7 @@ const {
     <section class="metadata">
       <hgroup class="meta-title">
         <h1>{title}</h1>
-        {originalAuthor && <span>└ {originalAuthor}</span>}
+        {originalAuthor && <span>by {originalAuthor}</span>}
       </hgroup>
       <div class="meta-info">
         <span>{author}</span>
@@ -99,7 +99,6 @@ const {
     align-items: center;
 
     h1 {
-      anchor-name: --title;
       margin-bottom: 0.5em;
 
       &:last-child {
@@ -109,17 +108,7 @@ const {
 
     span {
       position: absolute;
-      bottom: -0.9em;
-
-      @supports (anchor-name: --title) {
-        position-anchor: --title;
-        bottom: calc(anchor(bottom) - 1.6em);
-        left: anchor(left);
-      }
-
-      @media (max-width: 768px) {
-        left: unset;
-      }
+      bottom: -0.5em;
     }
   }
 
@@ -177,13 +166,3 @@ const {
     margin-top: auto;
   }
 </style>
-
-<script>
-  const originalAuthor = document.querySelector(
-    ".meta-title span",
-  ) as HTMLSpanElement;
-
-  if (window.innerWidth <= 768) {
-    originalAuthor.textContent = originalAuthor.innerText.replace("└", "by");
-  }
-</script>
