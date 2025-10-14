@@ -8,6 +8,7 @@ export const CATEGORIES_LIST = [
   { name: "閱讀心得", id: "reading-reflection" },
   { name: "散文", id: "prose" },
   { name: "新詩", id: "free-verse" },
+  { name: "紀錄", id: "record" },
   { name: "學校", id: "school" },
   { name: "漫畫", id: "comic" },
   { name: "法律", id: "law" },
