@@ -7,6 +7,7 @@
 # !___________!
 
 User-agent: *
-Allow: /
+Disallow: /articles/i-dont-care-about-eternity-i-only-care-that-i-once-had-it
+Disallow: /articles/i-dont-care-about-eternity-i-only-care-that-i-once-had-it-submitted
 
 Sitemap: https://snow-viktor.vercel.app/sitemap-index.xml
