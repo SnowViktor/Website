@@ -2,7 +2,7 @@
   "name": "website",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "dev": "astro dev",
     "deps:upgrade": "pnpx @astrojs/upgrade",
@@ -14,14 +14,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.5",
     "@astrojs/mdx": "^4.3.7",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^8.2.10",
-    "@iconify-json/lucide": "^1.2.69",
+    "@iconify-json/lucide": "^1.2.70",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.14.5",
+    "astro": "^5.14.7",
     "astro-icon": "^1.1.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",

@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "src/consts";
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <blockquote>現就讀　師大附中（HSNU）</blockquote>
   <section class="intro">
     <h1>I'm SnowViktor. 我是彬彬。</h1>
     <h2>I'm SnowViktor. 我是彬彬。</h2>
@@ -21,36 +22,3 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "src/consts";
     text-align: center;
   }
 </style>
-
-<script>
-  const introSection = document.querySelector("section.intro") as HTMLElement;
-  const headingTemplate = Array.from(
-    introSection.querySelectorAll(
-      "h1, h2, h3, h4, h5, h6",
-    ) as NodeListOf<HTMLHeadingElement>,
-  );
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      const entry = entries[0];
-      if (!entry.isIntersecting) return;
-
-      headingTemplate.forEach((h) => {
-        introSection.appendChild(h.cloneNode(true));
-      });
-
-      obs.unobserve(entry.target);
-
-      const newLastH6 = introSection.querySelector(
-        "h6:last-of-type",
-      ) as HTMLHeadingElement;
-      obs.observe(newLastH6);
-    },
-    { threshold: 1.0 },
-  );
-
-  const initialLastH6 = introSection.querySelector(
-    "h6:last-of-type",
-  ) as HTMLHeadingElement;
-  observer.observe(initialLastH6);
-</script>
