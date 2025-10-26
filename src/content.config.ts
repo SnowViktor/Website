@@ -9,7 +9,7 @@ const imageSchema = ({ image }: SchemaContext) =>
   });
 
 const articles = defineCollection({
-  loader: glob({ base: "./src/data/articles", pattern: "**/*.{md,mdx}" }),
+  loader: glob({ base: "./src/content/articles", pattern: "**/*.{md,mdx}" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
