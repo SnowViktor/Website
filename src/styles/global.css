@@ -73,7 +73,7 @@ html {
 body {
   margin: auto;
   max-width: 768px;
-  background-color: var(--neutral-950);
+  background-color: var(--neutral-900);
   font-size: max(18px, 1rem);
   font-variant-numeric: ordinal;
   letter-spacing: 0.03em;
@@ -90,7 +90,7 @@ body {
 
   &::selection {
     background-color: var(--neutral-200);
-    color: var(--neutral-950);
+    color: var(--neutral-900);
   }
 }
 
