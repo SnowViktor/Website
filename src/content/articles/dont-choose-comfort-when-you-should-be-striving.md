@@ -2,7 +2,7 @@
 title: 不要在該奮鬥時選擇安逸
 description: 光陰似箭，日月如梭，寒假已來到最後一天。在此之前，儘管我始終惦記著要寫讀書心得，卻從未翻開任何書，甚至連筆都不曾握過，說白了，就是「懶」。直到此時此刻，踩在死線的邊緣，才發現時間所剩不多，危機意識逼迫……
 pubDate: 2024-02-15
-categories: [閱讀心得, 散文]
+category: [Reading Reflection, Prose]
 originalAuthor: 老楊的貓頭鷹
 ---
 

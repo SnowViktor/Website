@@ -4,7 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleNavigation from "@components/ArticleNavigation.astro";
 import LayoutsTime from "@components/LayoutsTime.astro";
 import { formatContentDate } from "@utils/time";
-import { CATEGORIES_LIST } from "src/consts";
+import { CATEGORY_LIST } from "src/consts";
 
 type Props = { id: string } & CollectionEntry<"articles">["data"];
 const {
@@ -13,7 +13,7 @@ const {
   description,
   pubDate,
   updatedDate,
-  categories,
+  category,
   author,
   originalAuthor,
   heroImage,
@@ -46,12 +46,12 @@ const {
           }
         </span>
       </div>
-      <ul class="meta-categories">
+      <ul class="meta-category">
         {
-          categories.map((category) => (
+          category.map((category) => (
             <li>
               <a
-                href={`/categories/${CATEGORIES_LIST.find((obj) => obj.name === category)!.id}`}
+                href={`/category/${CATEGORY_LIST.find((obj) => obj.name === category)!.id}`}
               >
                 ＃{category}
               </a>
@@ -131,7 +131,7 @@ const {
     }
   }
 
-  .meta-categories {
+  .meta-category {
     display: flex;
     justify-content: center;
     gap: 1ch;

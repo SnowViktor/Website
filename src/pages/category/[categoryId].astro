@@ -1,9 +1,9 @@
 ---
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import { CATEGORIES_LIST } from "src/consts";
+import { CATEGORY_LIST } from "src/consts";
 
 export async function getStaticPaths() {
-  return CATEGORIES_LIST.map((obj) => ({
+  return CATEGORY_LIST.map((obj) => ({
     params: { categoryId: obj.id },
     props: { category: obj.name },
   }));
@@ -12,7 +12,7 @@ const { category } = Astro.props;
 ---
 
 <CollectionLayout
-  title={`分類：${category}`}
-  description={`【分不清，類不似──${category}】`}
-  categories={category}
+  title={`Category: ${category}`}
+  description={`Category: ${category}`}
+  category={category}
 />

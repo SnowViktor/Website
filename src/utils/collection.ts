@@ -5,22 +5,22 @@ import {
 } from "astro:content";
 
 export async function sortCollection(
-  collection: CollectionKey
+  collection: CollectionKey,
 ): Promise<CollectionEntry<CollectionKey>[]> {
   return (await getCollection(collection)).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
 }
 
-export async function filterAndSortArticlesByCategories(
-  categories: string | string[]
+export async function filterAndSortArticlesByCategory(
+  category: string | string[],
 ): Promise<CollectionEntry<"articles">[]> {
   const articles = await getCollection("articles");
-  const categoryArr = Array.isArray(categories) ? categories : [categories];
+  const categoryArr = Array.isArray(category) ? category : [category];
 
   return articles
     .filter((article) =>
-      article.data.categories.some((category) => categoryArr.includes(category))
+      article.data.category.some((category) => categoryArr.includes(category)),
     )
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
@@ -31,7 +31,7 @@ export async function getAdjacentArticles(currentId: string): Promise<{
 }> {
   const articles = await sortCollection("articles");
   const currentIndex = articles.findIndex(
-    (article) => article.id === currentId
+    (article) => article.id === currentId,
   );
 
   if (currentIndex === -1) {

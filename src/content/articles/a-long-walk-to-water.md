@@ -2,7 +2,7 @@
 title: 尋水之心
 description: 這本書之所以被我從書架上毫不猶豫取下的契機，正是那需要細細品讀且充滿吸引力的書名。翻到背面，當看到是紐約時報的暢銷書榜少年小說類第一名時，我立即明白，這本《尋水之心》必定要看，在讀完簡介後，更加確立了……
 pubDate: 2023-08-30
-categories: [閱讀心得, 散文]
+category: [Reading Reflection, Prose]
 originalAuthor: 琳達．蘇．帕克（Linda Sue Park）
 ---
 

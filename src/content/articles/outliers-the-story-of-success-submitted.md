@@ -2,7 +2,7 @@
 title: 異數：超凡與平凡的界線在哪裡？（投稿版）
 description: 麥爾坎．葛拉威爾任職記者的數年中，遊走於各個行業與領域，捕獲難以表述卻無所不在的現象，善於解析成功者背後不為人知的真相。本書試圖從偏離常態的表徵來洞識成功的奧祕，由作者的歷史知識為基礎，透過社會學和心……
 pubDate: 2025-09-14
-categories: [閱讀心得, 散文]
+category: [Reading Reflection, Prose]
 originalAuthor: 麥爾坎．葛拉威爾（Malcolm Gladwell）
 ---
 

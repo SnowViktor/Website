@@ -2,7 +2,7 @@
 title: 在焦慮星球上微笑
 description: 8 月 15 日，一個平凡的日子（至少我日更的 Instagram 便利貼如此寫著）。下午 4 點整，我正在暑期輔導的班上。雷電劃破天際，刺眼的閃光先行，宏亮的聲響緊跟其後，引起我患有散光的眼睛不堪負……
 pubDate: 2024-08-29
-categories: [閱讀心得, 散文]
+category: [Reading Reflection, Prose]
 originalAuthor: 麥特．海格（Matt Haig）
 ---
 

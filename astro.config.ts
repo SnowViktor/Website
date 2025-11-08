@@ -12,7 +12,6 @@ export default defineConfig({
   trailingSlash: "never",
   adapter: vercel(),
   integrations: [mdx(), sitemap(), icon({ iconDir: "src/assets/icons" })],
-
   build: {
     format: "file",
   },

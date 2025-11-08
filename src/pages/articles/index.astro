@@ -1,12 +1,12 @@
 ---
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import { CATEGORIES_LIST } from "src/consts";
+import { CATEGORY_LIST } from "src/consts";
 
-const categories = CATEGORIES_LIST.map((obj) => obj.name);
+const category = CATEGORY_LIST.map((obj) => obj.name);
 ---
 
 <CollectionLayout
   title="Articles"
-  description="【彬彬的思考烘焙坊：剛出爐的文章】"
-  categories={categories}
+  description="Freshly baked articles from SnowViktor's thought bakery."
+  category={category}
 />

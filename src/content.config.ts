@@ -1,6 +1,6 @@
 import { type SchemaContext, defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
-import { SITE_AUTHOR, CATEGORIES_LIST } from "src/consts";
+import { SITE_AUTHOR, CATEGORY_LIST } from "src/consts";
 
 const imageSchema = ({ image }: SchemaContext) =>
   z.object({
@@ -16,8 +16,8 @@ const articles = defineCollection({
       description: z.string(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      categories: z.array(
-        z.enum(CATEGORIES_LIST.map((category) => category.name) as [string])
+      category: z.array(
+        z.enum(CATEGORY_LIST.map((category) => category.name) as [string]),
       ),
       author: z.string().optional().default(SITE_AUTHOR),
       originalAuthor: z.string().optional(),
