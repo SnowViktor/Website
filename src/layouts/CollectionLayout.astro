@@ -17,7 +17,7 @@ const articles = await filterAndSortArticlesByCategories(categories);
   <h1>{title}</h1>
   <slot />
   <p>
-    <span>共 {articles.length} 篇</span>
+    <span>Total: {articles.length}</span>
   </p>
   <ul class="article-items">
     {
