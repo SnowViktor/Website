@@ -1,244 +1,97 @@
-/* 1. Global Resets */
-*,
-::before,
-::after {
-  box-sizing: inherit;
-  vertical-align: inherit;
-  text-decoration: inherit;
-}
-
-:where(html) {
-  box-sizing: border-box;
-  font-family: sans-serif;
-  text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  line-height: 1.2;
-  overflow-wrap: break-word;
-  tab-size: 4;
+/* Set default properties for the root HTML element */
+html {
   -webkit-tap-highlight-color: transparent;
 }
 
-:where(body) {
-  margin: 0;
+/* Bell, A. (2023, September 18). A (More) Modern CSS Reset. Piccalilli. https://piccalil.li/blog/a-more-modern-css-reset/ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* 2. Layout & Block Elements */
-:where(hr) {
-  box-sizing: content-box;
-  height: 0;
-  border-inline-width: 0;
-  color: inherit;
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
-:where(dl, ol, ul) {
-  margin: 1em 0;
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
 }
 
-:where(dl, ol, ul) :where(dl, ol, ul) {
-  margin: 0;
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
 }
 
-:where(nav) :where(ol, ul) {
-  padding: 0;
-  list-style-type: none;
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
 }
 
-:where(table) {
-  border-collapse: collapse;
-  border-color: currentColor;
-  text-indent: 0;
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
 }
 
-/* 3. Typography */
-:where(h1) {
-  margin: 0.67em 0;
-  font-size: 2em;
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
-:where(abbr[title]) {
-  text-decoration: underline dotted;
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
 }
 
-:where(code, kbd, samp, pre) {
-  font-family: monospace;
-  font-size: 1em;
-}
-
-:where(pre) {
-  overflow: auto;
-}
-
-:where(small) {
-  font-size: 80%;
-}
-
-:where(sub, sup) {
-  position: relative;
-  vertical-align: baseline;
-  font-size: 75%;
-  line-height: 0;
-}
-
-:where(sub) {
-  bottom: -0.25em;
-}
-
-:where(sup) {
-  top: -0.5em;
-}
-
-/* 4. Media Elements */
-:where(audio, canvas, iframe, img, svg, video) {
-  vertical-align: middle;
-}
-
-:where(audio, canvas, img, picture, svg, video) {
-  display: inline-block;
-}
-
-:where(img, picture, svg, video) {
+/* Make images easier to work with */
+img,
+picture {
   max-width: 100%;
+  display: block;
 }
 
-:where(iframe) {
-  border-style: none;
-}
-
-:where(svg:not([fill])) {
-  fill: currentColor;
-}
-
-/* 5. Form Elements */
-:where(button, input, optgroup, select, textarea) {
-  margin: 0;
-  border: 1px solid currentColor;
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
   font-family: inherit;
-  font-size: 100%;
-  line-height: inherit;
+  font-size: inherit;
 }
 
-:where(button) {
-  overflow: visible;
-  text-transform: none;
-  cursor: pointer;
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
 }
 
-:where(button, [type="button" i], [type="reset" i], [type="submit" i]) {
-  appearance: button;
-}
-
-:where(input) {
-  overflow: visible;
-}
-
-:where([type="search" i]) {
-  appearance: textfield;
-  outline-offset: -2px;
-}
-
-:where([type="color"]) {
-  background: inherit;
-}
-
-:where(fieldset) {
-  border: 1px solid currentColor;
-}
-
-:where(legend) {
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  color: inherit;
-  white-space: normal;
-}
-
-:where(progress) {
-  display: inline-block;
-  vertical-align: baseline;
-}
-
-:where(select) {
-  text-transform: none;
-}
-
-:where(textarea) {
-  margin: 0;
-  overflow: auto;
-  vertical-align: top;
-  resize: vertical;
-}
-
-/* 6. Interactive & Hidden Elements */
-:where(details) {
-  display: block;
-}
-
-:where(summary) {
-  display: list-item;
-}
-
-:where(dialog) {
-  position: absolute;
-  left: 0;
-  right: 0;
-  display: block;
-  width: fit-content;
-  height: fit-content;
-  margin: auto;
-  padding: 1em;
-  border: solid;
-  background-color: inherit;
-  color: inherit;
-}
-
-:where(dialog):not([open]) {
-  display: none;
-}
-
-:where(template, [hidden]) {
-  display: none;
-}
-
-/* 7. ARIA & Accessibility */
-:where([aria-busy="true" i]) {
-  cursor: progress;
-}
-
-:where([aria-disabled="true" i], [disabled]) {
-  cursor: not-allowed;
-}
-
-:where([aria-hidden="false" i][hidden]) {
-  display: initial;
-}
-
-:where([aria-hidden="false" i][hidden]:not(:focus)) {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-}
-
-:where(:focus-visible) {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-/* 8. Vendor-Specific & Pseudo-elements */
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.54;
-}
-
-::-webkit-search-decoration {
-  appearance: none;
-  font: inherit;
-}
-
-::-webkit-file-upload-button {
-  appearance: button;
-  font: inherit;
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
 }

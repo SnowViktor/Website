@@ -1,6 +1,5 @@
 ---
 import BaseHeaderLink from "@components/BaseHeaderLink.astro";
-// import BaseHeaderSearch from "@components/BaseHeaderSearch.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -13,10 +12,6 @@ import { Icon } from "astro-icon/components";
       <li><BaseHeaderLink href="/articles">文章</BaseHeaderLink></li>
     </ul>
   </nav>
-  <button class="search" onclick="alert('Search🔍 function is disabled.')"
-    >搜尋<Icon name="lucide:search" size={18} /></button
-  >
-  <!-- <BaseHeaderSearch style="display: none;" /> -->
 </header>
 
 <style>
@@ -78,18 +73,7 @@ import { Icon } from "astro-icon/components";
     }
   }
 
-  .search {
-    display: flex;
-    align-items: center;
-    gap: 0.1em;
-    padding: calc(1 / 0.9 * 0.5em) 0.7em;
-    border: none;
-    border-radius: inherit;
-    background-color: var(--neutral-600);
-    color: var(--neutral-300);
-    font-family: var(--font-sans);
-    font-size: 0.9em;
-  }
+
 </style>
 
 <script>

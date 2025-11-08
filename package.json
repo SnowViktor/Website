@@ -7,27 +7,24 @@
     "dev": "astro dev",
     "deps:upgrade": "pnpx @astrojs/upgrade",
     "deps:update": "pnpm update",
-    "build:local": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
-    "build": "pnpm run check && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/",
+    "build:local": "pnpm run check && astro build",
+    "build": "pnpm run check && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.5",
-    "@astrojs/mdx": "^4.3.9",
+    "@astrojs/mdx": "^4.3.10",
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^9.0.0",
     "@iconify-json/lucide": "^1.2.72",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.15.3",
+    "astro": "^5.15.4",
     "astro-icon": "^1.1.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "typescript": "^5.9.3"
-  },
-  "devDependencies": {
-    "pagefind": "^1.4.0"
   }
 }

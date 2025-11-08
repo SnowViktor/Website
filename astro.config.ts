@@ -12,13 +12,7 @@ export default defineConfig({
   trailingSlash: "never",
   adapter: vercel(),
   integrations: [mdx(), sitemap(), icon({ iconDir: "src/assets/icons" })],
-  vite: {
-    build: {
-      rollupOptions: {
-        external: "/pagefind/pagefind.js",
-      },
-    },
-  },
+
   build: {
     format: "file",
   },
