@@ -2,7 +2,7 @@
   "name": "website",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.22.0",
   "scripts": {
     "dev": "astro dev",
     "deps:upgrade": "pnpx @astrojs/upgrade",
@@ -21,7 +21,7 @@
     "@astrojs/vercel": "^9.0.0",
     "@iconify-json/lucide": "^1.2.73",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.15.5",
+    "astro": "^5.15.8",
     "astro-icon": "^1.1.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
