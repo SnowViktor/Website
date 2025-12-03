@@ -66,8 +66,7 @@
 
 /* 3. Layout & Block Elements */
 html {
-  scrollbar-color: oklch(from var(--primary-900) l c h / var(--opacity-70))
-    transparent;
+  scrollbar-color: oklch(from var(--primary-900) l c h / var(--opacity-70)) transparent;
 }
 
 body {
@@ -77,7 +76,8 @@ body {
   font-size: max(18px, 1rem);
   font-variant-numeric: ordinal;
   letter-spacing: 0.03em;
-  text-autospace: normal; /* text-autospace: normal replace */
+  text-autospace: normal;
+  /* text-autospace: normal replace */
   text-spacing-trim: trim-start;
   overflow-wrap: break-word;
   word-break: auto-phrase;
@@ -160,7 +160,7 @@ h6 {
 li p:first-child {
   margin-bottom: 0;
 
-  + p {
+  +p {
     margin-top: 0;
   }
 }
@@ -175,8 +175,7 @@ a {
   anchor-name: --astro-code;
   padding: 0.5ch 0 0.5ch 1ch;
   border-radius: var(--border-radius-small);
-  transition: border-top-right-radius var(--transition-duration)
-    var(--transition-timing-function);
+  transition: border-top-right-radius var(--transition-duration) var(--transition-timing-function);
   font-size: 16px;
   font-variant-numeric: unset;
   line-height: 1.4;
@@ -240,8 +239,7 @@ details {
   &::details-content {
     height: 0;
     padding-top: 0;
-    transition: all var(--transition-duration-long)
-      var(--transition-timing-function) allow-discrete;
+    transition: all var(--transition-duration-long) var(--transition-timing-function) allow-discrete;
     overflow-y: clip;
   }
 
