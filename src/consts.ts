@@ -14,3 +14,8 @@ export const CATEGORY_LIST = [
   { name: "School", id: "school" },
   { name: "Law", id: "law" },
 ];
+
+export const NAV_ITEMS = [
+  { label: "Home", href: "/" },
+  { label: "Articles", href: "/articles" },
+];

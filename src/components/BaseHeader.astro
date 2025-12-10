@@ -1,15 +1,19 @@
 ---
 import BaseHeaderLink from "@components/BaseHeaderLink.astro";
-import { Icon } from "astro-icon/components";
+import { SITE_TITLE, NAV_ITEMS } from "src/consts";
 ---
 
 <header>
-  <a class="brand" href="/">SnowViktor</a>
+  <a class="brand" href="/">{SITE_TITLE}</a>
   <nav class="menu">
-    <label style="display: none;">Menu<Icon name="lucide:menu" /></label>
     <ul>
-      <li><BaseHeaderLink href="/">Home</BaseHeaderLink></li>
-      <li><BaseHeaderLink href="/articles">Articles</BaseHeaderLink></li>
+      {
+        NAV_ITEMS.map(({ label, href }) => (
+          <li>
+            <BaseHeaderLink href={href}>{label}</BaseHeaderLink>
+          </li>
+        ))
+      }
     </ul>
   </nav>
 </header>
@@ -22,7 +26,7 @@ import { Icon } from "astro-icon/components";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: inherit;
+    max-width: var(--container-md);
     width: 100%;
     height: fit-content;
     border-radius: 0.7em;
@@ -76,16 +80,19 @@ import { Icon } from "astro-icon/components";
 </style>
 
 <script>
-  const header = document.querySelector("header") as HTMLElement;
+  const header = document.querySelector("header");
 
   let lastScrollY = window.scrollY;
 
   function handleScroll() {
     const currentScrollY = window.scrollY;
-    // Retract header when scrolling down
-    if (currentScrollY > lastScrollY && currentScrollY > header.clientHeight) {
+    if (
+      header &&
+      currentScrollY > lastScrollY &&
+      currentScrollY > header.clientHeight
+    ) {
       header.classList.add("retracted");
-    } else {
+    } else if (header) {
       header.classList.remove("retracted");
     }
     lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;

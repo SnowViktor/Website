@@ -39,13 +39,15 @@ const navigationItems = [
           aria-label={label}
         >
           <div tabindex="-1">
-            {direction === "prev" ?
+            {direction === "prev" ? (
               <Icon name="lucide:arrow-left" size={20} />
-            : <Icon name="lucide:arrow-right" size={20} />}
-            <p>
+            ) : (
+              <Icon name="lucide:arrow-right" size={20} />
+            )}
+            <div class="text">
               {frontmatter.title}
               <LayoutsTime date={frontmatter.pubDate} />
-            </p>
+            </div>
           </div>
         </a>
       );
@@ -73,7 +75,7 @@ const navigationItems = [
     &.prev div {
       flex-direction: row;
 
-      p {
+      .text {
         align-items: flex-start;
       }
     }
@@ -81,7 +83,7 @@ const navigationItems = [
     &.next div {
       flex-direction: row-reverse;
 
-      p {
+      .text {
         align-items: flex-end;
       }
     }
@@ -111,7 +113,7 @@ const navigationItems = [
     filter: brightness(0.75);
   }
 
-  p {
+  .text {
     display: flex;
     flex-direction: column;
     margin: 0;

@@ -1,0 +1,11 @@
+:root {
+  --border-radius-small: 0.6em;
+  --border-radius-medium: 0.75em;
+  --border-radius-large: 0.9em;
+
+  --blur-small: 2px;
+
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+}

@@ -2,6 +2,7 @@
 import BaseHead from "@components/BaseHead.astro";
 import BaseHeader from "@components/BaseHeader.astro";
 import BaseFooter from "@components/BaseFooter.astro";
+import Container from "@components/ui/Container.astro";
 import { SITE_TITLE } from "src/consts";
 
 interface Props {
@@ -20,9 +21,11 @@ const { title, description, image = "/og-image.png" } = Astro.props;
   />
   <body>
     <BaseHeader />
-    <main data-pagefind-body>
-      <slot />
-    </main>
+    <Container class="main-container">
+      <main data-pagefind-body>
+        <slot />
+      </main>
+    </Container>
     <BaseFooter />
   </body>
 </html>

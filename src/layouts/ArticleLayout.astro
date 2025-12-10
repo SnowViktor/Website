@@ -2,22 +2,11 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleNavigation from "@components/ArticleNavigation.astro";
-import LayoutsTime from "@components/LayoutsTime.astro";
+import ArticleMeta from "@components/ArticleMeta.astro";
 import { formatContentDate } from "@utils/time";
-import { CATEGORY_LIST } from "src/consts";
 
 type Props = { id: string } & CollectionEntry<"articles">["data"];
-const {
-  id,
-  title,
-  description,
-  pubDate,
-  updatedDate,
-  category,
-  author,
-  originalAuthor,
-  heroImage,
-} = Astro.props;
+const { id, title, description, pubDate, heroImage } = Astro.props;
 ---
 
 <BaseLayout
@@ -26,40 +15,7 @@ const {
   image={heroImage?.image.src}
 >
   <article>
-    <section class="metadata">
-      <hgroup class="meta-title">
-        <h1>{title}</h1>
-        {originalAuthor && <span>by {originalAuthor}</span>}
-      </hgroup>
-      <div class="meta-info">
-        <span>{author}</span>
-        <span>～</span>
-        <span>
-          <LayoutsTime date={pubDate} />
-          {
-            updatedDate && (
-              <span>
-                （更：
-                <LayoutsTime date={updatedDate} />）
-              </span>
-            )
-          }
-        </span>
-      </div>
-      <ul class="meta-category">
-        {
-          category.map((category) => (
-            <li>
-              <a
-                href={`/category/${CATEGORY_LIST.find((obj) => obj.name === category)!.id}`}
-              >
-                ＃{category}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+    <ArticleMeta {...Astro.props} />
     <hr />
     <section class="content">
       <slot />
@@ -71,72 +27,6 @@ const {
 <style>
   article {
     margin-bottom: auto;
-  }
-
-  .metadata {
-    span,
-    a {
-      font-family: var(--font-serif);
-      font-size: 0.9em;
-      font-weight: 400;
-    }
-
-    time {
-      word-spacing: -0.25ch;
-    }
-
-    a {
-      transition: all var(--transition-duration)
-        var(--transition-timing-function);
-
-      &:focus-visible,
-      &:hover {
-        color: var(--primary-200);
-      }
-    }
-  }
-
-  .meta-title {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h1 {
-      margin-bottom: 0.5em;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    span {
-      position: absolute;
-      bottom: -0.5em;
-    }
-  }
-
-  .meta-info {
-    display: flex;
-    gap: 1ch;
-    margin-block: 1em;
-
-    > span:not(:nth-child(even)) {
-      flex: 1;
-      text-align: right;
-
-      &:last-child {
-        text-align: left;
-      }
-    }
-  }
-
-  .meta-category {
-    display: flex;
-    justify-content: center;
-    gap: 1ch;
-    padding-left: 0;
-    list-style: none;
   }
 
   .content {

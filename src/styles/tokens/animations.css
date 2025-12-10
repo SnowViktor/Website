@@ -1,0 +1,11 @@
+:root {
+  --transition-duration: 150ms;
+  --transition-duration-long: 300ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}

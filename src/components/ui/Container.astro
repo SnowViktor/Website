@@ -1,0 +1,30 @@
+---
+interface Props {
+  size?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const { size = "md", class: className } = Astro.props;
+
+const maxWidths = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+};
+---
+
+<div
+  class:list={["container", className]}
+  style={`--max-width: ${maxWidths[size]}`}
+>
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: 0.75em;
+  }
+</style>

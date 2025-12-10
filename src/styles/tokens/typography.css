@@ -1,0 +1,6 @@
+:root {
+  --font-sans: "Noto Sans", "Noto Sans TC", sans-serif;
+  --font-serif: "Noto Serif", "Noto Serif TC", serif;
+  --font-cursive: "Iansui", cursive;
+  --font-mono: "Cascadia Code", monospace;
+}
