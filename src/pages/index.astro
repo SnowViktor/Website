@@ -1,24 +1,107 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "src/consts";
+import Container from "@components/ui/Container.astro";
+import Link from "@components/ui/Link.astro";
+import CollectionItem from "@components/CollectionItem.astro";
+import { getCollection } from "astro:content";
+import { SITE_AUTHOR, SITE_DESCRIPTION } from "src/consts";
+
+const allArticles = await getCollection("articles");
+const recentArticles = allArticles
+  .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf())
+  .slice(0, 5);
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <blockquote>Click on "Articles" above to see more.</blockquote>
-  <blockquote>Currently studying at HSNU</blockquote>
-  <section class="intro">
-    <h1>I'm SnowViktor.</h1>
-    <h2>I'm SnowViktor.</h2>
-    <h3>I'm SnowViktor.</h3>
-    <h4>I'm SnowViktor.</h4>
-    <h5>I'm SnowViktor.</h5>
-    <h6>I'm SnowViktor.</h6>
-  </section>
+<BaseLayout title="Home" description={SITE_DESCRIPTION}>
+  <Container size="md">
+    <section class="intro">
+      <h1>Hello, I'm {SITE_AUTHOR}.</h1>
+      <p class="bio">
+        Welcome to my digital garden. Here I plant thoughts, cultivate ideas,
+        and share my journey. I write about technology, philosophy, and life.
+      </p>
+      <div class="actions">
+        <Link href="/articles" class="btn">Browse Library</Link>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="latest">
+      <div class="section-header">
+        <h2>Fresh Notes</h2>
+        <Link href="/articles" class="view-all">View All</Link>
+      </div>
+      <div class="grid">
+        {recentArticles.map((article) => <CollectionItem article={article} />)}
+      </div>
+    </section>
+  </Container>
 </BaseLayout>
 
 <style>
   .intro {
-    font-family: var(--font-serif);
+    padding: 4em 0;
     text-align: center;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    color: var(--neutral-100);
+  }
+
+  .bio {
+    font-size: 1.25em;
+    color: var(--neutral-300);
+    max-width: 60ch;
+    margin: 0 auto 2em;
+    line-height: 1.6;
+  }
+
+  .divider {
+    border: 0;
+    height: 1px;
+    background: radial-gradient(
+      circle,
+      var(--neutral-700) 0%,
+      transparent 100%
+    );
+    margin: 2em 0;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2em;
+
+    h2 {
+      font-size: 2em;
+      font-family: var(--font-serif);
+      margin: 0;
+    }
+
+    .view-all {
+      font-size: 0.9em;
+      color: var(--primary-300);
+    }
+  }
+
+  .grid {
+    display: grid;
+    gap: 1.5em;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .intro {
+      padding: 2em 0;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
   }
 </style>

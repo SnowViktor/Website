@@ -1,28 +1,28 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import LayoutsTime from "@components/LayoutsTime.astro";
-import { CATEGORY_LIST } from "src/consts";
+import Tag from "@components/ui/Tag.astro";
 
 type Props = CollectionEntry<"articles">["data"];
-const { title, pubDate, updatedDate, category, author, originalAuthor } =
+const { title, published_at, updated_at, tags, author, original_author } =
   Astro.props;
 ---
 
 <section class="metadata">
   <hgroup class="meta-title">
     <h1>{title}</h1>
-    {originalAuthor && <span>by {originalAuthor}</span>}
+    {original_author && <span>by {original_author}</span>}
   </hgroup>
   <div class="meta-info">
     <span>{author}</span>
     <span>～</span>
     <span>
-      <LayoutsTime date={pubDate} />
+      <LayoutsTime date={published_at} />
       {
-        updatedDate && (
+        updated_at && (
           <span>
             （更：
-            <LayoutsTime date={updatedDate} />）
+            <LayoutsTime date={updated_at} />）
           </span>
         )
       }
@@ -30,13 +30,9 @@ const { title, pubDate, updatedDate, category, author, originalAuthor } =
   </div>
   <ul class="meta-category">
     {
-      category.map((category) => (
+      tags.map((tag) => (
         <li>
-          <a
-            href={`/category/${CATEGORY_LIST.find((obj) => obj.name === category)!.id}`}
-          >
-            ＃{category}
-          </a>
+          <Tag tag={tag} href={`/tags/${tag}`} />
         </li>
       ))
     }

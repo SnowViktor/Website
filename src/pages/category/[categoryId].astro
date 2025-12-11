@@ -1,6 +1,7 @@
 ---
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 import { CATEGORY_LIST } from "src/consts";
+import { filterAndSortArticlesByCategory } from "@utils/collection";
 
 export async function getStaticPaths() {
   return CATEGORY_LIST.map((obj) => ({
@@ -9,10 +10,11 @@ export async function getStaticPaths() {
   }));
 }
 const { category } = Astro.props;
+const articles = await filterAndSortArticlesByCategory(category);
 ---
 
 <CollectionLayout
   title={`Category: ${category}`}
   description={`Category: ${category}`}
-  category={category}
+  articles={articles}
 />

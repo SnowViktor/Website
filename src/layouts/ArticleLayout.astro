@@ -6,13 +6,13 @@ import ArticleMeta from "@components/ArticleMeta.astro";
 import { formatContentDate } from "@utils/time";
 
 type Props = { id: string } & CollectionEntry<"articles">["data"];
-const { id, title, description, pubDate, heroImage } = Astro.props;
+const { id, title, description, published_at, cover_image } = Astro.props;
 ---
 
 <BaseLayout
-  title={`${title}．${formatContentDate(pubDate, false)}`}
+  title={`${title}．${formatContentDate(published_at, false)}`}
   description={description}
-  image={heroImage?.image.src}
+  image={cover_image?.src.src}
 >
   <article>
     <ArticleMeta {...Astro.props} />

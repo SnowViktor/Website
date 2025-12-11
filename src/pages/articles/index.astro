@@ -1,12 +1,12 @@
 ---
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import { CATEGORY_LIST } from "src/consts";
+import { filterAndSortArticlesByCategory } from "@utils/collection";
 
-const category = CATEGORY_LIST.map((obj) => obj.name);
+const articles = await filterAndSortArticlesByCategory();
 ---
 
 <CollectionLayout
   title="Articles"
   description="Freshly baked articles from SnowViktor's thought bakery."
-  category={category}
+  articles={articles}
 />

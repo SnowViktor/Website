@@ -1,16 +1,14 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CollectionItem from "@components/CollectionItem.astro";
-import { filterAndSortArticlesByCategory } from "@utils/collection";
 
 interface Props {
   title: string;
   description: string;
-  category: string | string[];
+  articles: CollectionEntry<"articles">[];
 }
-const { title, description, category } = Astro.props;
-
-const articles = await filterAndSortArticlesByCategory(category);
+const { title, description, articles } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>

@@ -26,7 +26,7 @@ main {
   min-height: calc(100vh - (2.75em + 1em));
   margin: 2.75em auto 1em;
   color: var(--neutral-200);
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: inherit;
   line-height: 2;
   text-align: justify;
@@ -36,6 +36,13 @@ blockquote {
   margin-inline: 0;
   padding-left: 0.75ch;
   border-left: 0.5ch solid var(--neutral-400);
+  font-family: var(--font-cursive);
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
 }
 
 hr {

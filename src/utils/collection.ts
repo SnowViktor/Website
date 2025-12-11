@@ -8,21 +8,24 @@ export async function sortCollection(
   collection: CollectionKey,
 ): Promise<CollectionEntry<CollectionKey>[]> {
   return (await getCollection(collection)).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    (a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf(),
   );
 }
 
 export async function filterAndSortArticlesByCategory(
-  category: string | string[],
+  category?: string | string[],
 ): Promise<CollectionEntry<"articles">[]> {
   const articles = await getCollection("articles");
-  const categoryArr = Array.isArray(category) ? category : [category];
+  if (!category) {
+    return articles.sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+  }
+  const tagsArr = Array.isArray(category) ? category : [category];
 
   return articles
     .filter((article) =>
-      article.data.category.some((category) => categoryArr.includes(category)),
+      article.data.tags.some((tag) => tagsArr.includes(tag)),
     )
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
 }
 
 export async function getAdjacentArticles(currentId: string): Promise<{

@@ -3,21 +3,20 @@ import type { CollectionEntry, CollectionKey } from "astro:content";
 import LayoutsTime from "@components/LayoutsTime.astro";
 import Link from "@components/ui/Link.astro";
 import Tag from "@components/ui/Tag.astro";
-import { Image } from "astro:assets";
 
 interface Props {
   article: CollectionEntry<CollectionKey>;
 }
 const { article } = Astro.props;
-const { title, description, pubDate, category, heroImage } = article.data;
+const { title, description, published_at, tags } = article.data;
 ---
 
 <article class="post-card">
   <div class="content">
     <div class="meta">
-      <LayoutsTime date={pubDate} />
+      <LayoutsTime date={published_at} />
       <div class="tags">
-        {category.map((cat) => <Tag tag={cat} />)}
+        {tags.map((tag) => <Tag tag={tag} />)}
       </div>
     </div>
     <Link href={`/articles/${article.id}`} class="title-link">

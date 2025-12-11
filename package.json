@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "new": "node scripts/new.js"
+    "new": "node scripts/new.js",
+    "migrate": "node scripts/migrate_frontmatter.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -20,12 +21,15 @@
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^9.0.2",
-    "@iconify-json/lucide": "^1.2.79",
+    "@iconify-json/lucide": "^1.2.80",
     "@vercel/analytics": "^1.6.1",
     "astro": "^5.16.5",
     "astro-icon": "^1.1.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3"
   }
 }

@@ -1,6 +1,7 @@
 /* Shiki / Astro Code Block Styling */
 .astro-code {
   anchor-name: --astro-code;
+  font-family: var(--font-mono);
   padding: 0.5ch 0 0.5ch 1ch;
   border-radius: var(--border-radius-small);
   transition: border-top-right-radius var(--transition-duration) var(--transition-timing-function);
