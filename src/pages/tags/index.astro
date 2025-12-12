@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Tag from "@components/ui/Tag.astro";
+import { getCollection } from "astro:content";
+
+const articles = await getCollection("articles");
+const tags = [
+  ...new Set(articles.flatMap((article) => article.data.tags)),
+].sort();
+---
+
+<BaseLayout title="Tags" description="Explorer content by tags">
+  <Container>
+    <h1>Tags</h1>
+    <div class="tags-cloud">
+      {tags.map((tag) => <Tag tag={tag} href={`/tags/${tag}`} />)}
+    </div>
+  </Container>
+</BaseLayout>
+
+<style>
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 2em;
+  }
+</style>

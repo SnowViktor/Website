@@ -5,15 +5,15 @@
   "packageManager": "pnpm@10.25.0",
   "scripts": {
     "dev": "astro dev",
-    "deps:upgrade": "pnpx @astrojs/upgrade",
-    "deps:update": "pnpm update",
-    "build:local": "pnpm run check && astro build",
-    "build": "pnpm run check && astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro",
+    "check:watch": "astro check --watch",
+    "clean": "rm -rf dist .astro node_modules/.astro",
     "new": "node scripts/new.js",
-    "migrate": "node scripts/migrate_frontmatter.js"
+    "deps:upgrade": "pnpx @astrojs/upgrade",
+    "deps:update": "pnpm update --latest",
+    "deps:outdated": "pnpm outdated"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",

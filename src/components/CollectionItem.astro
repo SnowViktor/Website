@@ -15,11 +15,14 @@ const { title, description, published_at, tags } = article.data;
   <div class="content">
     <div class="meta">
       <LayoutsTime date={published_at} />
-      <div class="tags">
-        {tags.map((tag) => <Tag tag={tag} />)}
+      <div class="tags-scroll">
+        <div class="tags">
+          {tags.slice(0, 3).map((tag) => <Tag tag={tag} />)}
+          {tags.length > 3 && <span class="more">+{tags.length - 3}</span>}
+        </div>
       </div>
     </div>
-    <Link href={`/articles/${article.id}`} class="title-link">
+    <Link href={`/articles/${article.id.split("/").pop()}`} class="title-link">
       <h3>{title}</h3>
     </Link>
     <p class="description">{description}</p>
@@ -51,11 +54,26 @@ const { title, description, published_at, tags } = article.data;
     margin-bottom: 0.5em;
     color: var(--neutral-400);
     font-size: 0.85em;
+    gap: 1em;
+    overflow: hidden; /* Prevent overflow */
+  }
+
+  .tags-scroll {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
   }
 
   .tags {
     display: flex;
     gap: 0.5em;
+    flex-wrap: wrap; /* efficient use of space on desktop */
+  }
+
+  .more {
+    font-size: 0.9em;
+    opacity: 0.7;
+    align-self: center;
   }
 
   h3 {
@@ -82,5 +100,19 @@ const { title, description, published_at, tags } = article.data;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Mobile Constraint */
+  @media (max-width: 768px) {
+    .meta {
+      justify-content: flex-start;
+    }
+
+    .tags {
+      flex-wrap: nowrap; /* No wrapping on mobile */
+      overflow-x: auto;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
   }
 </style>

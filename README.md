@@ -1,65 +1,60 @@
-# SnowViktor's Personal Website
+# Personal Knowledge Garden
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/small.svg)](https://astro.build)
 
-This is the source code for my personal website, [snow-viktor.vercel.app](https://snow-viktor.vercel.app). Built with [Astro](https://astro.build), it serves as a personal blog and portfolio.
+This is the source code for my **Personal Knowledge Management (PKM)** system and digital garden, [snow-viktor.vercel.app](https://snow-viktor.vercel.app). Built with [Astro](https://astro.build), it is designed for readability, easy organization, and longevity.
 
-## 🚀 Tech Stack
+## 🌿 Philosophy & Architecture
 
-- [Astro](https://astro.build/) - The web framework for building content-driven websites.
-- [TypeScript](https://www.typescriptlang.org/) - For type safety.
-- [MDX](https://mdxjs.com/) - To allow components in Markdown.
-- [Vercel](https://vercel.com/) - For hosting and deployment.
-- [PNPM](https://pnpm.io/) - As the package manager.
-- [Katex](https://katex.org/) - For rendering mathematical formulas.
+This project has evolved from a simple blog into a structured knowledge garden with the following core principles:
 
-## 🏁 Getting Started
+-   **Folders as Categories**: The file system source of truth. Moving a file into a folder automatically categorizes it.
+-   **Flat URLs**: Regardless of nesting depth, all notes are served at `/articles/[slug]` to allow flexible reorganization without breaking links.
+-   **Tags as Metadata**: Frontmatter tags provide a secondary, cross-cutting taxonomy.
+-   **Mobile-First Reading**: Strict constraints ensure metadata and navigation are optimized for small screens (- no wrapping, stacked navigation).
 
-1.  **Install dependencies:**
+## 🚀 Features
 
-    ```bash
-    pnpm install
-    ```
+-   **Library Sidebar**: A responsive sidebar listing all **Categories** (Folders) and **Tags** for easy exploration.
+-   **Contextual Navigation**:
+    -   **Breadcrumbs**: Every note displays its folder path (e.g., `Home / Reading Reflection / Book`).
+    -   **Article Nav**: Responsive "Previous/Next" links that prioritize touch targets on mobile.
+-   **Tech Specs**:
+    -   **Astro**: Content-driven framework.
+    -   **Markdown/MDX**: Content authoring.
+    -   **Katex**: Math rendering.
+    -   **Responsive Design**: Custom CSS variables and strictly enforcing mobile constraints.
 
-2.  **Start the development server:**
-    ```bash
-    pnpm dev
-    ```
-    This will start a local development server at `http://localhost:4321`.
+## 🛠️ Commands
 
-## Commands
-
-| Command             | Description                                               |
-| :------------------ | :-------------------------------------------------------- |
-| `pnpm install`      | Install dependencies.                                     |
-| `pnpm dev`          | Starts the local development server.                      |
-| `pnpm build`        | Build the site for production.                            |
-| `pnpm preview`      | Preview your production build locally.                    |
-| `pnpm check`        | Run type checking across the project.                     |
-| `pnpm deps:upgrade` | Upgrade Astro and official integrations.                  |
-| `pnpm deps:update`  | Update all package dependencies to their latest versions. |
+| Command | Description |
+| :--- | :--- |
+| `pnpm install` | Install dependencies. |
+| `pnpm dev` | Starts the local development server at `localhost:4321`. |
+| `pnpm build` | Build the site for production. |
+| `pnpm run new` | **Create a new note interactively.** Generates frontmatter automatically. |
+| `pnpm check` | Run type checking across the project. |
 
 ## 📁 Project Structure
 
-The project is structured as a standard Astro project:
-
-```
+```text
 .
-├── public/              # Static assets
 ├── src/
-│   ├── assets/          # Project assets like icons and images
-│   ├── components/      # Reusable Astro components
-│   ├── content/         # Content collections (articles)
-│   ├── layouts/         # Base layouts for pages
-│   ├── pages/           # Astro pages and API routes
-│   └── styles/          # Global and reset styles
+│   ├── components/      # UI Components (LibrarySidebar, Breadcrumbs, etc.)
+│   ├── content/
+│   │   └── articles/    # THE GARDEN. Folders = Categories.
+│   │       ├── reading-reflection/
+│   │       ├── contact-journal/
+│   │       └── ...
+│   ├── layouts/         # Base & Collection Layouts
+│   ├── pages/
+│   │   ├── articles/    # Flat URL router ([...slug].astro)
+│   │   ├── folders/     # Folder taxonomy router ([...path].astro)
+│   │   └── tags/        # Tag taxonomy router
+│   └── styles/          # Global CSS & Design Tokens
 └── package.json
 ```
 
-## Deployment
-
-The website is automatically deployed to [Vercel](https://vercel.com/) on every push to the `main` branch.
-
 ## License
 
-[Website](https://snow-viktor.vercel.app) by SnowViktor is licensed under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). See the `LICENSE` file for more details.
+[Website](https://snow-viktor.vercel.app) by SnowViktor is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).

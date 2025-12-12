@@ -1,0 +1,90 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+interface Props {
+  id: string; // e.g. "2024/02/note"
+}
+
+const { id } = Astro.props;
+
+// Split path into segments, ignoring the final filename (article itself)
+// e.g. "2024/02/note" -> ["2024", "02"]
+const parts = id.split("/");
+const folders = parts.slice(0, -1);
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    {
+      folders.map((folder, index) => {
+        // Generate path for this folder
+        const path = folders.slice(0, index + 1).join("/");
+        return (
+          <li>
+            <span class="separator">/</span>
+            <a href={`/folders/${path}`} class="folder">
+              {folder}
+            </a>
+          </li>
+        );
+      })
+    }
+    <li>
+      <span class="separator">/</span>
+      <span class="current" aria-current="page">{parts[parts.length - 1]}</span>
+    </li>
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    font-size: 0.85em;
+    color: var(--neutral-400);
+    margin-bottom: 0.5em;
+    font-family: var(--font-mono);
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.4em;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--primary-300);
+      text-decoration: underline;
+    }
+  }
+
+  .separator {
+    color: var(--neutral-600);
+  }
+
+  .folder {
+    color: var(--neutral-300);
+  }
+
+  .current {
+    color: var(--neutral-100);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 20ch; /* Truncate long filenames in breadcrumb */
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import CollectionLayout from "@layouts/CollectionLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  const tags = [...new Set(articles.flatMap((article) => article.data.tags))];
+
+  return tags.map((tag) => {
+    const filteredArticles = articles
+      .filter((article) => article.data.tags.includes(tag))
+      .sort(
+        (a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf(),
+      );
+    return {
+      params: { tag },
+      props: { articles: filteredArticles },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { articles } = Astro.props;
+---
+
+<CollectionLayout
+  title={`Tag: #${tag}`}
+  description={`Articles tagged with #${tag}`}
+  articles={articles}
+/>

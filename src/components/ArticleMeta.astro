@@ -8,101 +8,107 @@ const { title, published_at, updated_at, tags, author, original_author } =
   Astro.props;
 ---
 
-<section class="metadata">
-  <hgroup class="meta-title">
-    <h1>{title}</h1>
-    {original_author && <span>by {original_author}</span>}
-  </hgroup>
-  <div class="meta-info">
-    <span>{author}</span>
-    <span>～</span>
-    <span>
+<header class="metadata">
+  <h1>{title}</h1>
+
+  <div class="meta-row">
+    <div class="meta-group date-author">
       <LayoutsTime date={published_at} />
       {
         updated_at && (
-          <span>
-            （更：
-            <LayoutsTime date={updated_at} />）
+          <span class="updated">
+            (Upd. <LayoutsTime date={updated_at} />)
           </span>
         )
       }
-    </span>
+      <span class="sep">|</span>
+      <span class="author">{original_author || author}</span>
+    </div>
+
+    <div class="meta-group tags-container">
+      <span class="sep mobile-hidden">|</span>
+      <ul class="tag-list">
+        {
+          tags.map((tag) => (
+            <li>
+              <Tag tag={tag} href={`/tags/${tag}`} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
-  <ul class="meta-category">
-    {
-      tags.map((tag) => (
-        <li>
-          <Tag tag={tag} href={`/tags/${tag}`} />
-        </li>
-      ))
-    }
-  </ul>
-</section>
+</header>
 
 <style>
   .metadata {
-    span,
-    a {
-      font-family: var(--font-serif);
-      font-size: 0.9em;
-      font-weight: 400;
-    }
-
-    time {
-      word-spacing: -0.25ch;
-    }
-
-    a {
-      transition: all var(--transition-duration)
-        var(--transition-timing-function);
-
-      &:focus-visible,
-      &:hover {
-        color: var(--primary-200);
-      }
-    }
+    margin-bottom: 2em;
   }
 
-  .meta-title {
-    position: relative;
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5em;
+    line-height: 1.2;
+    margin: 0.5em 0 0.5em;
+    color: var(--neutral-100);
+    text-wrap: balance;
+  }
+
+  .meta-row {
     display: flex;
-    flex-direction: column;
     align-items: center;
-
-    h1 {
-      margin-bottom: 0.5em;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    span {
-      position: absolute;
-      bottom: -0.5em;
-    }
+    flex-wrap: wrap;
+    gap: 0.5em 1em;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--neutral-400);
   }
 
-  .meta-info {
+  .meta-group {
     display: flex;
-    gap: 1ch;
-    margin-block: 1em;
-
-    > span:not(:nth-child(even)) {
-      flex: 1;
-      text-align: right;
-
-      &:last-child {
-        text-align: left;
-      }
-    }
+    align-items: center;
+    gap: 0.5em;
+    white-space: nowrap;
   }
 
-  .meta-category {
+  .tag-list {
     display: flex;
-    justify-content: center;
-    gap: 1ch;
-    padding-left: 0;
+    gap: 0.5em;
     list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sep {
+    color: var(--neutral-600);
+    font-weight: 300;
+  }
+
+  /* Mobile Constraints (<768px) */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.8em;
+    }
+
+    .meta-row {
+      flex-wrap: nowrap; /* Prevent wrapping */
+      overflow-x: auto; /* Scroll if needed */
+      scrollbar-width: none; /* Hide scrollbar */
+      padding-bottom: 0.25em; /* Space for scroll */
+      mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    }
+
+    .updated {
+      display: none; /* Hide update date on mobile */
+    }
+
+    .mobile-hidden {
+      display: none;
+    }
+
+    /* Ensure tags don't shrink */
+    .tag-list li {
+      flex-shrink: 0;
+    }
   }
 </style>

@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import Tag from "@components/ui/Tag.astro";
+import Link from "@components/ui/Link.astro";
+
+const articles = await getCollection("articles");
+
+// Derived Categories (Folders)
+// Logic: Extract unique first-level directions from article IDs
+const folders = new Set<string>();
+articles.forEach((article) => {
+  const parts = article.id.split("/");
+  if (parts.length > 1) {
+    // It has a folder
+    // Add the full path to the parent folder? Or just top level?
+    // User said: "move ... to new folder coverage...".
+    // The script made top-level folders: 'contact-and...', 'reading-reflection'.
+    // So we just want the top-level folder name or relative path.
+    // Let's use the relative directory path.
+    const dir = parts.slice(0, -1).join("/");
+    folders.add(dir);
+  }
+});
+const sortedFolders = Array.from(folders).sort();
+
+// Derived Tags
+const tags = new Set<string>();
+articles.forEach((article) => {
+  article.data.tags.forEach((tag) => tags.add(tag));
+});
+const sortedTags = Array.from(tags).sort();
+---
+
+<aside class="library-sidebar">
+  <div class="section">
+    <h3>Categories</h3>
+    <ul class="folder-list">
+      <li>
+        <Link href="/articles" class="folder-link">All Notes</Link>
+      </li>
+      {
+        sortedFolders.map((folder) => (
+          <li>
+            <Link href={`/folders/${folder}`} class="folder-link">
+              {folder}
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Tags</h3>
+    <div class="tag-cloud">
+      {sortedTags.map((tag) => <Tag tag={tag} href={`/tags/${tag}`} />)}
+    </div>
+  </div>
+</aside>
+
+<style>
+  .library-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding-right: 1em; /* Only padding right to separate from content */
+    /* Removed background/border for cleaner look */
+    /* height: 100%; removed to fix "too long" issue */
+    min-width: 250px;
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    font-family: var(--font-serif);
+    margin-top: 0;
+    margin-bottom: 1em;
+    color: var(--neutral-200);
+    border-bottom: 1px dashed var(--neutral-600);
+    padding-bottom: 0.5em;
+  }
+
+  .folder-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  /* Use global Link styles but customize if needed */
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  @media (max-width: 768px) {
+    .library-sidebar {
+      position: static;
+      padding-right: 0;
+      min-width: auto;
+      border-bottom: 1px dashed var(--neutral-700);
+      padding-bottom: 2em;
+    }
+  }
+</style>

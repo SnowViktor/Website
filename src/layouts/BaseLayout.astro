@@ -9,8 +9,14 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  containerSize?: "sm" | "md" | "lg";
 }
-const { title, description, image = "/og-image.png" } = Astro.props;
+const {
+  title,
+  description,
+  image = "/og-image.png",
+  containerSize = "md",
+} = Astro.props;
 ---
 
 <html lang="zh-hant-tw">
@@ -21,11 +27,11 @@ const { title, description, image = "/og-image.png" } = Astro.props;
   />
   <body>
     <BaseHeader />
-    <Container class="main-container">
+    <Container class="main-container" size={containerSize}>
       <main data-pagefind-body>
         <slot />
       </main>
+      <BaseFooter />
     </Container>
-    <BaseFooter />
   </body>
 </html>

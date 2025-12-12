@@ -61,6 +61,7 @@ const navigationItems = [
     align-items: flex-end;
     justify-content: space-between;
     margin-top: auto;
+    gap: 1em;
 
     &:has(.prev:only-child) {
       justify-content: flex-start;
@@ -68,6 +69,23 @@ const navigationItems = [
 
     &:has(.next:only-child) {
       justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: stretch;
+
+      &:has(.prev:only-child),
+      &:has(.next:only-child) {
+        justify-content: stretch;
+      }
+    }
+
+    a.next div {
+      flex-direction: row; /* Keep arrow on right but text aligned normally? Or flip back? */
+      /* Design choice: usually simpler to keep direction or reset. Let's keep distinct directions but full width */
     }
   }
 

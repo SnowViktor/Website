@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import CollectionItem from "@components/CollectionItem.astro";
+import LibrarySidebar from "@components/LibrarySidebar.astro";
 
 interface Props {
   title: string;
@@ -11,24 +12,46 @@ interface Props {
 const { title, description, articles } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
-  <h1>{title}</h1>
-  <slot />
-  <p>
-    <span>Total: {articles.length}</span>
-  </p>
-  <ul class="article-items">
-    {
-      articles.map((article) => (
-        <li>
-          <CollectionItem article={article} />
-        </li>
-      ))
-    }
-  </ul>
+<BaseLayout title={title} description={description} containerSize="lg">
+  <div class="collection-grid">
+    <LibrarySidebar />
+    <div class="collection-main">
+      <h1>{title}</h1>
+      <slot />
+      <p>
+        <span>Total: {articles.length}</span>
+      </p>
+      <ul class="article-items">
+        {
+          articles.map((article) => (
+            <li>
+              <CollectionItem article={article} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
+  .collection-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2em;
+    align-items: start;
+  }
+
+  .collection-main {
+    min-width: 0; /* Prevent grid blowout */
+  }
+
+  @media (max-width: 900px) {
+    .collection-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0.5;
