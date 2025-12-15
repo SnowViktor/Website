@@ -8,7 +8,7 @@ export async function sortCollection(
   collection: CollectionKey,
 ): Promise<CollectionEntry<CollectionKey>[]> {
   return (await getCollection(collection)).sort(
-    (a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf(),
+    (a, b) => b.data.pub_date.valueOf() - a.data.pub_date.valueOf(),
   );
 }
 
@@ -17,7 +17,7 @@ export async function filterAndSortArticlesByCategory(
 ): Promise<CollectionEntry<"articles">[]> {
   const articles = await getCollection("articles");
   if (!category) {
-    return articles.sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+    return articles.sort((a, b) => b.data.pub_date.valueOf() - a.data.pub_date.valueOf());
   }
   const tagsArr = Array.isArray(category) ? category : [category];
 
@@ -25,7 +25,7 @@ export async function filterAndSortArticlesByCategory(
     .filter((article) =>
       article.data.tags.some((tag) => tagsArr.includes(tag)),
     )
-    .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf());
+    .sort((a, b) => b.data.pub_date.valueOf() - a.data.pub_date.valueOf());
 }
 
 export async function getAdjacentArticles(currentId: string): Promise<{

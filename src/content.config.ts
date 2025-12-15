@@ -14,11 +14,11 @@ const articles = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      published_at: z.coerce.date(),
-      updated_at: z.coerce.date().optional(),
+      pub_date: z.coerce.date(),
+      updated_date: z.coerce.date().optional(),
       tags: z.array(z.string()),
       author: z.string().optional().default(SITE_AUTHOR),
-      original_author: z.string().optional(),
+      book_author: z.string().optional(),
       cover_image: imageSchema({ image }).optional(),
     }),
 });

@@ -8,13 +8,13 @@ interface Props {
   article: CollectionEntry<CollectionKey>;
 }
 const { article } = Astro.props;
-const { title, description, published_at, tags } = article.data;
+const { title, description, pub_date, tags } = article.data;
 ---
 
 <article class="post-card">
   <div class="content">
     <div class="meta">
-      <LayoutsTime date={published_at} />
+      <LayoutsTime date={pub_date} />
       <div class="tags-scroll">
         <div class="tags">
           {tags.slice(0, 3).map((tag) => <Tag tag={tag} />)}

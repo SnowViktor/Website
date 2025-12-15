@@ -29,9 +29,7 @@ export async function getStaticPaths() {
     // Filter articles starting with this path
     const filteredArticles = articles
       .filter((a) => a.id.startsWith(folderPath + "/"))
-      .sort(
-        (a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf(),
-      );
+      .sort((a, b) => b.data.pub_date.valueOf() - a.data.pub_date.valueOf());
 
     return {
       params: { path: folderPath },

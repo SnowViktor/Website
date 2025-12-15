@@ -2,7 +2,7 @@
   "name": "website",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.26.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
@@ -21,7 +21,7 @@
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^9.0.2",
-    "@iconify-json/lucide": "^1.2.80",
+    "@iconify-json/lucide": "^1.2.81",
     "@vercel/analytics": "^1.6.1",
     "astro": "^5.16.5",
     "astro-icon": "^1.1.5",

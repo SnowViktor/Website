@@ -4,7 +4,7 @@ import LayoutsTime from "@components/LayoutsTime.astro";
 import Tag from "@components/ui/Tag.astro";
 
 type Props = CollectionEntry<"articles">["data"];
-const { title, published_at, updated_at, tags, author, original_author } =
+const { title, pub_date, updated_date, tags, author, book_author } =
   Astro.props;
 ---
 
@@ -13,16 +13,16 @@ const { title, published_at, updated_at, tags, author, original_author } =
 
   <div class="meta-row">
     <div class="meta-group date-author">
-      <LayoutsTime date={published_at} />
+      <LayoutsTime date={pub_date} />
       {
-        updated_at && (
+        updated_date && (
           <span class="updated">
-            (Upd. <LayoutsTime date={updated_at} />)
+            (Upd. <LayoutsTime date={updated_date} />)
           </span>
         )
       }
       <span class="sep">|</span>
-      <span class="author">{original_author || author}</span>
+      <span class="author">{book_author || author}</span>
     </div>
 
     <div class="meta-group tags-container">

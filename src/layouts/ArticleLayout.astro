@@ -7,11 +7,11 @@ import Breadcrumbs from "@components/ui/Breadcrumbs.astro";
 import { formatContentDate } from "@utils/time";
 
 type Props = { id: string } & CollectionEntry<"articles">["data"];
-const { id, title, description, published_at, cover_image } = Astro.props;
+const { id, title, description, pub_date, cover_image } = Astro.props;
 ---
 
 <BaseLayout
-  title={`${title}．${formatContentDate(published_at, false)}`}
+  title={`${title}．${formatContentDate(pub_date, false)}`}
   description={description}
   image={cover_image?.src.src}
 >

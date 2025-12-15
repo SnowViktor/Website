@@ -8,7 +8,7 @@ import { SITE_AUTHOR, SITE_DESCRIPTION } from "src/consts";
 
 const allArticles = await getCollection("articles");
 const recentArticles = allArticles
-  .sort((a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf())
+  .sort((a, b) => b.data.pub_date.valueOf() - a.data.pub_date.valueOf())
   .slice(0, 5);
 ---
 

@@ -11,9 +11,9 @@ export async function GET(context: { site: any }) {
     trailingSlash: false,
     items: articles.map((article) => ({
       title: article.data.title,
-      pubDate: article.data.published_at,
+      pubDate: article.data.pub_date,
       description: article.data.description,
-      link: `/articles/${article.id}/`, // Ensure trailing slash consistency if needed, or stick to flat
+      link: `/articles/${article.id}`,
     })),
   });
 }
