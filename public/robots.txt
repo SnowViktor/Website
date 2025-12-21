@@ -7,7 +7,4 @@
 # !___________!
 
 User-agent: *
-Disallow: /articles/i-dont-care-about-eternity-i-only-care-that-i-once-had-it
-Disallow: /articles/i-dont-yearn-for-eternity-i-only-wonder-if-this-heart-was-true-submitted
-
 Sitemap: https://snow-viktor.vercel.app/sitemap-index.xml
