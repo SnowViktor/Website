@@ -5,8 +5,10 @@ html {
 body {
   background-color: var(--neutral-900);
   font-size: max(18px, 1rem);
+  font-feature-settings: "pwid" on;
   font-variant-numeric: ordinal;
   letter-spacing: 0.03em;
+  text-autospace: normal;
   text-spacing-trim: trim-start;
   overflow-wrap: break-word;
   word-break: auto-phrase;
@@ -30,12 +32,15 @@ main {
   font-size: inherit;
   line-height: 2;
   text-align: justify;
+  text-shadow: 0 1px 2px oklch(0 0 0 / 0.5);
 }
 
 blockquote {
   margin-inline: 0;
-  padding-left: 0.75ch;
+  padding: 0.5em 1.5ch;
   border-left: 0.5ch solid var(--neutral-400);
+  background-color: oklch(from var(--neutral-800) l c h / 0.3);
+  border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
   font-family: var(--font-cursive);
 }
 
@@ -103,13 +108,15 @@ a {
 
 :focus-visible {
   border-radius: inherit;
-  outline: 2px solid var(--color-secondary);
+  outline: 2px solid var(--neutral-200);
 }
 
 details {
   margin-block: 1em;
   padding: 0.2em 0.7em;
-  border: 0.1em outset var(--neutral-600);
+  border: 1px solid var(--neutral-700);
+  background-color: oklch(from var(--neutral-800) l c h / 0.5);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.1);
   border-radius: var(--border-radius-medium);
 }
 

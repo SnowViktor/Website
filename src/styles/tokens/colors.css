@@ -1,6 +1,6 @@
 :root {
-  --hue-neutral: 180;
-  --chroma-neutral: 0.008;
+  --hue-neutral: 0;
+  --chroma-neutral: 0;
   --neutral-100: oklch(0.99 var(--chroma-neutral) var(--hue-neutral));
   --neutral-200: oklch(0.95 var(--chroma-neutral) var(--hue-neutral));
   --neutral-300: oklch(0.85 var(--chroma-neutral) var(--hue-neutral));
@@ -11,20 +11,7 @@
   --neutral-800: oklch(0.27 var(--chroma-neutral) var(--hue-neutral));
   --neutral-900: oklch(0.22 var(--chroma-neutral) var(--hue-neutral));
   --neutral-950: oklch(0.17 var(--chroma-neutral) var(--hue-neutral));
-
-  --hue-primary: 185;
-  --chroma-primary: 0.06;
-  --primary-100: oklch(0.95 var(--chroma-primary) var(--hue-primary));
-  --primary-200: oklch(0.9 var(--chroma-primary) var(--hue-primary));
-  --primary-300: oklch(0.85 var(--chroma-primary) var(--hue-primary));
-  --primary-400: oklch(0.8 var(--chroma-primary) var(--hue-primary));
-  --primary-500: oklch(0.75 var(--chroma-primary) var(--hue-primary));
-  --primary-600: oklch(0.7 var(--chroma-primary) var(--hue-primary));
-  --primary-700: oklch(0.65 var(--chroma-primary) var(--hue-primary));
-  --primary-800: oklch(0.6 var(--chroma-primary) var(--hue-primary));
-  --primary-900: oklch(0.55 var(--chroma-primary) var(--hue-primary));
-
-  --color-secondary: var(--primary-300);
+  --neutral-950: oklch(0.17 var(--chroma-neutral) var(--hue-neutral));
 
   --opacity-10: 0.1;
   --opacity-20: 0.2;

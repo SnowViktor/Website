@@ -8,6 +8,7 @@
   font-size: 16px;
   font-variant-numeric: unset;
   line-height: 1.4;
+  filter: grayscale(1);
 }
 
 @supports (anchor-name: --astro-code) {

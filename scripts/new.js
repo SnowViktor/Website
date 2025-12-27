@@ -28,9 +28,9 @@ async function main() {
   const content = `---
 title: "${title}"
 description: "Enter description here..."
-pubDate: ${dateStr}
-category: ["Prose"]
-heroImage: 
+pub_date: ${dateStr}
+tags: []
+cover_image: 
   image: 
   alt: 
 ---
