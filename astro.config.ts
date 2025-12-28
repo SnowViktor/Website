@@ -22,6 +22,9 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: "one-dark-pro",
+      langAlias: {
+        unicode: "text",
+      },
       wrap: true,
     },
     remarkPlugins: [remarkMath],

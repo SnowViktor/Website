@@ -80,6 +80,8 @@ const { title, description, pub_date, tags } = article.data;
     margin: 0 0 0.5em;
     font-size: 1.5em;
     line-height: 1.3;
+    text-align: left;
+    text-wrap: unset;
   }
 
   /* Override Link style for title */
@@ -97,7 +99,7 @@ const { title, description, pub_date, tags } = article.data;
     font-size: 0.95em;
     line-height: 1.6;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
