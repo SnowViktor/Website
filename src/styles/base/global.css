@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  margin: 0;
   background-color: var(--neutral-900);
   font-size: max(18px, 1rem);
   font-feature-settings: "pwid" on;
