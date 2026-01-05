@@ -1,11 +1,11 @@
 html {
+  font-size: max(18px, 1rem);
   scrollbar-color: oklch(from var(--primary-900) l c h / var(--opacity-70)) transparent;
 }
 
 body {
   margin: 0;
   background-color: var(--neutral-900);
-  font-size: max(18px, 1rem);
   font-feature-settings: "pwid" on;
   font-variant-numeric: ordinal;
   text-autospace: normal;
@@ -29,7 +29,6 @@ main {
   margin: 2.75em auto 1em;
   color: var(--neutral-200);
   font-family: var(--font-serif);
-  font-size: inherit;
   line-height: 2;
   text-align: justify;
   text-shadow: 0 1px 2px oklch(0 0 0 / 0.5);
