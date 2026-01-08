@@ -1,3 +1,4 @@
+/* issue */
 /* Shiki / Astro Code Block Styling */
 .astro-code {
   anchor-name: --astro-code;
@@ -28,7 +29,6 @@
     transition-property: opacity;
     font-size: 14px;
     font-weight: 400;
-    letter-spacing: 0;
   }
 
   .astro-code:focus-visible::before {
