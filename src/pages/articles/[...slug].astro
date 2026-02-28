@@ -13,8 +13,8 @@ export async function getStaticPaths() {
     const slug = article.id.split("/").pop();
 
     if (slugMap.has(slug)) {
-      console.warn(
-        `⚠️ Duplicate Slug Collision: ${slug} (${article.id} vs ${slugMap.get(slug)})`,
+      throw new Error(
+        `Duplicate Slug Collision: ${slug} (${article.id} vs ${slugMap.get(slug)}). Please ensure all article filenames are unique natively.`,
       );
     }
     slugMap.set(slug, article.id);

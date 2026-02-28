@@ -2,21 +2,14 @@
 import BaseHead from "@components/BaseHead.astro";
 import BaseHeader from "@components/BaseHeader.astro";
 import BaseFooter from "@components/BaseFooter.astro";
-import Container from "@components/ui/Container.astro";
 import { SITE_TITLE } from "src/consts";
 
 interface Props {
   title: string;
   description: string;
   image?: string;
-  containerSize?: "sm" | "md" | "lg";
 }
-const {
-  title,
-  description,
-  image = "/og-image.png",
-  containerSize = "md",
-} = Astro.props;
+const { title, description, image = "/og-image.png" } = Astro.props;
 ---
 
 <html lang="zh-hant-tw">
@@ -27,11 +20,9 @@ const {
   />
   <body>
     <BaseHeader />
-    <Container class="main-container" size={containerSize}>
-      <main data-pagefind-body>
-        <slot />
-      </main>
-      <BaseFooter />
-    </Container>
+    <main data-pagefind-body>
+      <slot />
+    </main>
+    <BaseFooter />
   </body>
 </html>

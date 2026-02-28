@@ -1,40 +1,43 @@
 ---
 import { Icon } from "astro-icon/components";
+import Container from "@components/ui/Container.astro";
 ---
 
-<footer>
-  <ul class="social">
-    <li>
-      <a
-        href="https://github.com/SnowViktor/Website"
-        target="_blank"
-        aria-label="Go to Website's GitHub repository"
-      >
-        <Icon name="github" size={32} />
-      </a>
-    </li>
-    <li>
-      <a
-        href="https://www.youtube.com/@SnowViktor"
-        target="_blank"
-        aria-label="Go to SnowViktor's YouTube channel"
-      >
-        <Icon name="youtube" size={36} />
-      </a>
-    </li>
-  </ul>
-  <p>
-    Powered by <a href="https://astro.build/" target="_blank">Astro</a>.
-  </p>
-  <p>
-    <a href="https://snow-viktor.vercel.app" target="_blank">Website</a> by SnowViktor
-    is licensed under <a
-      class="license"
-      href="https://creativecommons.org/licenses/by-nc/4.0/"
-      target="_blank">CC BY-NC 4.0</a
-    >.
-  </p>
-</footer>
+<Container>
+  <footer>
+    <ul class="social">
+      <li>
+        <a
+          href="https://github.com/SnowViktor/Website"
+          target="_blank"
+          aria-label="Go to Website's GitHub repository"
+        >
+          <Icon name="github" size={32} />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.youtube.com/@SnowViktor"
+          target="_blank"
+          aria-label="Go to SnowViktor's YouTube channel"
+        >
+          <Icon name="youtube" size={36} />
+        </a>
+      </li>
+    </ul>
+    <p>
+      Powered by <a href="https://astro.build/" target="_blank">Astro</a>.
+    </p>
+    <p>
+      <a href="https://snow-viktor.vercel.app" target="_blank">Website</a> by SnowViktor
+      is licensed under <a
+        class="license"
+        href="https://creativecommons.org/licenses/by-nc/4.0/"
+        target="_blank">CC BY-NC 4.0</a
+      >.
+    </p>
+  </footer>
+</Container>
 
 <style>
   footer {

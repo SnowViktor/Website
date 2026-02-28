@@ -3,13 +3,11 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Link from "@components/ui/Link.astro";
 import CollectionItem from "@components/CollectionItem.astro";
-import { getCollection } from "astro:content";
+import { filterAndSortArticlesByCategory } from "@utils/collection";
 import { SITE_AUTHOR, SITE_DESCRIPTION } from "src/consts";
 
-const allArticles = await getCollection("articles");
-const recentArticles = allArticles
-  .sort((a, b) => b.data.pub_date.valueOf() - a.data.pub_date.valueOf())
-  .slice(0, 5);
+const allArticles = await filterAndSortArticlesByCategory();
+const recentArticles = allArticles.slice(0, 5);
 ---
 
 <BaseLayout title="Home" description={SITE_DESCRIPTION}>
