@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Link from "@components/ui/Link.astro";
-import CollectionItem from "@components/CollectionItem.astro";
+import CollectionItem from "@components/articles/CollectionItem.astro";
 import { filterAndSortArticlesByCategory } from "@utils/collection";
 import { SITE_AUTHOR, SITE_DESCRIPTION } from "src/consts";
 
@@ -10,7 +10,7 @@ const allArticles = await filterAndSortArticlesByCategory();
 const recentArticles = allArticles.slice(0, 5);
 ---
 
-<BaseLayout title="Home" description={SITE_DESCRIPTION}>
+<PageLayout title="Home" description={SITE_DESCRIPTION}>
   <Container size="md">
     <section class="intro">
       <h1>Hello, I'm {SITE_AUTHOR}.</h1>
@@ -35,7 +35,7 @@ const recentArticles = allArticles.slice(0, 5);
       </div>
     </section>
   </Container>
-</BaseLayout>
+</PageLayout>
 
 <style>
   .intro {

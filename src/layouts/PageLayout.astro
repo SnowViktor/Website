@@ -1,0 +1,23 @@
+---
+import Head from "@components/seo/Head.astro";
+import Header from "@components/layout/Header.astro";
+import Footer from "@components/layout/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+const { title, description, image = "/og-image.png" } = Astro.props;
+---
+
+<html lang="zh-hant-tw">
+  <Head title={title} description={description} image={image} />
+  <body>
+    <Header />
+    <main data-pagefind-body>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

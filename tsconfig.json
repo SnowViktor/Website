@@ -8,6 +8,10 @@
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@layout/*": ["src/components/layout/*"],
+      "@seo/*": ["src/components/seo/*"],
+      "@articles/*": ["src/components/articles/*"],
       "@layouts/*": ["src/layouts/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]

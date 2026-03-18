@@ -1,5 +1,5 @@
 ---
-import BaseHeaderLink from "@components/BaseHeaderLink.astro";
+import HeaderLink from "@components/layout/HeaderLink.astro";
 import { SITE_TITLE, NAV_ITEMS } from "src/consts";
 ---
 
@@ -10,7 +10,7 @@ import { SITE_TITLE, NAV_ITEMS } from "src/consts";
       {
         NAV_ITEMS.map(({ label, href }) => (
           <li>
-            <BaseHeaderLink href={href}>{label}</BaseHeaderLink>
+            <HeaderLink href={href}>{label}</HeaderLink>
           </li>
         ))
       }

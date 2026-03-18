@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import LayoutsTime from "@components/LayoutsTime.astro";
+import FormattedDate from "@components/ui/FormattedDate.astro";
 import Tag from "@components/ui/Tag.astro";
 
 type Props = CollectionEntry<"articles">["data"];
@@ -13,11 +13,11 @@ const { title, pub_date, updated_date, tags, author, book_author } =
 
   <div class="meta-row">
     <div class="meta-group date-author">
-      <LayoutsTime date={pub_date} />
+      <FormattedDate date={pub_date} />
       {
         updated_date && (
           <span class="updated">
-            (Upd. <LayoutsTime date={updated_date} />)
+            (Upd. <FormattedDate date={updated_date} />)
           </span>
         )
       }

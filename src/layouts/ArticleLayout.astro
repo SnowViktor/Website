@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/ui/Container.astro";
-import ArticleNavigation from "@components/ArticleNavigation.astro";
-import ArticleMeta from "@components/ArticleMeta.astro";
+import ArticleNavigation from "@components/articles/ArticleNavigation.astro";
+import ArticleMeta from "@components/articles/ArticleMeta.astro";
 import Breadcrumbs from "@components/ui/Breadcrumbs.astro";
 import { formatContentDate } from "@utils/time";
 
@@ -11,7 +11,7 @@ type Props = { id: string } & CollectionEntry<"articles">["data"];
 const { id, title, description, pub_date, cover_image } = Astro.props;
 ---
 
-<BaseLayout
+<PageLayout
   title={`${title}．${formatContentDate(pub_date, false)}`}
   description={description}
   image={cover_image?.src.src}
@@ -27,7 +27,7 @@ const { id, title, description, pub_date, cover_image } = Astro.props;
     </article>
     <aside><ArticleNavigation id={id} /></aside>
   </Container>
-</BaseLayout>
+</PageLayout>
 
 <style>
   article {

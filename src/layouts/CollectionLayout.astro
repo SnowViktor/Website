@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/ui/Container.astro";
-import CollectionItem from "@components/CollectionItem.astro";
-import LibrarySidebar from "@components/LibrarySidebar.astro";
+import CollectionItem from "@components/articles/CollectionItem.astro";
+import LibrarySidebar from "@components/articles/LibrarySidebar.astro";
 
 interface Props {
   title: string;
@@ -13,7 +13,7 @@ interface Props {
 const { title, description, articles } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<PageLayout title={title} description={description}>
   <Container size="lg">
     <div class="collection-grid">
       <LibrarySidebar />
@@ -35,7 +35,7 @@ const { title, description, articles } = Astro.props;
       </div>
     </div>
   </Container>
-</BaseLayout>
+</PageLayout>
 
 <style>
   .collection-grid {

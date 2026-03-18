@@ -11,7 +11,6 @@
   --neutral-800: oklch(0.27 var(--chroma-neutral) var(--hue-neutral));
   --neutral-900: oklch(0.22 var(--chroma-neutral) var(--hue-neutral));
   --neutral-950: oklch(0.17 var(--chroma-neutral) var(--hue-neutral));
-  --neutral-950: oklch(0.17 var(--chroma-neutral) var(--hue-neutral));
 
   --opacity-10: 0.1;
   --opacity-20: 0.2;
