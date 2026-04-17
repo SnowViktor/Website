@@ -27,11 +27,11 @@
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.4",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^6.1.4",
+    "astro": "^6.1.7",
     "astro-icon": "^1.1.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3"
