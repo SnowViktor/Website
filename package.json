@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "license": "CC-BY-NC-4.0",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.1",
   "scripts": {
     "dev": "astro dev",
     "dev:check": "astro check --watch",
@@ -27,7 +27,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.4",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^6.1.7",
+    "astro": "^6.1.8",
     "astro-icon": "^1.1.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
