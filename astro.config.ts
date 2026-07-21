@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
@@ -8,7 +7,7 @@ import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://snow-viktor.vercel.app",
+  site: "",
   trailingSlash: "never",
   adapter: vercel(),
   integrations: [mdx(), sitemap(), icon({ iconDir: "src/assets/icons" })],
@@ -29,7 +28,5 @@ export default defineConfig({
   },
   experimental: {
     clientPrerender: true,
-    contentIntellisense: true,
-    chromeDevtoolsWorkspace: true,
   },
 });
