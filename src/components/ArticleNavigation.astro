@@ -35,7 +35,7 @@ const navigationItems = [
       return (
         <a
           class={direction}
-          href={`/articles/${article.id}`}
+          href={`${import.meta.env.BASE_URL}/articles/${article.id}`}
           aria-label={label}
         >
           <div tabindex="-1">

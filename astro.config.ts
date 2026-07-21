@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
@@ -7,9 +8,9 @@ import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "",
+  site: "https://snow-viktor.github.io",
+  base: "/legacy-website",
   trailingSlash: "never",
-  adapter: vercel(),
   integrations: [mdx(), sitemap(), icon({ iconDir: "src/assets/icons" })],
   build: {
     format: "file",
@@ -19,12 +20,14 @@ export default defineConfig({
     defaultStrategy: "viewport",
   },
   markdown: {
+    processor: unified({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [[rehypeKatex, { output: "mathml" }]],
+    }),
     shikiConfig: {
       theme: "one-dark-pro",
       wrap: true,
     },
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [[rehypeKatex, { output: "mathml" }]],
   },
   experimental: {
     clientPrerender: true,

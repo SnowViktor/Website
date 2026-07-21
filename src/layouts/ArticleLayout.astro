@@ -51,7 +51,7 @@ const {
           category.map((category) => (
             <li>
               <a
-                href={`/category/${CATEGORY_LIST.find((obj) => obj.name === category)!.id}`}
+                href={`${import.meta.env.BASE_URL}/category/${CATEGORY_LIST.find((obj) => obj.name === category)!.id}`}
               >
                 ＃{category}
               </a>

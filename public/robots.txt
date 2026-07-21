@@ -8,4 +8,4 @@
 
 User-agent: *
 
-Sitemap: https:///sitemap-index.xml
+Sitemap: https://snow-viktor.github.io/legacy-website/sitemap-index.xml
