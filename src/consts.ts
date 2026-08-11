@@ -1,6 +1,6 @@
 export const SITE_TITLE = "SnowViktor";
-export const SITE_DESCRIPTION = "SnowViktor's Personal Website";
-export const SITE_AUTHOR = "Viktor Yi-Pin Wu";
+export const SITE_DESCRIPTION = "SnowViktor's archived personal website";
+export const SITE_AUTHOR = "SnowViktor";
 
 export const CATEGORY_LIST = [
   {

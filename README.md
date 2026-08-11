@@ -17,4 +17,4 @@ npm run build
 
 ## License
 
-[CC BY-NC 4.0](LICENSE)
+[CC BY-NC 4.0](./LICENSE)
